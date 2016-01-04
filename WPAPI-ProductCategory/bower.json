@@ -1,0 +1,60 @@
+{
+  "name": "FIMEX-ProductCategory",
+  "homepage": "https://github.com/yannicklin/APP-FIMEXProductCategory",
+  "authors": [
+    "Yannick Lin <yannicklin@twoudia.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "^1.2.3",
+    "ionic-toast": "^0.2.0",
+    "angular-dynamic-locale": "^0.1.29",
+    "angular-translate": "^2.8.1",
+    "angular-translate-loader-static-files": "^2.8.1",
+    "angular-translate-storage-cookie": "^2.8.1",
+    "angular-translate-storage-local": "^2.8.1",
+    "angular-messages": "^1.4.8",
+    "normalize-css": "^3.0.3"
+  },
+  "overrides": {
+    "ionic": {
+      "main": "**/release/js/ionic.bundle.min.*"
+    },
+    "ionic-toast": {
+      "main": "**/src/*.*"
+    },
+    "angular-dynamic-locale": {
+      "main": "**/src/*.*"
+    },
+    "angular-translate": {
+      "main": "**/*.min.*"
+    },
+    "angular-translate-loader-static-files": {
+      "main": "**/*.min.*"
+    },
+    "angular-translate-storage-cookie": {
+      "main": "**/*.min.*"
+    },
+    "angular-translate-storage-local": {
+      "main": "**/*.min.*"
+    },
+    "angular-messages": {
+      "main": "**/*.min.*"
+    }
+  },
+  "resolutions": {
+    "angular": "^1.4.3"
+  }
+}
