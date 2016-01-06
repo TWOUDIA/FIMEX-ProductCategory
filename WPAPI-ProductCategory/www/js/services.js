@@ -26,14 +26,14 @@ angular.module('chineselearn.services', [])
 
 .factory('AppSettings', function ($translate, tmhDynamicLocale, $log) {
     var savedData = {
-        domainURI: 'https://chineselearn.info/',
+        domainURI: 'http://beta.fimex.com.tw/',
         wpjsonURI: 'wp-json/wp/v2/',
         enableFriends: true,
         language: '',
         languageURI: '',
         emailserviceKey: 'e8yCnUcg1OaKz0dWIhIH7w',
         emailAPI: 'https://mandrillapp.com/api/1.0/messages/send.json',
-        contactForm2Email: 'support@chineselearn.info',
+        contactForm2Email: 'it@beta.fimex.com.tw',
         contactForm2User: 'Support',
         datdReload: false
     };
