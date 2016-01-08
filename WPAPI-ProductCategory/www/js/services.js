@@ -1,11 +1,20 @@
-angular.module('chineselearn.services', [])
+angular.module('fimex.services', [])
 
 .factory('DataLoader', function ($http, $log, AppSettings) {
     return {
         get: function ($term) {
-            var url = AppSettings.getURI() + $term;
-            $log.debug('URL: ' + url);
-            return $http.get(url);
+            // $term = 'products/categories?filter[created_at_min]=2013-11-01';
+            $log.debug(AppSettings.getURI() + $term);
+            var result = $http({
+                method: 'GET',
+                url: (AppSettings.getURI() + $term),
+                headers: {
+                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(),
+                    key: AppSettings.get('wcAPIKey'),
+                    secret: AppSettings.get('wcAPISecret')
+                },
+                timeout: 5000 });
+            return result;
         }
     }
 })
@@ -26,9 +35,11 @@ angular.module('chineselearn.services', [])
 
 .factory('AppSettings', function ($translate, tmhDynamicLocale, $log) {
     var savedData = {
-        domainURI: 'http://beta.fimex.com.tw/',
-        wpjsonURI: 'wp-json/wp/v2/',
-        enableFriends: true,
+        appName: 'APP - FIMEX CATEGORIES',
+        domainURI: 'https://beta.fimex.com.tw/',
+        wcAPIURI: 'wc-api/v3/',
+        wcAPIKey: 'ck_e3d52fbb954e57758cc7ea5bdadb6d44d9fd8be3',
+        wcAPISecret: 'cs_894c2f79bd330af5eba70473c6a921593139f034',
         language: '',
         languageURI: '',
         emailserviceKey: 'e8yCnUcg1OaKz0dWIhIH7w',
@@ -37,7 +48,7 @@ angular.module('chineselearn.services', [])
         contactForm2User: 'Support',
         datdReload: false
     };
-
+   
     function setLanguageURI(value) {
         switch (value) {
             case 'en':
@@ -71,7 +82,10 @@ angular.module('chineselearn.services', [])
             return savedData[$item];
         },
         getURI: function () {
-            return savedData.domainURI + savedData.languageURI + savedData.wpjsonURI;
+            return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI;
+        },
+        getAuthPhrase: function(){
+            return btoa(savedData.wcAPIKey + ':' + savedData.wcAPISecret);
         }
     };
 });

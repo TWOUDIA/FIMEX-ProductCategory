@@ -1,13 +1,14 @@
-angular.module('chineselearn.controllers', [])
+angular.module('fimex.controllers', [])
 
 .controller('DashCtrl', function ($scope) {})
 
-.controller('PostsCtrl', function ($scope, DataLoader, $stateParams, $timeout, $log, $filter, $ionicLoading, $ionicHistory) {
+.controller('ProductsCtrl', function ($scope, DataLoader, $stateParams, $timeout, $log, $filter, $ionicLoading, $ionicHistory) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
 
+    /*
     // Get all of our posts [under Params constraint]
     var termQueryString;
     if ($stateParams.tagSlug) {
@@ -20,10 +21,12 @@ angular.module('chineselearn.controllers', [])
         //TODO: initial to get all while click original tab of "POSTS"
         termQueryString = '';
     }
+    */
 
-    $scope.loadPosts = function () {
-        DataLoader.get('posts' + termQueryString).then(function (response) {
-            $scope.posts = response.data;
+    $scope.loadResult = function () {
+        DataLoader.get('products' + '?filter[limit]=20&filter[orderby]=id&filter[order]=ASC').then(function (response) {
+            $scope.products = response.data.products;
+            $log.debug($scope.products);
             $ionicLoading.hide();
         }, function(response) {
             $log.error('error', response);
@@ -31,56 +34,49 @@ angular.module('chineselearn.controllers', [])
             $scope.RSempty = true;
         });
     }
-
-    // Load posts on page load
-    $scope.loadPosts();
+    $scope.loadResult();
 
     // Pull to refresh
     $scope.doRefresh = function() {
-  
         $timeout( function() {
-
             $ionicLoading.show({
                 template: $filter('translate')('LOADING_TEXT')
             });
-            $scope.loadPosts();
-
+            $scope.loadResult();
         }, 1000);
-      
     };
-    
 })
 
-.controller('PostDetailCtrl', function ($scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
+.controller('ProductDetailCtrl', function ($scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
 
-    $scope.loadPost = function() {
-        DataLoader.get('posts/' + $stateParams.postId).then(function (response) {
-            $scope.post = response.data;
+    $scope.loadResult = function() {
+        DataLoader.get('products/' + $stateParams.productId).then(function (response) {
+            $scope.product = response.data.product;
             // Don't strip post html
-            $scope.content = $sce.trustAsHtml(response.data.content.rendered);
+            $scope.description = $sce.trustAsHtml($scope.product.description);
+            $scope.short_description = $sce.trustAsHtml($scope.product.short_description);
             $ionicLoading.hide();
         }, function(response) {
             $log.error('error', response);
             $ionicLoading.hide();
         });
     }
-
-    $scope.loadPost();
+    $scope.loadResult();
 
     // Pull to refresh
     $scope.doRefresh = function() {
         $timeout( function() {
-            $scope.loadPost();
+            $scope.loadResult();
         }, 1000);
     };
 })
 
 
-.controller('TagsCtrl', function ($scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', function ($scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
@@ -108,15 +104,25 @@ angular.module('chineselearn.controllers', [])
 })
 
 
-.controller('CategoriesCtrl', function ($scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+.controller('CategoriesCtrl', function ($cookies, $stateParams, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
 
+    if (!$stateParams) {
+        var currentCategories = $cookies.get('appFIMEXCategoriesRS');
+        $scope.updateCategories = function ($newterm) {
+            currentCategories = currentCategories + ' - ' + $newterm;
+            $cookies.put('appFIMEXCategoriesRS', currentCategories);
+        }
+    } else {
+        $cookies.remove('appFIMEXCategoriesRS');
+    }
+
     $scope.loadCategories = function () {
-        DataLoader.get('categories').then(function (response) {
-            $scope.categories = response.data;
+        DataLoader.get('products/categories' + '?filter[limit]=20&filter[orderby]=id&filter[order]=ASC').then(function (response) {
+            $scope.categories = response.data.categories;
             $ionicLoading.hide();
         }, function (response) {
             $log.error('error', response);
@@ -136,19 +142,19 @@ angular.module('chineselearn.controllers', [])
 })
 
 
-.controller('AccountCtrl', function ($scope, $translate, tmhDynamicLocale, AppSettings, $ionicHistory, EmailSender, $filter, $log) {
+.controller('SettingCtrl', function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
-      enableFriends: true,
-      language: $translate.use()
-  }
+        enableFriends: true,
+        language: $translate.use()
+    }
 
-  $scope.$watch('settings.language', function () {
-      AppSettings.change('language', $scope.settings.language);
-      $ionicHistory.clearCache();
-      $ionicHistory.clearHistory();
-  });
+    $scope.$watch('settings.language', function () {
+        AppSettings.change('language', $scope.settings.language);
+        $ionicHistory.clearCache();
+        $ionicHistory.clearHistory();
+    });
 
     // contact form submitting
   $scope.formSubmit = function() {
@@ -157,7 +163,7 @@ angular.module('chineselearn.controllers', [])
           "message": {
               "html": $scope.ctForm.ctMessage,
               "text": $scope.ctForm.ctMessage,
-              "subject": "Message sent via Mobile APP - ChineseLearn.info, " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
+              "subject": "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
               "from_email": $scope.ctForm.ctEmail,
               "from_name": $scope.ctForm.ctName,
               "to": [

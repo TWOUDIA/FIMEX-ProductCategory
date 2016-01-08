@@ -1,12 +1,13 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
-angular.module('chineselearn', [
+angular.module('fimex', [
     'ionic',  // ionic framework
     'ngCookies',
     'ngMessages',
+    'angular.filter', // inject the angular-filter module
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
-    'ionic-toast', // toast
-    'chineselearn.controllers', 'chineselearn.directives', 'chineselearn.filters', 'chineselearn.services' //customs
+    'ionic-toast', // inject the ionic-toast module
+    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services' //customs
     ])
 
 .run(function ($ionicPlatform, $ionicHistory, ionicToast, $filter, $timeout) {
@@ -32,7 +33,7 @@ angular.module('chineselearn', [
               ionic.Platform.exitApp();
           } else {
               countTimerForCloseApp = true;
-              ionicToast.show($filter('translate')('CONFIRM_BEFORE_APP_EXIT'), 'middle', false, 1000);
+              ionicToast.show($filter('translate')('CLICK_AGAIN_TO_EXIT_APP'), 'middle', false, 1000);
               $timeout(function () {
                   countTimerForCloseApp = false;
               }, 2000);
@@ -91,32 +92,32 @@ angular.module('chineselearn', [
         }
     }
     })
-    .state('tab.posts', {
-        url: '/posts',
+    .state('tab.products', {
+        url: '/products',
         cache: false,
         views: {
-            'tab-posts': {
-                templateUrl: 'templates/tab-posts.html',
-                controller: 'PostsCtrl'
+            'tab-products': {
+                templateUrl: 'templates/tab-products.html',
+                controller: 'ProductsCtrl'
             }
         }
     })
-    .state('tab.post-detail', {
-        url: '/posts/:postId',
+    .state('tab.product-detail', {
+        url: '/products/:productId',
         views: {
-            'tab-posts': {
-                templateUrl: 'templates/post-detail.html',
-                controller: 'PostDetailCtrl'
+            'tab-products': {
+                templateUrl: 'templates/product-detail.html',
+                controller: 'ProductDetailCtrl'
             }
         }
     })
-    .state('tab.tags', {
-        url: '/tags',
+    .state('tab.search', {
+        url: '/search',
         cache: false,
         views: {
-            'tab-tags': {
-                templateUrl: 'templates/tab-tags.html',
-                controller: 'TagsCtrl'
+            'tab-search': {
+                templateUrl: 'templates/tab-search.html',
+                controller: 'SearchCtrl'
             }
         }
     })
@@ -130,7 +131,7 @@ angular.module('chineselearn', [
         }
     })
     .state('tab.categories', {
-        url: '/categories',
+        url: '/categories/:categoryId',
         cache: false,
         views: {
             'tab-categories': {
@@ -143,17 +144,17 @@ angular.module('chineselearn', [
         url: '/categoryposts/:categorySlug/:categoryName',
         views: {
             'tab-posts': {
-                templateUrl: 'templates/tab-posts.html',
-                controller: 'PostsCtrl'
+                templateUrl: 'templates/tab-products.html',
+                controller: 'ProductsCtrl'
             }
         }
     })
-    .state('tab.account', {
-    url: '/account',
+    .state('tab.setting', {
+    url: '/setting',
     views: {
-        'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        'tab-setting': {
+        templateUrl: 'templates/tab-setting.html',
+        controller: 'SettingCtrl'
         }
     }
     });

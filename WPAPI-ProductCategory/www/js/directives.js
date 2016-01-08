@@ -1,4 +1,4 @@
-angular.module('chineselearn.directives', [])
+angular.module('fimex.directives', [])
 
 // Set up for grouped Radio Buttons
 .directive('gpRadio', function () {

@@ -1,7 +1,25 @@
-<ion-view view-title="{{'TAB_TITLE_CATEGORIES' | translate }}">
-  <ion-content>
-    <ion-refresher on-refresh="doRefresh()"></ion-refresher>
-    <a ng-show="categories" class="button button-outline button-positive" ng-repeat="category in categories" ng-if="category.count" href="#/tab/categoryposts/{{category.slug}}/{{category.name}}">{{category.name}}</a>
-    <h3 ng-hide="categories" ng-class="{null: !RSempty}">{{'ALERT_RECORD_NULL' | translate}}</h3>
-</ion-content>
+<ion-view>
+    <ion-nav-title>
+        Products
+        <div ng-hide="!termQS">{{'TAB_TITLE_POSTS' | translate }} - {{ termQS.Type | translate }} : {{ termQS.Term }}</div>
+        <div ng-hide="termQS">{{'TAB_TITLE_POSTS' | translate }}</div>
+    </ion-nav-title>
+
+    <ion-content>
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+        <ion-list ng-show="categories">
+            <ion-item class="item-icon-right" ng-repeat="category in categories" type="item-text-wrap" ng-click="updateCategories({{category.title}})" href="#/tab/categories/{{category.id}}">
+                    <p ng-bind-html="category.title"></p>
+                    <p ng-if="category.categories" ng-bind-html="category.categories[0]"></p>
+                    <p ng-if="category.short_description" ng-bind-html="category.short_description"></p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+        <h3 ng-hide="products" ng-class="{null: !RSempty}">{{'ALERT_RECORD_NULL' | translate}}</h3>
+        <ion-infinite-scroll ng-if="moreDataExists()"
+                             on-infinite="loadMore()"
+                             distance="1%"
+                             immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
 </ion-view>

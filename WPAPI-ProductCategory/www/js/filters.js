@@ -1,4 +1,4 @@
-﻿angular.module('chineselearn.filters', [])
+﻿angular.module('fimex.filters', [])
 
 .filter('linkremove', function ($sce, $log) {
     return function (text) {

@@ -1,0 +1,15 @@
+{
+    "org.apache.cordova.device": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device@0.3.0"
+        }
+    },
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/driftyco/ionic-plugins-keyboard",
+            "subdir": "."
+        }
+    }
+}
