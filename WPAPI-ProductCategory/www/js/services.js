@@ -3,11 +3,10 @@ angular.module('fimex.services', [])
 .factory('DataLoader', function ($http, $log, AppSettings) {
     return {
         get: function ($term) {
-            // $term = 'products/categories?filter[created_at_min]=2013-11-01';
-            $log.debug(AppSettings.getURI() + $term);
+            $log.debug(AppSettings.getURI($term));
             var result = $http({
                 method: 'GET',
-                url: (AppSettings.getURI() + $term),
+                url: (AppSettings.getURI($term)),
                 headers: {
                     'Authorization': 'Basic ' + AppSettings.getAuthPhrase(),
                     key: AppSettings.get('wcAPIKey'),
@@ -40,13 +39,43 @@ angular.module('fimex.services', [])
         wcAPIURI: 'wc-api/v3/',
         wcAPIKey: 'ck_e3d52fbb954e57758cc7ea5bdadb6d44d9fd8be3',
         wcAPISecret: 'cs_894c2f79bd330af5eba70473c6a921593139f034',
+        wcAPIURIsuffix: 'filter[orderby]=id&filter[order]=ASC',
+        wcAPIURIRSlimit: '&filter[limit]=20',
         language: '',
         languageURI: '',
         emailserviceKey: 'e8yCnUcg1OaKz0dWIhIH7w',
         emailAPI: 'https://mandrillapp.com/api/1.0/messages/send.json',
         contactForm2Email: 'it@beta.fimex.com.tw',
         contactForm2User: 'Support',
-        datdReload: false
+        dataReload: false,
+        oriCategories:[{
+                "id": 9,
+                "name": "Electrical Materials",
+                "slug": "electrical-materials",
+                "parent": 0,
+                "description": "",
+                "display": "default",
+                "image": "",
+                "count": 0
+            }, {
+                "id": 10,
+                "name": "Electrical Materials - American Category",
+                "slug": "electrical-materials-aa",
+                "parent": 0,
+                "description": "",
+                "display": "default",
+                "image": "",
+                "count": 0
+        }, {
+                "id": 11,
+                "name": "Wiring Devices",
+                "slug": "wiring-devices",
+                "parent": 0,
+                "description": "",
+                "display": "default",
+                "image": "",
+                "count": 0
+        }]
     };
    
     function setLanguageURI(value) {
@@ -81,8 +110,12 @@ angular.module('fimex.services', [])
         get: function ($item) {
             return savedData[$item];
         },
-        getURI: function () {
-            return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI;
+        getURI: function ($term) {
+            if (!$term){
+                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI  + '?' + savedData.wcAPIURIRSlimit;
+            }else{
+                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + savedData.wcAPIURIRSlimit;
+            }
         },
         getAuthPhrase: function(){
             return btoa(savedData.wcAPIKey + ':' + savedData.wcAPISecret);

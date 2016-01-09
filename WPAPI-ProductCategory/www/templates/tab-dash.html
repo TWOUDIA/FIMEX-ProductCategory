@@ -1,28 +1,16 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
-        </div>
-      </div>
+    <div ng-if="news_top" class="list card" ng-repeat="new in news_top| orderBy:id:reverse">
+      <div class="item item-divider" translate>{{new.title}}</div>
+      <div class="item item-body" ng-bind-html="new.content" translate></div>
+    </div>  
+    <div ng-if="news_normal" class="list card" ng-repeat="new in news_normal | orderBy:id:reverse">
+      <div class="item item-divider" translate>{{new.title}}</div>
+      <div class="item item-body" ng-bind-html="new.content" translate></div>
     </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
-        </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
+    <div ng-if="!news_count" class="list card">
+      <div class="item item-divider">Sorry!</div>
+      <div class="item item-body">No news!</div>
     </div>
   </ion-content>
 </ion-view>

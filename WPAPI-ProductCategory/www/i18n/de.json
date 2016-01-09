@@ -10,14 +10,11 @@
   "TAB_TITLE_CATEGORIES": "Kategorien",
   "TAB_TITLE_ACCOUNT": "Konto",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
-  "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
-  "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
-
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  // NEWS Section
+  "NEWS_20160107_TITLE":"7. Januar 2016 Nachrichten",
+  "NEWS_20160107_CONTENT":"sehen",
+  "NEWS_20160108_TITLE":"8. Januar 2016 Nachrichten",
+  "NEWS_20160108_CONTENT":"Auch ich",
+  "NEWS_20160109_TITLE":"9. Januar 2016 Nachrichten",
+  "NEWS_20160109_CONTENT":"Ich hoffe, nicht zu sein.",
 }

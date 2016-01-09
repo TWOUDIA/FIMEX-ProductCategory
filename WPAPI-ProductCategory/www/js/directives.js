@@ -16,7 +16,7 @@ angular.module('fimex.directives', [])
                     ngModelCtrl.$setViewValue(scope.value);
                 });
             });
-
+            
             scope.$watch('model', function (newVal) {
                 element.removeClass('button-positive');
                 if (newVal === scope.value) {

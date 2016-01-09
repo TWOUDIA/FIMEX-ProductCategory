@@ -7,14 +7,13 @@ angular.module('fimex', [
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'ionic-toast', // inject the ionic-toast module
-    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services' //customs
+    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.news' //customs
     ])
 
 .run(function ($ionicPlatform, $ionicHistory, ionicToast, $filter, $timeout) {
 
     $ionicPlatform.ready(function () {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     };
@@ -47,7 +46,7 @@ angular.module('fimex', [
 })
 
 .config(function($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $stateProvider, $urlRouterProvider) {
-    //global configure
+    //global configure for tabs position
     $ionicConfigProvider.tabs.position('bottom');
 
     //locale location

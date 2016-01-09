@@ -10,14 +10,11 @@
   "TAB_TITLE_CATEGORIES": "Categories",
   "TAB_TITLE_ACCOUNT": "Account",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
-  "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
-  "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
-
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  // NEWS Section
+  "NEWS_20160107_TITLE":"January 7, 2016 News",
+  "NEWS_20160107_CONTENT":"can not see",
+  "NEWS_20160108_TITLE":"January 8, 2016 News",
+  "NEWS_20160108_CONTENT":"me too",
+  "NEWS_20160109_TITLE":"January 9, 2016 News",
+  "NEWS_20160109_CONTENT":"I hope not to be.",
 }

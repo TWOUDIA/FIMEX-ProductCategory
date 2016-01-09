@@ -10,14 +10,12 @@
   "TAB_TITLE_CATEGORIES": "分類",
   "TAB_TITLE_ACCOUNT": "帳號",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
-  "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
-  "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
-
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  // NEWS Section
+  "NEWS_20160107_TITLE":"二零一六年一月七號新聞",
+  "NEWS_20160107_CONTENT":"看不到",
+  "NEWS_20160108_TITLE":"二零一六年一月八號新聞",
+  "NEWS_20160108_CONTENT":"我也一樣",
+  "NEWS_20160109_TITLE":"二零一六年一月九號新聞",
+  "NEWS_20160109_CONTENT":"希望不會再有了。",
+  
 }

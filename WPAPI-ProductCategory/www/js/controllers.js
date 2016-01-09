@@ -1,6 +1,11 @@
 angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', function ($scope) {})
+.controller('DashCtrl', function ($scope, News, $filter) {
+    var NewsRS = News.all();
+    $scope.news_normal = $filter('filter')(NewsRS, {top: 0});
+    $scope.news_top = $filter('filter')(NewsRS, {top: 1});
+    $scope.news_count = NewsRS.length;
+})
 
 .controller('ProductsCtrl', function ($scope, DataLoader, $stateParams, $timeout, $log, $filter, $ionicLoading, $ionicHistory) {
     $ionicLoading.show({
@@ -24,7 +29,7 @@ angular.module('fimex.controllers', [])
     */
 
     $scope.loadResult = function () {
-        DataLoader.get('products' + '?filter[limit]=20&filter[orderby]=id&filter[order]=ASC').then(function (response) {
+        DataLoader.get('products?').then(function (response) {
             $scope.products = response.data.products;
             $log.debug($scope.products);
             $ionicLoading.hide();
@@ -54,7 +59,7 @@ angular.module('fimex.controllers', [])
     $scope.RSempty = false;
 
     $scope.loadResult = function() {
-        DataLoader.get('products/' + $stateParams.productId).then(function (response) {
+        DataLoader.get('products/' + $stateParams.productId + '?').then(function (response) {
             $scope.product = response.data.product;
             // Don't strip post html
             $scope.description = $sce.trustAsHtml($scope.product.description);
@@ -82,7 +87,7 @@ angular.module('fimex.controllers', [])
     });
     $scope.RSempty = false;
 
-    $scope.loadTags = function () {
+    $scope.loadResult = function () {
         DataLoader.get('tags').then(function (response) {
             $scope.tags = response.data;
             $ionicLoading.hide();
@@ -93,12 +98,12 @@ angular.module('fimex.controllers', [])
         });
     }
 
-    $scope.loadTags();
+    $scope.loadResult();
 
     // Pull to refresh
     $scope.doRefresh = function () {
         $timeout(function () {
-            $scope.loadTags();
+            $scope.loadResult();
         }, 1000);
     };
 })
@@ -120,8 +125,8 @@ angular.module('fimex.controllers', [])
         $cookies.remove('appFIMEXCategoriesRS');
     }
 
-    $scope.loadCategories = function () {
-        DataLoader.get('products/categories' + '?filter[limit]=20&filter[orderby]=id&filter[order]=ASC').then(function (response) {
+    $scope.loadResult = function () {
+        DataLoader.get('products/categories?').then(function (response) {
             $scope.categories = response.data.categories;
             $ionicLoading.hide();
         }, function (response) {
@@ -131,12 +136,12 @@ angular.module('fimex.controllers', [])
         });
     }
 
-    $scope.loadCategories();
+    $scope.loadResult();
 
     // Pull to refresh
     $scope.doRefresh = function () {
         $timeout(function () {
-            $scope.loadCategories();
+            $scope.loadResult();
         }, 1000);
     };
 })
