@@ -4,20 +4,18 @@
   "ALERT_MAIL_SENT": "Thanks {{name}}, your message has been sent.",
   "ALERT_RECORD_NULL": "No records retrieved.",
 
-  "TAB_TITLE_STATUS": "Status",
-  "TAB_TITLE_POSTS": "Posts",
-  "TAB_TITLE_TAGS": "Tags",
-  "TAB_TITLE_CATEGORIES": "Categories",
-  "TAB_TITLE_ACCOUNT": "Account",
+  "TAB_TITLE_STATUS": "STATUS",
+  "TAB_TITLE_PRODUCTS": "PRODUCTS",
+  "TAB_TITLE_SEARCH": "SEARCH",
+  "TAB_TITLE_CATEGORIES": "CATEGORIES",
+  "TAB_TITLE_ACCOUNT": "ACCOUNT",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
-  "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
-  "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
-
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  "NOTES_EMPTY_TITLE":"Sorry¡I",
+  "NOTES_EMPTY_CONTENT":"Now no update bulletin¡I {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"January 7, 2016 News",
+  "NOTES_20160107_CONTENT":"can not see",
+  "NOTES_20160108_TITLE":"January 8, 2016 News",
+  "NOTES_20160108_CONTENT":"me too",
+  "NOTES_20160109_TITLE":"January 9, 2016 News",
+  "NOTES_20160109_CONTENT":"I hope not to be."
 }

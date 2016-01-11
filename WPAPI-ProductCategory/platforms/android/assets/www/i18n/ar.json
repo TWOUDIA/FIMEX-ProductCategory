@@ -1,20 +1,18 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Drücken Sie erneut, um zu beenden.",
 
-  "TAB_TITLE_STATUS": "Status",
-  "TAB_TITLE_POSTS": "Beiträge",
-  "TAB_TITLE_TAGS": "Schlagwörter",
-  "TAB_TITLE_CATEGORIES": "Kategorien",
-  "TAB_TITLE_ACCOUNT": "Konto",
+  "TAB_TITLE_STATUS": "النظام الأساسي",
+  "TAB_TITLE_PRODUCTS": "المنتجات",
+  "TAB_TITLE_SEARCH": "بحث",
+  "TAB_TITLE_CATEGORIES": "الفئات",
+  "TAB_TITLE_ACCOUNT": "حساب",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
-  "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
-  "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
-
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  "NOTES_EMPTY_TITLE":"آسف!",
+  "NOTES_EMPTY_CONTENT":"الآن أي نشرات التحديث！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7 يناير 2016 أخبار",
+  "NOTES_20160107_CONTENT":"لا أستطيع أن أرى",
+  "NOTES_20160108_TITLE":"8 يناير 2016 أخبار",
+  "NOTES_20160108_CONTENT":"أنا أيضًا",
+  "NOTES_20160109_TITLE":"9 يناير 2016 أخبار",
+  "NOTES_20160109_CONTENT":"وآمل أن لا يكون."
 }

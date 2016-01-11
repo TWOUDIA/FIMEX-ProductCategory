@@ -7,7 +7,7 @@ angular.module('fimex', [
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'ionic-toast', // inject the ionic-toast module
-    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.news' //customs
+    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
     ])
 
 .run(function ($ionicPlatform, $ionicHistory, ionicToast, $filter, $timeout) {
@@ -92,7 +92,7 @@ angular.module('fimex', [
     }
     })
     .state('tab.products', {
-        url: '/products',
+        url: '/productlists/:categoryId',
         cache: false,
         views: {
             'tab-products': {
@@ -102,9 +102,9 @@ angular.module('fimex', [
         }
     })
     .state('tab.product-detail', {
-        url: '/products/:productId',
+        url: '/ca-products/:productId',
         views: {
-            'tab-products': {
+            'tab-categories': {
                 templateUrl: 'templates/product-detail.html',
                 controller: 'ProductDetailCtrl'
             }
@@ -120,31 +120,19 @@ angular.module('fimex', [
             }
         }
     })
-    .state('tab.tag-posts', {
-        url: '/tagposts/:tagSlug/:tagName',
-        views: {
-            'tab-posts': {
-                templateUrl: 'templates/tab-posts.html',
-                controller: 'PostsCtrl'
-            }
-        }
-    })
     .state('tab.categories', {
-        url: '/categories/:categoryId',
+        url: '/categories/{categoryLevel}/{categoryId}/{categorySlug}/{categoryName:.*}',
         cache: false,
         views: {
             'tab-categories': {
-                templateUrl: 'templates/tab-categories.html',
+                templateUrl: function ($stateParams){
+                    if ($stateParams.categoryLevel == '3') {
+                        return 'templates/categories-products.html';
+                    } else {
+                        return 'templates/tab-categories.html';
+                    }
+                },
                 controller: 'CategoriesCtrl'
-            }
-        }
-    })
-    .state('tab.category-posts', {
-        url: '/categoryposts/:categorySlug/:categoryName',
-        views: {
-            'tab-posts': {
-                templateUrl: 'templates/tab-products.html',
-                controller: 'ProductsCtrl'
             }
         }
     })

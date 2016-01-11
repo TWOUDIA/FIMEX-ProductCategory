@@ -1,6 +1,6 @@
 angular.module('fimex.directives', [])
 
-// Set up for grouped Radio Buttons
+// Set up for grouped Radio Buttons, used in Language Selection
 .directive('gpRadio', function () {
     return {
         restrict: 'A',
@@ -16,7 +16,7 @@ angular.module('fimex.directives', [])
                     ngModelCtrl.$setViewValue(scope.value);
                 });
             });
-
+            
             scope.$watch('model', function (newVal) {
                 element.removeClass('button-positive');
                 if (newVal === scope.value) {

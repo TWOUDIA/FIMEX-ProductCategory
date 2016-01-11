@@ -1,20 +1,29 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Drücken Sie erneut, um zu beenden.",
 
-  "TAB_TITLE_STATUS": "Status",
-  "TAB_TITLE_POSTS": "Beiträge",
-  "TAB_TITLE_TAGS": "Schlagwörter",
-  "TAB_TITLE_CATEGORIES": "Kategorien",
-  "TAB_TITLE_ACCOUNT": "Konto",
+  "TAB_TITLE_STATUS": "ESTATUTO",
+  "TAB_TITLE_PRODUCTS": "PRODUTOS",
+  "TAB_TITLE_SEARCH": "PESQUISA",
+  "TAB_TITLE_CATEGORIES": "CATEGORIAS",
+  "TAB_TITLE_ACCOUNT": "CONTA",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
+  "SIDE_MENU_TEMPLATE_CONTENT": "Content",
   "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
   "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
 
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  "ALL_POSTS": "ALL POSTS",
+  "NO_POSTS": "No posts :(",
+  "EDIT": "EDIT",
+  "MARKDOWN": "MARKDOWN",
+  "PREVIEW": "PREVIEW",
+  "UPDATE_POST": "UPDATE POST",
+
+  "NOTES_EMPTY_TITLE": "pesaroso！",
+  "NOTES_EMPTY_CONTENT": "Agora nenhum boletim de atualização！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE": "7 de janeiro de 2016 Notícias",
+  "NOTES_20160107_CONTENT": "não pode ver",
+  "NOTES_20160108_TITLE": "8 de janeiro de 2016 Notícias",
+  "NOTES_20160108_CONTENT": "eu também",
+  "NOTES_20160109_TITLE": "9 de janeiro de 2016 Notícias",
+  "NOTES_20160109_CONTENT": "Espero não ser."
 }

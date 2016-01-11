@@ -4,20 +4,18 @@
   "ALERT_MAIL_SENT": "Dank {{name}}, Ihre Nachricht wurde gesendet.",
   "ALERT_RECORD_NULL": "No records abgerufen.",
 
-  "TAB_TITLE_STATUS": "Status",
-  "TAB_TITLE_POSTS": "Beiträge",
-  "TAB_TITLE_TAGS": "Schlagwörter",
-  "TAB_TITLE_CATEGORIES": "Kategorien",
-  "TAB_TITLE_ACCOUNT": "Konto",
+  "TAB_TITLE_STATUS": "STATUS",
+  "TAB_TITLE_PRODUCTS": "PRODUKTE",
+  "TAB_TITLE_SEARCH": "SUCHE",
+  "TAB_TITLE_CATEGORIES": "KATEGORIEN",
+  "TAB_TITLE_ACCOUNT": "KONTO",
 
-  "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
-  "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
-  "SIDE_MENU_TEMPLATE_SETTINGS": "Settings",
-
-  "ALL_POSTS":                   "ALL POSTS",
-  "NO_POSTS":                    "No posts :(",
-  "EDIT":                        "EDIT",
-  "MARKDOWN":                    "MARKDOWN",
-  "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  "NOTES_EMPTY_TITLE":"Entschuldigung！",
+  "NOTES_EMPTY_CONTENT":"Jetzt kein Update Bulletin！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7. Januar 2016 Nachrichten",
+  "NOTES_20160107_CONTENT":"sehen",
+  "NOTES_20160108_TITLE":"8. Januar 2016 Nachrichten",
+  "NOTES_20160108_CONTENT":"Auch ich",
+  "NOTES_20160109_TITLE":"9. Januar 2016 Nachrichten",
+  "NOTES_20160109_CONTENT":"Ich hoffe, nicht zu sein."
 }

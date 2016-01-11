@@ -1,6 +1,6 @@
 angular.module('fimex.directives', [])
 
-// Set up for grouped Radio Buttons
+// Set up for grouped Radio Buttons, used in Language Selection
 .directive('gpRadio', function () {
     return {
         restrict: 'A',

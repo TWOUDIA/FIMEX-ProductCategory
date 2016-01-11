@@ -4,11 +4,11 @@
   "ALERT_MAIL_SENT": "Merci {{name}}, votre message a été envoyé.",
   "ALERT_RECORD_NULL": "Pas de résultats de recherche.",
 
-  "TAB_TITLE_STATUS": "statut",
-  "TAB_TITLE_POSTS": "Des postes",
-  "TAB_TITLE_TAGS": "Mots clés",
-  "TAB_TITLE_CATEGORIES": "Catégories",
-  "TAB_TITLE_ACCOUNT": "Compte",
+  "TAB_TITLE_STATUS": "STATUT",
+  "TAB_TITLE_PRODUCTS": "PRODUITS",
+  "TAB_TITLE_SEARCH": "RECHERCHE",
+  "TAB_TITLE_CATEGORIES": "CATÉGORIES",
+  "TAB_TITLE_ACCOUNT": "COMPTE",
 
   "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
   "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
@@ -19,5 +19,14 @@
   "EDIT":                        "EDIT",
   "MARKDOWN":                    "MARKDOWN",
   "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  "UPDATE_POST": "UPDATE POST",
+  
+  "NOTES_EMPTY_TITLE":"désolé！",
+  "NOTES_EMPTY_CONTENT":"Maintenant, aucun bulletin de mise à jour！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7 janvier 2016 Nouvelles",
+  "NOTES_20160107_CONTENT":"Ne peut pas voir",
+  "NOTES_20160108_TITLE":"8 janvier 2016 Nouvelles",
+  "NOTES_20160108_CONTENT":"moi aussi",
+  "NOTES_20160109_TITLE":"9 janvier 2016 Nouvelles",
+  "NOTES_20160109_CONTENT":"Je l'espère ne pas être."
 }

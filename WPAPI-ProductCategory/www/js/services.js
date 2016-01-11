@@ -2,11 +2,11 @@ angular.module('fimex.services', [])
 
 .factory('DataLoader', function ($http, $log, AppSettings) {
     return {
-        get: function ($term) {
-            $log.debug(AppSettings.getURI($term));
+        get: function ($term, $limit) {
+            $log.debug(AppSettings.getURI($term, $limit));
             var result = $http({
                 method: 'GET',
-                url: (AppSettings.getURI($term)),
+                url: AppSettings.getURI($term, $limit),
                 headers: {
                     'Authorization': 'Basic ' + AppSettings.getAuthPhrase(),
                     key: AppSettings.get('wcAPIKey'),
@@ -14,6 +14,25 @@ angular.module('fimex.services', [])
                 },
                 timeout: 5000 });
             return result;
+        }
+    }
+})
+
+.factory('PHPJSfunc', function ($log) {
+    return {
+        urlencode: function ($uri) {
+            $uri = ($uri + '').toString();
+
+            var result = encodeURIComponent($uri)
+              .replace(/!/g, '%21')
+              .replace(/'/g, '%27')
+              .replace(/\(/g, '%28')
+              .replace(/\)/g, '%29')
+              .replace(/\*/g, '%2A')
+              .replace(/%20/g, '+');
+
+            return result;
+            $log.debug(result);
         }
     }
 })
@@ -56,7 +75,8 @@ angular.module('fimex.services', [])
                 "description": "",
                 "display": "default",
                 "image": "",
-                "count": 0
+                "count": 0,
+                "sublevels": 2
             }, {
                 "id": 10,
                 "name": "Electrical Materials - American Category",
@@ -65,7 +85,8 @@ angular.module('fimex.services', [])
                 "description": "",
                 "display": "default",
                 "image": "",
-                "count": 0
+                "count": 0,
+                "sublevels": 2
         }, {
                 "id": 11,
                 "name": "Wiring Devices",
@@ -74,8 +95,10 @@ angular.module('fimex.services', [])
                 "description": "",
                 "display": "default",
                 "image": "",
-                "count": 0
-        }]
+                "count": 0,
+                "sublevels": 3
+        }],
+        wpCategroies: []
     };
    
     function setLanguageURI(value) {
@@ -110,11 +133,15 @@ angular.module('fimex.services', [])
         get: function ($item) {
             return savedData[$item];
         },
-        getURI: function ($term) {
+        getURI: function ($term, $limit) {
+            //TODO: set languageURI fixed to null, for the only ENGLISH language for products & categories. 10 JAN 16
+            savedData.languageURI = '';
+
+            ($limit == 0) ? ($limit = savedData.wcAPIURIRSlimit) : ($limit = ('&filter[limit]=' + $limit));
             if (!$term){
-                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI  + '?' + savedData.wcAPIURIRSlimit;
+                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + '?' + $limit;
             }else{
-                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + savedData.wcAPIURIRSlimit;
+                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
             }
         },
         getAuthPhrase: function(){

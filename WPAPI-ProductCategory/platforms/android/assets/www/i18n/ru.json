@@ -1,11 +1,11 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Drücken Sie erneut, um zu beenden.",
 
-  "TAB_TITLE_STATUS": "Status",
-  "TAB_TITLE_POSTS": "Beiträge",
-  "TAB_TITLE_TAGS": "Schlagwörter",
-  "TAB_TITLE_CATEGORIES": "Kategorien",
-  "TAB_TITLE_ACCOUNT": "Konto",
+  "TAB_TITLE_STATUS": "ПОЛОЖЕНИЕ",
+  "TAB_TITLE_PRODUCTS": "ТОВАРЫ",
+  "TAB_TITLE_SEARCH": "ПОИСК",
+  "TAB_TITLE_CATEGORIES": "КАТЕГОРИИ",
+  "TAB_TITLE_ACCOUNT": "СЧЕТ",
 
   "SIDE_MENU_TEMPLATE_CONTENT":  "Content",
   "SIDE_MENU_TEMPLATE_NEW_POST": "New Post",
@@ -16,5 +16,14 @@
   "EDIT":                        "EDIT",
   "MARKDOWN":                    "MARKDOWN",
   "PREVIEW":                     "PREVIEW",
-  "UPDATE_POST":                 "UPDATE POST"
+  "UPDATE_POST": "UPDATE POST",
+
+  "NOTES_EMPTY_TITLE":"Извините！",
+  "NOTES_EMPTY_CONTENT":"Теперь нет бюллетень обновление！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7 января 2016 Новости",
+  "NOTES_20160107_CONTENT":"не вижу",
+  "NOTES_20160108_TITLE":"8 января 2016 Новости",
+  "NOTES_20160108_CONTENT":"я тоже",
+  "NOTES_20160109_TITLE":"9 января 2016 Новости",
+  "NOTES_20160109_CONTENT":"Я надеюсь, что не будет."
 }
