@@ -25,7 +25,7 @@
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>
-        <h3 ng-hide="products" ng-class="{null: !RSempty}">{{'ALERT_RECORD_NULL' | translate}}</h3>
+        <h3 ng-hide="products" ng-class="{null: !RSempty}" translate>{{'ALERT_RECORD_NULL'}}</h3>
         <ion-infinite-scroll ng-if="moreDataExists()"
                              on-infinite="loadMore()"
                              distance="1%"

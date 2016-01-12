@@ -89,6 +89,22 @@ angular.module('fimex', [
                 }
             }
         })
+        .state('tab.categories', {
+            url: '/categories/{categoryLevel}/{categoryId}/{categorySlug}/{categoryName:.*}',
+            cache: false,
+            views: {
+                'tab-categories': {
+                    templateUrl: function ($stateParams) {
+                        if ($stateParams.categoryLevel == '3') {
+                            return 'templates/categories-products.html';
+                        } else {
+                            return 'templates/tab-categories.html';
+                        }
+                    },
+                    controller: 'CategoriesCtrl'
+                }
+            }
+        })
         .state('tab.ca-product-detail', {
             url: '/ca-products/:productId',
             views: {
@@ -114,22 +130,6 @@ angular.module('fimex', [
                 'tab-search': {
                     templateUrl: 'templates/product-detail.html',
                     controller: 'ProductDetailCtrl'
-                }
-            }
-        })
-        .state('tab.categories', {
-            url: '/categories/{categoryLevel}/{categoryId}/{categorySlug}/{categoryName:.*}',
-            cache: false,
-            views: {
-                'tab-categories': {
-                    templateUrl: function ($stateParams) {
-                        if ($stateParams.categoryLevel == '3') {
-                            return 'templates/categories-products.html';
-                        } else {
-                            return 'templates/tab-categories.html';
-                        }
-                    },
-                    controller: 'CategoriesCtrl'
                 }
             }
         })

@@ -1,6 +1,6 @@
 angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading) {
+.controller('DashCtrl', function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading, $log) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
@@ -80,7 +80,6 @@ angular.module('fimex.controllers', [])
         }, 1000);
     };
 })
-
 
 .controller('SearchCtrl', function (PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
     $scope.search = {};
@@ -174,7 +173,6 @@ angular.module('fimex.controllers', [])
 
             break;
     }
-
 
     if (parseInt($stateParams.categoryLevel) == 0) {
         $scope.titleSub = '';

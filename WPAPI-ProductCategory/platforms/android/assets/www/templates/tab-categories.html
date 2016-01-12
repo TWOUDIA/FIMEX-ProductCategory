@@ -7,7 +7,6 @@
         <p ng-bind-html="titleSub"></p>
         <ion-refresher on-refresh="doRefresh()"></ion-refresher>
         <ion-list ng-show="categories">
-            <!-- TODO:: BTOA or ATOB Issue on Name -->
             <ion-item class="item-icon-right" ng-repeat="category in categories" type="item-text-wrap" ng-href="{{ RSitemURI + '/' + category.id + '/' + category.slug + '/' + category.name }}">
                 <p ng-bind-html="category.name"></p>
                 <p ng-if="showCount">{{category.count}}</p>

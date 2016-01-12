@@ -1,4 +1,5 @@
 angular.module('fimex.info', [])
+
 .factory('Notes', function ($log, $filter) {
     var objNotes = [{
                 "id": 0,

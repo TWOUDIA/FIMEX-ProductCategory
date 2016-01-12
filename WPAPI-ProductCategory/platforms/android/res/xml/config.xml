@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget defaultlocale="en-US" id="com.twoudia.FIMEX2016WPAPIproduct" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <preference name="loglevel" value="DEBUG" />
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
+        <param name="onload" value="true" />
+    </feature>
     <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
-    <icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
     <icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
     <icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
     <splash density="land-ldpi" src="res/screens/android/drawable-land-ldpi-screen.png" />
@@ -35,7 +41,7 @@
     <vs:plugin name="org.apache.cordova.device" version="0.3.0" />
     <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugins-keyboard" version="1.0.8" />
     <access origin="*.beta.fimex.com.tw" />
-    <icon src="res/icons/android/drawable-xhdpi-icon.png" />
+    <icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
     <preference name="KeepRunning" value="True" />
     <preference name="ShowTitle" value="True" />
     <preference name="InAppBrowserStorageEnabled" value="True" />
