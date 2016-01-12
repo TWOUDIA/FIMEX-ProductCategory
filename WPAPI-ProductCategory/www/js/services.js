@@ -12,7 +12,8 @@ angular.module('fimex.services', [])
                     key: AppSettings.get('wcAPIKey'),
                     secret: AppSettings.get('wcAPISecret')
                 },
-                timeout: 5000 });
+                timeout: 5000
+            });
             return result;
         }
     }
@@ -67,40 +68,42 @@ angular.module('fimex.services', [])
         contactForm2Email: 'it@beta.fimex.com.tw',
         contactForm2User: 'Support',
         dataReload: false,
-        oriCategories:[{
-                "id": 9,
-                "name": "Electrical Materials",
-                "slug": "electrical-materials",
-                "parent": 0,
-                "description": "",
-                "display": "default",
-                "image": "",
-                "count": 0,
-                "sublevels": 2
-            }, {
-                "id": 10,
-                "name": "Electrical Materials - American Category",
-                "slug": "electrical-materials-aa",
-                "parent": 0,
-                "description": "",
-                "display": "default",
-                "image": "",
-                "count": 0,
-                "sublevels": 2
+        oriCategories: [{
+            "id": 9,
+            "name": "Electrical Materials",
+            "slug": "electrical-materials",
+            "parent": 0,
+            "description": "",
+            "display": "default",
+            "image": "",
+            "count": 0,
+            "sublevels": 2
         }, {
-                "id": 11,
-                "name": "Wiring Devices",
-                "slug": "wiring-devices",
-                "parent": 0,
-                "description": "",
-                "display": "default",
-                "image": "",
-                "count": 0,
-                "sublevels": 3
+            "id": 10,
+            "name": "Electrical Materials - American Category",
+            "slug": "electrical-materials-aa",
+            "parent": 0,
+            "description": "",
+            "display": "default",
+            "image": "",
+            "count": 0,
+            "sublevels": 2
+        }, {
+            "id": 11,
+            "name": "Wiring Devices",
+            "slug": "wiring-devices",
+            "parent": 0,
+            "description": "",
+            "display": "default",
+            "image": "",
+            "count": 0,
+            "sublevels": 3
         }],
-        wpCategroies: []
+        wpCategroies: [],
+        appFIMEXCategoriesRS: "",
+        appFIMEXCategoriesBack: 0
     };
-   
+
     function setLanguageURI(value) {
         switch (value) {
             case 'en':
@@ -138,13 +141,13 @@ angular.module('fimex.services', [])
             savedData.languageURI = '';
 
             ($limit == 0) ? ($limit = savedData.wcAPIURIRSlimit) : ($limit = ('&filter[limit]=' + $limit));
-            if (!$term){
+            if (!$term) {
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + '?' + $limit;
-            }else{
+            } else {
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
             }
         },
-        getAuthPhrase: function(){
+        getAuthPhrase: function () {
             return btoa(savedData.wcAPIKey + ':' + savedData.wcAPISecret);
         }
     };

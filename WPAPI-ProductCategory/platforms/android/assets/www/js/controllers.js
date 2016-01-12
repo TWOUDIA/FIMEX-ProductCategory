@@ -29,27 +29,12 @@ angular.module('fimex.controllers', [])
 
     $scope.titleSub = $cookies.get('appFIMEXCategoriesRS');
 
-    /*
-    // Get all of our posts [under Params constraint]
-    var termQueryString;
-    if ($stateParams.tagSlug) {
-        termQueryString = '?filter[tag]=' + $stateParams.tagSlug;
-        $scope.termQS = { Type: 'TAB_TITLE_TAGS', Term: $stateParams.tagName };
-    } else if ($stateParams.categorySlug) {
-        termQueryString = '?filter[category_name]=' + $stateParams.categorySlug;
-        $scope.termQS = { Type: 'TAB_TITLE_CATEGORIES', Term: $stateParams.categoryName };
-    } else {
-        //TODO: initial to get all while click original tab of "POSTS"
-        termQueryString = '';
-    }
-    */
-
     $scope.loadResult = function () {
         DataLoader.get('products?', 0).then(function (response) {
             $scope.products = response.data.products;
             $log.debug($scope.products);
             $ionicLoading.hide();
-        }, function(response) {
+        }, function (response) {
             $log.error('error', response);
             $ionicLoading.hide();
             $scope.RSempty = true;
@@ -58,8 +43,8 @@ angular.module('fimex.controllers', [])
     $scope.loadResult();
 
     // Pull to refresh
-    $scope.doRefresh = function() {
-        $timeout( function() {
+    $scope.doRefresh = function () {
+        $timeout(function () {
             $ionicLoading.show({
                 template: $filter('translate')('LOADING_TEXT')
             });
@@ -74,46 +59,18 @@ angular.module('fimex.controllers', [])
     });
     $scope.RSempty = false;
 
-    $scope.loadResult = function() {
+    $scope.loadResult = function () {
         DataLoader.get('products/' + $stateParams.productId + '?', 0).then(function (response) {
             $scope.product = response.data.product;
             // Don't strip post html
             $scope.description = $sce.trustAsHtml($scope.product.description);
             $scope.short_description = $sce.trustAsHtml($scope.product.short_description);
             $ionicLoading.hide();
-        }, function(response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-        });
-    }
-    $scope.loadResult();
-
-    // Pull to refresh
-    $scope.doRefresh = function() {
-        $timeout( function() {
-            $scope.loadResult();
-        }, 1000);
-    };
-})
-
-
-.controller('SearchCtrl', function ($scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
-    $ionicLoading.show({
-        template: $filter('translate')('LOADING_TEXT')
-    });
-    $scope.RSempty = false;
-
-    $scope.loadResult = function () {
-        DataLoader.get('tags', 0).then(function (response) {
-            $scope.tags = response.data;
-            $ionicLoading.hide();
         }, function (response) {
             $log.error('error', response);
             $ionicLoading.hide();
-            $scope.RSempty = true;
         });
     }
-
     $scope.loadResult();
 
     // Pull to refresh
@@ -125,14 +82,56 @@ angular.module('fimex.controllers', [])
 })
 
 
-.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $ionicPlatform, $filter, AppSettings, $cookies, $stateParams, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', function (PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+    $scope.search = {};
+
+    $scope.doSearch = function () {
+        if (!$scope.search) return;
+        $log.debug("search for " + $scope.search.term);
+
+        $scope.loadResult();
+    };
+
+    $scope.loadResult = function () {
+
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_TEXT')
+        });
+        $scope.RSempty = false;
+
+        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&'), 0).then(function (response) {
+            if (response.data.products.length == 0) {
+                $scope.products = null;
+                $scope.RSempty = true;
+            } else {
+                $scope.products = response.data.products;
+            }
+            $ionicLoading.hide();
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.RSempty = true;
+        });
+    }
+
+    // Pull to refresh
+    $scope.doRefresh = function () {
+        $timeout(function () {
+            $scope.loadResult();
+        }, 1000);
+    };
+})
+
+
+.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $ionicPlatform, $filter, AppSettings, $stateParams, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
-    
+
     $scope.RSitemURI = '#/tab/categories/' + (parseInt($stateParams.categoryLevel) + 1);
-    $scope.titleSub = $cookies.get('appFIMEXCategoriesRS');
+    $scope.titleSub = AppSettings.get('appFIMEXCategoriesRS');
+    $scope.showCount = 0;
 
     switch (parseInt($stateParams.categoryLevel)) {
         case 0:
@@ -145,7 +144,12 @@ angular.module('fimex.controllers', [])
         case 3:
             $scope.loadResult = function () {
                 DataLoader.get(('products?filter[category]=' + $stateParams.categorySlug + '&'), 0).then(function (response) {
-                    $scope.products = response.data.products;
+                    if (response.data.products.length == 0) {
+                        $scope.products = null;
+                        $scope.RSempty = true;
+                    } else {
+                        $scope.products = response.data.products;
+                    }
                     $ionicLoading.hide();
                 }, function (response) {
                     $log.error('error', response);
@@ -155,25 +159,32 @@ angular.module('fimex.controllers', [])
             }
 
             break;
+        case 2:
+            $scope.showCount = 1;
+
         default:
             $scope.loadResult = function () {
                 $scope.categories = $filter('filter')(AppSettings.get('wpCategroies'), { parent: parseInt($stateParams.categoryId) }, true);
+                if ($scope.categories.length == 0) {
+                    $scope.categories = null;
+                    $scope.RSempty = true;
+                }
                 $ionicLoading.hide();
             }
 
             break;
     }
-    
+
 
     if (parseInt($stateParams.categoryLevel) == 0) {
         $scope.titleSub = '';
-        $cookies.put('appFIMEXCategoriesRS', '');
-    } else if ($cookies.get('appFIMEXCategoriesBack') == 0) {
+        AppSettings.change('appFIMEXCategoriesRS', '');
+    } else if (AppSettings.get('appFIMEXCategoriesBack') == 0) {
         $scope.titleSub = $scope.titleSub + ' >> ' + $stateParams.categoryName;
-        $cookies.put('appFIMEXCategoriesRS', $scope.titleSub);
+        AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
         $log.debug('categoryName : ' + ($stateParams.categoryName) + ', titleSub : ' + ($scope.titleSub));
     } else {
-        $cookies.put('appFIMEXCategoriesBack', 0);
+        AppSettings.change('appFIMEXCategoriesBack', 0);
     }
 
     $scope.loadResult();
@@ -188,10 +199,10 @@ angular.module('fimex.controllers', [])
     // TODO: Modify GoBack Function !!!
     function triggerBackAction() {
         $ionicHistory.goBack();
-        var RSstring = $cookies.get('appFIMEXCategoriesRS');
+        var RSstring = AppSettings.get('appFIMEXCategoriesRS');
         RSstring = RSstring.substring(0, RSstring.lastIndexOf(" >> "));
-        $cookies.put('appFIMEXCategoriesRS', RSstring);
-        $cookies.put('appFIMEXCategoriesBack', 1);
+        AppSettings.change('appFIMEXCategoriesRS', RSstring);
+        AppSettings.change('appFIMEXCategoriesBack', 1);
     }
 
     // override soft back
@@ -233,43 +244,43 @@ angular.module('fimex.controllers', [])
     });
 
     // contact form submitting
-  $scope.formSubmit = function() {
-      var mailJSON = {
-          "key": AppSettings.get('emailserviceKey'),
-          "message": {
-              "html": $scope.ctForm.ctMessage,
-              "text": $scope.ctForm.ctMessage,
-              "subject": "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
-              "from_email": $scope.ctForm.ctEmail,
-              "from_name": $scope.ctForm.ctName,
-              "to": [
-                  {
-                      "email": AppSettings.get('contactForm2Email'),
-                      "name": AppSettings.get('contactForm2User'),
-                      "type": "to"
-                  }
-              ],
-              "important": false,
-              "track_opens": null,
-              "track_clicks": null,
-              "auto_text": null,
-              "auto_html": null,
-              "inline_css": null,
-              "url_strip_qs": null,
-              "preserve_recipients": null,
-              "view_content_link": null,
-              "tracking_domain": null,
-              "signing_domain": null,
-              "return_path_domain": null
-          },
-          "async": false,
-          "ip_pool": "Main Pool"
-      };
-      EmailSender.send(mailJSON);
-      alert($filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName }));
+    $scope.formSubmit = function () {
+        var mailJSON = {
+            "key": AppSettings.get('emailserviceKey'),
+            "message": {
+                "html": $scope.ctForm.ctMessage,
+                "text": $scope.ctForm.ctMessage,
+                "subject": "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
+                "from_email": $scope.ctForm.ctEmail,
+                "from_name": $scope.ctForm.ctName,
+                "to": [
+                    {
+                        "email": AppSettings.get('contactForm2Email'),
+                        "name": AppSettings.get('contactForm2User'),
+                        "type": "to"
+                    }
+                ],
+                "important": false,
+                "track_opens": null,
+                "track_clicks": null,
+                "auto_text": null,
+                "auto_html": null,
+                "inline_css": null,
+                "url_strip_qs": null,
+                "preserve_recipients": null,
+                "view_content_link": null,
+                "tracking_domain": null,
+                "signing_domain": null,
+                "return_path_domain": null
+            },
+            "async": false,
+            "ip_pool": "Main Pool"
+        };
+        EmailSender.send(mailJSON);
+        alert($filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName }));
 
-      //reset Form
-      $scope.ctForm = {};
-      $scope.forms.contactForm.$setPristine();
-  };
+        //reset Form
+        $scope.ctForm = {};
+        $scope.forms.contactForm.$setPristine();
+    };
 });

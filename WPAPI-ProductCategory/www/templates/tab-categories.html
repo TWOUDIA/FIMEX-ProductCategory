@@ -10,7 +10,7 @@
             <!-- TODO:: BTOA or ATOB Issue on Name -->
             <ion-item class="item-icon-right" ng-repeat="category in categories" type="item-text-wrap" ng-href="{{ RSitemURI + '/' + category.id + '/' + category.slug + '/' + category.name }}">
                 <p ng-bind-html="category.name"></p>
-                <p>{{category.count}}</p>
+                <p ng-if="showCount">{{category.count}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>

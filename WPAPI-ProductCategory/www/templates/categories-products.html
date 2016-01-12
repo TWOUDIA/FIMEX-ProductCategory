@@ -8,21 +8,20 @@
         </div>
     </ion-nav-buttons>
     <ion-nav-title ng-show="!hasFilters">
-        Products
-        <div ng-hide="!termQS">{{'TAB_TITLE_POSTS' | translate }} - {{ termQS.Type | translate }} : {{ termQS.Term }}</div>
-        <div ng-hide="termQS">{{'TAB_TITLE_POSTS' | translate }}</div>
+        {{::('TAB_TITLE_PRODUCTS' | translate) + titleSub}}
     </ion-nav-title>
     <ion-nav-buttons side="right">
         <a data-tap-disabled="true" class=" button button-icon icon positive" ng-click="openFilters(hasFilters);" ng-class="{'ion-search':!hasFilters,'ion-close-circled':hasFilters}"></a>
     </ion-nav-buttons>
 
     <ion-content>
+        <p ng-bind-html="titleSub"></p>
         <ion-refresher on-refresh="doRefresh()"></ion-refresher>
         <ion-list ng-show="products">
             <ion-item class="item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="updateCategories(product.categories[0])" href="#/tab/ca-products/{{product.id}}">
                 <img ng-src="{{product.featured_src}}" />
-                    <p ng-bind-html="product.title" style="white-space:initial;"></p>
-                    <p ng-if="product.categories" ng-bind-html="product.categories[0]" style="white-space:initial;"></p>
+                <p ng-bind-html="product.title" style="white-space:initial;"></p>
+                <p ng-if="product.categories" ng-bind-html="product.categories[0]" style="white-space:initial;"></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>
