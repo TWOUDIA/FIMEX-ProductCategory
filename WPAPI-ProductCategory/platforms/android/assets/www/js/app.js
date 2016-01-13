@@ -7,6 +7,7 @@ angular.module('fimex', [
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'ionic-toast', // inject the ionic-toast module
+    'satellizer', // inject the satellizer module, for OAuth 1 & 2 authorization
     'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 

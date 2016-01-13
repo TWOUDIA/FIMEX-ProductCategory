@@ -1,0 +1,40 @@
+﻿{
+  "CONFIRM_BEFORE_APP_EXIT": "اضغط مرة أخرى للخروج.",
+  "LOADING_TEXT": "تحميل ... ",
+  "ALERT_MAIL_SENT": "{{name}} اسم، وقد تم ارسال رسالتك شكرا.",
+  "ALERT_RECORD_NULL": "لا توجد سجلات استردادها.",
+
+  "TAB_TITLE_DASH": "الحالة",
+
+  "TAB_TITLE_CATEGORIES": "أقسام",
+
+  "TAB_TITLE_SEARCH": "البحث عن",
+  "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "الكلمات الدالة ... ",
+  "TAB_SEARCH_INPUT_SEARCH_BUTTON": "البحث عن",
+
+  "TAB_TITLE_SETTING": "ضبط",
+  "TAB_SETTING_SECTION_TITLE_LANGUAGE": "لغة",
+  "TAB_SETTING_SECTION_TITLE_CONTACTUS": "اتصل بنا",
+  "TAB_SETTING_FORM_CONTACT_LABEL_NAME": "اسم",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_NAME": "اسمك هو ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_REQUIRED": "لم تقم إدخال اسمك.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_LENGTH": "وينبغي أن يكون اسمك بين 3-50 حروف.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_EMAIL": "بريد الالكتروني",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_EMAIL": "البريد الإلكتروني الخاص بك هو ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_REQUIRED": "لم تقم إدخال البريد الإلكتروني الخاص بك.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID": "البريد الإلكتروني غير صالح.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_MESSAGE": "الرسالة",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_MESSAGE": "ما كنت أريد أن أقول ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "أنت لم keyin أي رسالة.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "يجب أن تكون رسالتك بين 10-1000 الحروف.",
+  "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "إرسال",
+
+  "NOTES_EMPTY_TITLE":"آسف!",
+  "NOTES_EMPTY_CONTENT":"الآن أي نشرات التحديث！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7 يناير 2016 أخبار",
+  "NOTES_20160107_CONTENT":"لا أستطيع أن أرى",
+  "NOTES_20160108_TITLE":"8 يناير 2016 أخبار",
+  "NOTES_20160108_CONTENT":"أنا أيضًا",
+  "NOTES_20160109_TITLE":"9 يناير 2016 أخبار",
+  "NOTES_20160109_CONTENT":"وآمل أن لا يكون."
+}

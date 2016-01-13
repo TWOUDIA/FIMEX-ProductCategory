@@ -1,0 +1,40 @@
+{
+  "CONFIRM_BEFORE_APP_EXIT": "Pulse de nuevo para salir.",
+  "LOADING_TEXT": "Cargando ... ",
+  "ALERT_MAIL_SENT": "Gracias {{name}}, su mensaje ha sido enviado.",
+  "ALERT_RECORD_NULL": "No hay registros recuperados.",
+
+  "TAB_TITLE_DASH": "ESTADO",
+
+  "TAB_TITLE_CATEGORIES": "CATEGORÍAS",
+
+  "TAB_TITLE_SEARCH": "BUSCAR",
+  "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Palabras clave ... ",
+  "TAB_SEARCH_INPUT_SEARCH_BUTTON": "Buscar",
+
+  "TAB_TITLE_SETTING": "AJUSTE",
+  "TAB_SETTING_SECTION_TITLE_LANGUAGE": "IDIOMA",
+  "TAB_SETTING_SECTION_TITLE_CONTACTUS": "CONTÁCTENOS",
+  "TAB_SETTING_FORM_CONTACT_LABEL_NAME": "NOMBRE",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_NAME": "Su nombre es ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_REQUIRED": "No lo hiciste entrar su nombre.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_LENGTH": "Su nombre debe estar entre 3 y 50 letras.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_EMAIL": "CORREO ELECTRÓNICO",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_EMAIL": "Su correo electrónico es ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_REQUIRED": "No lo hiciste entrada de su correo electrónico.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID": "Tu Correo Electrónico es Inválido.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_MESSAGE": "MENSAJE",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_MESSAGE": "Lo que quiere decir ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Usted no KEYIN cualquier mensaje.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Su mensaje debe ser de entre 10 a 1.000 letras.",
+  "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "ENVIAR",
+
+  "NOTES_EMPTY_TITLE":"Lo sentimos！",
+  "NOTES_EMPTY_CONTENT":"Ahora nadie boletín de actualización！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"07 de enero 2016 Noticias",
+  "NOTES_20160107_CONTENT":"no puede ver",
+  "NOTES_20160108_TITLE":"08 de enero 2016 Noticias",
+  "NOTES_20160108_CONTENT":"yo también",
+  "NOTES_20160109_TITLE":"09 de enero 2016 Noticias",
+  "NOTES_20160109_CONTENT":"Espero que no sea."
+}

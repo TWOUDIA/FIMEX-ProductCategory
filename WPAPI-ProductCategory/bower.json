@@ -27,7 +27,8 @@
     "angular-translate-storage-local": "^2.8.1",
     "angular-messages": "^1.4.8",
     "normalize-css": "^3.0.3",
-    "angular-filter": "^0.5.8"
+    "angular-filter": "^0.5.8",
+    "satellizer": "^0.13.4"
   },
   "overrides": {
     "ionic": {

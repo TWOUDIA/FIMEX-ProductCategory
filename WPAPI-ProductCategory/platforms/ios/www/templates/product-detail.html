@@ -1,0 +1,22 @@
+<ion-view>
+    <ion-nav-title>
+        {{::product.title}}
+    </ion-nav-title>
+    <ion-content class="padding" lazy-scroll>
+        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+        <div class="card product">
+            <div class="item post-title">
+                <p ng-bind-html="product.title"></p>
+            </div>
+            <div class="item">
+                <ion-slide-box>
+                    <ion-slide ng-repeat="image in product.images | unique: 'src'">
+                        <img ng-src="{{image.src}}" style="width:300px;height:300px;margin:auto;display:block">
+                    </ion-slide>
+                </ion-slide-box>
+            </div>
+            <div class="item item-body" ng-if="description" ng-bind-html="description"></div>
+            <div class="item item-body" ng-if="short_description" ng-bind-html="short_description"></div>
+        </div>
+    </ion-content>
+</ion-view>

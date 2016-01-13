@@ -1,0 +1,40 @@
+﻿{
+  "CONFIRM_BEFORE_APP_EXIT": "Pressione novamente para sair.",
+  "LOADING_TEXT": "Carregando ... ",
+  "ALERT_MAIL_SENT": "Graças {{name}}, sua mensagem foi enviada.",
+  "ALERT_RECORD_NULL": "Não há registros recuperados.",
+
+  "TAB_TITLE_DASH": "STATUS",
+
+  "TAB_TITLE_CATEGORIES": "CATEGORIAS",
+
+  "TAB_TITLE_SEARCH": "PESQUISA",
+  "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Principais palavras ... ",
+  "TAB_SEARCH_INPUT_SEARCH_BUTTON": "Pesquisa",
+
+  "TAB_TITLE_SETTING": "DEFINIÇÃO",
+  "TAB_SETTING_SECTION_TITLE_LANGUAGE": "IDIOMA",
+  "TAB_SETTING_SECTION_TITLE_CONTACTUS": "CONTATE-NOS",
+  "TAB_SETTING_FORM_CONTACT_LABEL_NAME": "NOME",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_NAME": "Seu nome é ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_REQUIRED": "Você não introduzir seu nome.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_LENGTH": "O seu nome deve estar entre 3 a 50 letras.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_EMAIL": "O EMAIL",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_EMAIL": "Seu e-mail é ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_REQUIRED": "Você não fez introduzir o seu e-mail.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID": "Seu e-mail não é válido.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_MESSAGE": "MENSAGEM",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_MESSAGE": "O que você quer dizer ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Você não keyin qualquer mensagem.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "A sua mensagem deverá situar-se entre 10 a 1000 letras.",
+  "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "MANDAR",
+
+  "NOTES_EMPTY_TITLE": "pesaroso！",
+  "NOTES_EMPTY_CONTENT": "Agora nenhum boletim de atualização！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE": "7 de janeiro de 2016 Notícias",
+  "NOTES_20160107_CONTENT": "não pode ver",
+  "NOTES_20160108_TITLE": "8 de janeiro de 2016 Notícias",
+  "NOTES_20160108_CONTENT": "eu também",
+  "NOTES_20160109_TITLE": "9 de janeiro de 2016 Notícias",
+  "NOTES_20160109_CONTENT": "Espero não ser."
+}
