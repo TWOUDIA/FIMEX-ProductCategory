@@ -12,13 +12,15 @@ angular.module('fimex.controllers', [])
     });
 
     // Set Categories Object
-    DataLoader.get(('products/categories?'), 1000).then(function (response) {
-        AppSettings.change('wpCategroies', response.data.product_categories);
-        $ionicLoading.hide();
-    }, function (response) {
-        $log.error('error', response);
-        $ionicLoading.hide();
-    });
+    if (AppSettings.get('wpCategroies').length == 0) {
+        DataLoader.get(('products/categories?'), 1000).then(function (response) {
+            AppSettings.change('wpCategroies', response.data.product_categories);
+            $ionicLoading.hide();
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+        });
+    }
 })
 
 .controller('ProductsCtrl', function ($scope, DataLoader, $stateParams, $timeout, $log, $filter, $ionicLoading, $ionicHistory) {
@@ -41,16 +43,6 @@ angular.module('fimex.controllers', [])
         });
     }
     $scope.loadResult();
-
-    // Pull to refresh
-    $scope.doRefresh = function () {
-        $timeout(function () {
-            $ionicLoading.show({
-                template: $filter('translate')('LOADING_TEXT')
-            });
-            $scope.loadResult();
-        }, 1000);
-    };
 })
 
 .controller('ProductDetailCtrl', function ($scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
@@ -62,7 +54,7 @@ angular.module('fimex.controllers', [])
     $scope.loadResult = function () {
         DataLoader.get('products/' + $stateParams.productId + '?', 0).then(function (response) {
             $scope.product = response.data.product;
-            // Don't strip post html
+
             $scope.description = $sce.trustAsHtml($scope.product.description);
             $scope.short_description = $sce.trustAsHtml($scope.product.short_description);
             $ionicLoading.hide();
@@ -72,27 +64,21 @@ angular.module('fimex.controllers', [])
         });
     }
     $scope.loadResult();
-
-    // Pull to refresh
-    $scope.doRefresh = function () {
-        $timeout(function () {
-            $scope.loadResult();
-        }, 1000);
-    };
 })
 
-.controller('SearchCtrl', function (PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
     $scope.search = {};
+    var nextPage = 1;
+    $scope.able2Loadmore = 0;
 
     $scope.doSearch = function () {
         if (!$scope.search) return;
+        cordova.plugins.Keyboard.close();
         $log.debug("search for " + $scope.search.term);
-
         $scope.loadResult();
     };
 
     $scope.loadResult = function () {
-
         $ionicLoading.show({
             template: $filter('translate')('LOADING_TEXT')
         });
@@ -104,6 +90,10 @@ angular.module('fimex.controllers', [])
                 $scope.RSempty = true;
             } else {
                 $scope.products = response.data.products;
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
             }
             $ionicLoading.hide();
         }, function (response) {
@@ -113,11 +103,27 @@ angular.module('fimex.controllers', [])
         });
     }
 
-    // Pull to refresh
-    $scope.doRefresh = function () {
-        $timeout(function () {
-            $scope.loadResult();
-        }, 1000);
+    $scope.loadMore = function () {
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_MORE_TEXT')
+        });
+        $scope.able2Loadmore = 0;
+
+        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&page=' + nextPage), 0).then(function (response) {
+            if (response.data.products.length > 0) {
+                $scope.products = $scope.products.concat(response.data.products);
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
+            }
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
     };
 })
 
@@ -127,20 +133,22 @@ angular.module('fimex.controllers', [])
         template: $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
+    var nextPage = 1;
+    $scope.able2Loadmore = 0;
 
     $scope.RSitemURI = '#/tab/categories/' + (parseInt($stateParams.categoryLevel) + 1);
     $scope.titleSub = AppSettings.get('appFIMEXCategoriesRS');
     $scope.showCount = 0;
 
     switch (parseInt($stateParams.categoryLevel)) {
-        case 0:
+        case 0: // Main Categories
             $scope.loadResult = function () {
                 $scope.categories = AppSettings.get('oriCategories');
                 $ionicLoading.hide();
             }
 
             break;
-        case 3:
+        case 3: // Products List
             $scope.loadResult = function () {
                 DataLoader.get(('products?filter[category]=' + $stateParams.categorySlug + '&'), 0).then(function (response) {
                     if (response.data.products.length == 0) {
@@ -148,6 +156,10 @@ angular.module('fimex.controllers', [])
                         $scope.RSempty = true;
                     } else {
                         $scope.products = response.data.products;
+                        if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                            nextPage++;
+                            $scope.able2Loadmore = 1;
+                        }
                     }
                     $ionicLoading.hide();
                 }, function (response) {
@@ -158,10 +170,10 @@ angular.module('fimex.controllers', [])
             }
 
             break;
-        case 2:
+        case 2: // The bottom subcategories, which has direct product counts, would execute the "default section" also
             $scope.showCount = 1;
 
-        default:
+        default: // Subcategories
             $scope.loadResult = function () {
                 $scope.categories = $filter('filter')(AppSettings.get('wpCategroies'), { parent: parseInt($stateParams.categoryId) }, true);
                 if ($scope.categories.length == 0) {
@@ -187,14 +199,30 @@ angular.module('fimex.controllers', [])
 
     $scope.loadResult();
 
-    // Pull to refresh
-    $scope.doRefresh = function () {
-        $timeout(function () {
-            $scope.loadResult();
-        }, 1000);
+    $scope.loadMore = function () {
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_MORE_TEXT')
+        });
+        $scope.able2Loadmore = 0;
+
+        DataLoader.get(('products?filter[category]=' + $stateParams.categorySlug + '&page=' + nextPage), 0).then(function (response) {
+            if (response.data.products.length > 0) {
+                $scope.products = $scope.products.concat(response.data.products);
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
+            }
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
     };
 
-    // TODO: Modify GoBack Function !!!
+    // Override Soft Back 
     function triggerBackAction() {
         $ionicHistory.goBack();
         var RSstring = AppSettings.get('appFIMEXCategoriesRS');
@@ -202,8 +230,6 @@ angular.module('fimex.controllers', [])
         AppSettings.change('appFIMEXCategoriesRS', RSstring);
         AppSettings.change('appFIMEXCategoriesBack', 1);
     }
-
-    // override soft back
     // framework calls $rootScope.$ionicGoBack when soft back button is pressed
     var oldSoftBack = $rootScope.$ionicGoBack;
     $rootScope.$ionicGoBack = function () {
@@ -212,16 +238,8 @@ angular.module('fimex.controllers', [])
     var deregisterSoftBack = function () {
         $rootScope.$ionicGoBack = oldSoftBack;
     };
-
-    // override hard back
-    // registerBackButtonAction() returns a function which can be used to deregister it
-    var deregisterHardBack = $ionicPlatform.registerBackButtonAction(
-        triggerBackAction, 101
-    );
-
     // cancel custom back behaviour
     $scope.$on('$destroy', function () {
-        deregisterHardBack();
         deregisterSoftBack();
     });
 })
@@ -239,6 +257,7 @@ angular.module('fimex.controllers', [])
         AppSettings.change('language', $scope.settings.language);
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
+        AppSettings.change('wpCategroies', []);
     });
 
     // contact form submitting

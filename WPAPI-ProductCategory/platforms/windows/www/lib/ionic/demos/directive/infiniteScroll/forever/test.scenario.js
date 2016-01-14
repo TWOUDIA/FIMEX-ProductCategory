@@ -1,4 +1,0 @@
-﻿---
-name: forever
-component: ionInfiniteScroll
----

@@ -4,25 +4,16 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {
-            "res/xml/config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            }
-        }
+        "files": {}
     },
     "installed_plugins": {
-        "org.apache.cordova.device": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "cordova-plugin-console": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
         "ionic-plugin-keyboard": {

@@ -1,2 +1,0 @@
-MainPackage=C:\Users\Yannick\Documents\GitHubVisualStudio\APP-Fimex\WPAPI-ProductCategory\WPAPI-ProductCategory\platforms\windows\build\phone\debug\x86\CordovaApp.Phone_0.1.1.0_x86_debug.appx
-ResourcePack=C:\Users\Yannick\Documents\GitHubVisualStudio\APP-Fimex\WPAPI-ProductCategory\WPAPI-ProductCategory\platforms\windows\build\phone\debug\x86\CordovaApp.Phone_0.1.1.0_scale-100.appx

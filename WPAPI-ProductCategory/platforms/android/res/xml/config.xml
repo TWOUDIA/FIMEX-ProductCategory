@@ -4,6 +4,10 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Keyboard">
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
@@ -11,6 +15,7 @@
     <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
+    <icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
     <icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
     <icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
     <splash density="land-ldpi" src="res/screens/android/drawable-land-ldpi-screen.png" />
@@ -34,16 +39,20 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="Orientation" value="portrait" />
-    <preference name="Fullscreen" value="True" />
+    <preference name="Fullscreen" value="False" />
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="local" />
     <preference name="SplashScreenDelay" value="2000" />
-    <vs:plugin name="org.apache.cordova.device" version="0.3.0" />
-    <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugins-keyboard" version="1.0.8" />
+    <preference name="KeyboardShrinksView" value="true" />
     <access origin="*.beta.fimex.com.tw" />
-    <icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
+    <icon src="res/icons/android/drawable-xhdpi-icon.png" />
     <preference name="KeepRunning" value="True" />
     <preference name="ShowTitle" value="True" />
     <preference name="InAppBrowserStorageEnabled" value="True" />
     <preference name="SuppressesIncrementalRendering" value="True" />
+    <preference name="deployment-target" value="7.0" />
+    <vs:plugin name="cordova-plugin-device" version="1.1.0" />
+    <vs:plugin name="cordova-plugin-statusbar" version="2.0.0" />
+    <vs:plugin name="cordova-plugin-console" version="1.0.2" />
+    <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
 </widget>

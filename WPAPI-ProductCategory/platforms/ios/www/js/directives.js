@@ -16,7 +16,7 @@ angular.module('fimex.directives', [])
                     ngModelCtrl.$setViewValue(scope.value);
                 });
             });
-            
+
             scope.$watch('model', function (newVal) {
                 element.removeClass('button-positive');
                 if (newVal === scope.value) {
@@ -24,5 +24,19 @@ angular.module('fimex.directives', [])
                 }
             });
         }
+    };
+})
+
+.directive('keyInput', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.keyInput);
+                });
+
+                event.preventDefault();
+            }
+        });
     };
 });

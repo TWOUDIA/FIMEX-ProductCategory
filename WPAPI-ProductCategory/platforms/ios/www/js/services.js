@@ -59,8 +59,8 @@ angular.module('fimex.services', [])
         wcAPIURI: 'wc-api/v3/',
         wcAPIKey: 'ck_e3d52fbb954e57758cc7ea5bdadb6d44d9fd8be3',
         wcAPISecret: 'cs_894c2f79bd330af5eba70473c6a921593139f034',
-        wcAPIURIsuffix: 'filter[orderby]=id&filter[order]=ASC',
-        wcAPIURIRSlimit: '&filter[limit]=20',
+        wcAPIURIsuffix: 'filter[orderby]=id&filter[order]=ASC&filter[limit]=',
+        wcAPIRSlimit: 5,
         language: '',
         languageURI: '',
         emailserviceKey: 'e8yCnUcg1OaKz0dWIhIH7w',
@@ -140,9 +140,9 @@ angular.module('fimex.services', [])
             //TODO: set languageURI fixed to null, for the only ENGLISH language for products & categories. 10 JAN 16
             savedData.languageURI = '';
 
-            ($limit == 0) ? ($limit = savedData.wcAPIURIRSlimit) : ($limit = ('&filter[limit]=' + $limit));
+            ($limit == 0) ? ($limit = savedData.wcAPIRSlimit) : ($limit = $limit);
             if (!$term) {
-                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + '?' + $limit;
+                return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + '?' + savedData.wcAPIURIsuffix + $limit;
             } else {
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
             }

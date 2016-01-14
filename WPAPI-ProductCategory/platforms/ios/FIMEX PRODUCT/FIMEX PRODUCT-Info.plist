@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+      <key>NSExceptionDomains</key>
+      <dict/>
+    </dict>
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>
     <key>CFBundleDisplayName</key>
@@ -65,9 +72,9 @@
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSMainNibFile</key>
-    <string></string>
+    <string/>
     <key>NSMainNibFile~ipad</key>
-    <string></string>
+    <string/>
     <key>UISupportedInterfaceOrientations</key>
     <array>
       <string>UIInterfaceOrientationPortrait</string>
@@ -78,6 +85,8 @@
       <string>UIInterfaceOrientationPortrait</string>
       <string>UIInterfaceOrientationPortraitUpsideDown</string>
     </array>
+    <key>UIRequiresFullScreen</key>
+    <true/>
     <key>UILaunchImages</key>
     <array>
       <dict>
@@ -185,10 +194,5 @@
     <array>
       <string>UIInterfaceOrientationPortrait</string>
     </array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSExceptionDomains</key>
-      <dict/>
-    </dict>
   </dict>
 </plist>

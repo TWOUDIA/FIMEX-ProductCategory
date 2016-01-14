@@ -1,4 +1,4 @@
-/// <binding ProjectOpened='vendor-css-combine, vendor-js-combine' />
+/// <binding />
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],

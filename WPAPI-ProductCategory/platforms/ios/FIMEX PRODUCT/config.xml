@@ -14,6 +14,23 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <vs:plugin name="org.apache.cordova.device" version="0.3.0" />
+    <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugins-keyboard" version="1.0.8" />
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="IonicKeyboard" />
+    </feature>
     <icon height="57" src="res/icons/ios/icon.png" width="57" />
     <icon height="114" src="res/icons/ios/icon@2x.png" width="114" />
     <icon height="40" src="res/icons/ios/icon-40.png" width="40" />
@@ -53,12 +70,16 @@
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="local" />
     <preference name="SplashScreenDelay" value="2000" />
-    <vs:plugin name="org.apache.cordova.device" version="0.3.0" />
-    <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugins-keyboard" version="1.0.8" />
+    <preference name="KeyboardShrinksView" value="true" />
     <access origin="*.beta.fimex.com.tw" />
     <icon src="res/icons/android/drawable-xhdpi-icon.png" />
     <preference name="KeepRunning" value="True" />
     <preference name="ShowTitle" value="True" />
     <preference name="InAppBrowserStorageEnabled" value="True" />
     <preference name="SuppressesIncrementalRendering" value="True" />
+    <preference name="deployment-target" value="7.0" />
+    <vs:plugin name="cordova-plugin-device" version="1.1.0" />
+    <vs:plugin name="cordova-plugin-statusbar" version="2.0.0" />
+    <vs:plugin name="cordova-plugin-console" version="1.0.2" />
+    <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
 </widget>
