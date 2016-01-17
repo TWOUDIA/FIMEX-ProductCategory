@@ -1,0 +1,40 @@
+{
+  "CONFIRM_BEFORE_APP_EXIT": "Appuyez à nouveau pour quitter.",
+  "LOADING_TEXT": "Chargement ... ",
+  "ALERT_MAIL_SENT": "Merci {{name}}, votre message a été envoyé.",
+  "ALERT_RECORD_NULL": "Pas de résultats de recherche.",
+
+  "TAB_TITLE_DASH": "STATUT",
+
+  "TAB_TITLE_CATEGORIES": "CATÉGORIES",
+
+  "TAB_TITLE_SEARCH": "CHERCHER",
+  "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Mots clés ... ",
+  "TAB_SEARCH_INPUT_SEARCH_BUTTON": "Recherche",
+
+  "TAB_TITLE_SETTING": "RÉGLAGE",
+  "TAB_SETTING_SECTION_TITLE_LANGUAGE": "LA LANGUE",
+  "TAB_SETTING_SECTION_TITLE_CONTACTUS": "CONTACTEZ NOUS",
+  "TAB_SETTING_FORM_CONTACT_LABEL_NAME": "PRÉNOM",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_NAME": "Ton nom est ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_REQUIRED": "Vous ne l'avez pas saisir votre nom.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_LENGTH": "Votre nom doit être comprise entre 3 à 50 lettres.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_EMAIL": "EMAIL",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_EMAIL": "Votre e-mail est ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_REQUIRED": "Vous ne l'avez pas entrer votre email.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID": "Votre Email est Invalide.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_MESSAGE": "MESSAGE",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_MESSAGE": "Ce que tu veux dire ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Vous ne l'avez pas KeyIn tout message.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Votre message doit être compris entre 10 à 1000 lettres.",
+  "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "ENVOYER",
+  
+  "NOTES_EMPTY_TITLE":"désolé！",
+  "NOTES_EMPTY_CONTENT":"Maintenant, aucun bulletin de mise à jour！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7 janvier 2016 Nouvelles",
+  "NOTES_20160107_CONTENT":"Ne peut pas voir",
+  "NOTES_20160108_TITLE":"8 janvier 2016 Nouvelles",
+  "NOTES_20160108_CONTENT":"moi aussi",
+  "NOTES_20160109_TITLE":"9 janvier 2016 Nouvelles",
+  "NOTES_20160109_CONTENT":"Je l'espère ne pas être."
+}

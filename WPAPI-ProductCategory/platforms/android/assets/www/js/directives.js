@@ -41,16 +41,15 @@ angular.module('fimex.directives', [])
     };
 })
 
-.directive('keyboardHandler', function ($window) {
+.directive('keyboardHind', function ($window) {
     return {
         restrict: 'A',
-        link: function postLink(scope, element, attrs) {
-            angular.element($window).bind('native.keyboardshow', function() {
-                element.addClass('tabs-item-hide');
+        link: function (scope, element, attrs) {
+            scope.$watch('native.keyboardshow', function () {
+                element.addClass('hide');
             });
-
-            angular.element($window).bind('native.keyboardhide', function() {
-                element.removeClass('tabs-item-hide');
+            scope.$watch('native.keyboardhide', function () {
+                element.removeClass('hide');
             });
         }
     };

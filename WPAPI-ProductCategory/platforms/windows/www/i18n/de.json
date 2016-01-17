@@ -1,0 +1,40 @@
+﻿{
+  "CONFIRM_BEFORE_APP_EXIT": "Drücken Sie erneut, um zu beenden.",
+  "LOADING_TEXT": "Laden ... ",
+  "ALERT_MAIL_SENT": "Dank {{name}}, Ihre Nachricht wurde gesendet.",
+  "ALERT_RECORD_NULL": "No records abgerufen.",
+
+  "TAB_TITLE_DASH": "STATUS",
+
+  "TAB_TITLE_CATEGORIES": "KATEGORIEN",
+
+  "TAB_TITLE_SEARCH": "SUCHE",
+  "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Key Words ... ",
+  "TAB_SEARCH_INPUT_SEARCH_BUTTON": "Suche",
+
+  "TAB_TITLE_SETTING": "RAHMEN",
+  "TAB_SETTING_SECTION_TITLE_LANGUAGE": "SPRACHE",
+  "TAB_SETTING_SECTION_TITLE_CONTACTUS": "KONTAKTIEREN SIE UNS",
+  "TAB_SETTING_FORM_CONTACT_LABEL_NAME": "NAME",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_NAME": "Ihr Name ist ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_REQUIRED": "Das hast du nicht Ihren Namen ein.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_NAME_LENGTH": "Ihr Name sollte zwischen 3 bis 50 Buchstaben sein.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_EMAIL": "E-MAIL",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_EMAIL": "Ihre E-Mail ist ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_REQUIRED": "Sie tat es nicht geben Sie Ihre E-Mail.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID": "Deine E-Mail Adresse ist ungültig.",
+  "TAB_SETTING_FORM_CONTACT_LABEL_MESSAGE": "NACHRICHT",
+  "TAB_SETTING_FORM_CONTACT_PLACEHODER_MESSAGE": "Was Sie sagen wollen ... ",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Sie keine Mitteilung KEYIN.",
+  "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Ihre Nachricht sollte zwischen 10 bis 1000 Buchstaben sein.",
+  "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "SENDEN",
+
+  "NOTES_EMPTY_TITLE":"Entschuldigung！",
+  "NOTES_EMPTY_CONTENT":"Jetzt kein Update Bulletin！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE":"7. Januar 2016 Nachrichten",
+  "NOTES_20160107_CONTENT":"sehen",
+  "NOTES_20160108_TITLE":"8. Januar 2016 Nachrichten",
+  "NOTES_20160108_CONTENT":"Auch ich",
+  "NOTES_20160109_TITLE":"9. Januar 2016 Nachrichten",
+  "NOTES_20160109_CONTENT":"Ich hoffe, nicht zu sein."
+}

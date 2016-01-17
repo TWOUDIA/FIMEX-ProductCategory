@@ -12,6 +12,10 @@
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
@@ -41,10 +45,9 @@
     <preference name="Orientation" value="portrait" />
     <preference name="Fullscreen" value="False" />
     <preference name="target-device" value="universal" />
-    <preference name="BackupWebStorage" value="local" />
+    <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="KeyboardShrinksView" value="true" />
-    <access origin="*.beta.fimex.com.tw" />
     <icon src="res/icons/android/drawable-xhdpi-icon.png" />
     <preference name="KeepRunning" value="True" />
     <preference name="ShowTitle" value="True" />
@@ -55,4 +58,7 @@
     <vs:plugin name="cordova-plugin-statusbar" version="2.0.0" />
     <vs:plugin name="cordova-plugin-console" version="1.0.2" />
     <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
+    <access origin="http://*.beta.fimex.com.tw" />
+    <access origin="https://*.beta.fimex.com.tw" />
+    <vs:plugin name="cordova-plugin-whitelist" src="https://github.com/apache/cordova-plugin-whitelist.git" version="1.2.2-dev" />
 </widget>

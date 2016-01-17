@@ -7,7 +7,13 @@
       <key>NSAllowsArbitraryLoads</key>
       <true/>
       <key>NSExceptionDomains</key>
-      <dict/>
+      <dict>
+        <key>beta.fimex.com.tw</key>
+        <dict>
+          <key>NSIncludesSubdomains</key>
+          <true/>
+        </dict>
+      </dict>
     </dict>
     <key>CFBundleDevelopmentRegion</key>
     <string>English</string>

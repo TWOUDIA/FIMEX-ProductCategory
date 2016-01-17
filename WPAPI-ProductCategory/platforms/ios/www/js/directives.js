@@ -39,4 +39,18 @@ angular.module('fimex.directives', [])
             }
         });
     };
+})
+
+.directive('keyboardHind', function ($window) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            scope.$watch('native.keyboardshow', function () {
+                element.addClass('hide');
+            });
+            scope.$watch('native.keyboardhide', function () {
+                element.removeClass('hide');
+            });
+        }
+    };
 });

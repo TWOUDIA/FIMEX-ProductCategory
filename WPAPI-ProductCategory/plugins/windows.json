@@ -7,10 +7,19 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "FIMEX PRODUCT"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "FIMEX PRODUCT"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "FIMEX PRODUCT"
+        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "FIMEX PRODUCT"
         },
-        "org.apache.cordova.device": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "FIMEX PRODUCT"
         }
     },

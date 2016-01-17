@@ -45,18 +45,18 @@ angular.module('fimex.controllers', [])
     $scope.loadResult();
 })
 
-.controller('ProductDetailCtrl', function ($scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
+.controller('ProductDetailCtrl', function ($ionicSlideBoxDelegate, $scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
-
+    
     $scope.loadResult = function () {
         DataLoader.get('products/' + $stateParams.productId + '?', 0).then(function (response) {
             $scope.product = response.data.product;
-
             $scope.description = $sce.trustAsHtml($scope.product.description);
             $scope.short_description = $sce.trustAsHtml($scope.product.short_description);
+            $ionicSlideBoxDelegate.update();
             $ionicLoading.hide();
         }, function (response) {
             $log.error('error', response);

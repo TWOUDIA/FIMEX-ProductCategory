@@ -10,22 +10,6 @@
       <Configuration>Debug</Configuration>
       <Platform>iOS</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows-AnyCPU">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows-AnyCPU</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows-x64">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows-x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows-x86">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows-x86</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows-ARM">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows-ARM</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Windows Phone 8">
       <Configuration>Debug</Configuration>
       <Platform>Windows Phone 8</Platform>
@@ -33,6 +17,10 @@
     <ProjectConfiguration Include="Debug|Windows Phone (Universal)">
       <Configuration>Debug</Configuration>
       <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Windows-AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Windows-AnyCPU</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Android">
       <Configuration>Release</Configuration>
@@ -42,22 +30,6 @@
       <Configuration>Release</Configuration>
       <Platform>iOS</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Windows-AnyCPU">
-      <Configuration>Release</Configuration>
-      <Platform>Windows-AnyCPU</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Windows-x64">
-      <Configuration>Release</Configuration>
-      <Platform>Windows-x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Windows-x86">
-      <Configuration>Release</Configuration>
-      <Platform>Windows-x86</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Windows-ARM">
-      <Configuration>Release</Configuration>
-      <Platform>Windows-ARM</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Windows Phone 8">
       <Configuration>Release</Configuration>
       <Platform>Windows Phone 8</Platform>
@@ -65,6 +37,10 @@
     <ProjectConfiguration Include="Release|Windows Phone (Universal)">
       <Configuration>Release</Configuration>
       <Platform>Windows Phone (Universal)</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Windows-AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>Windows-AnyCPU</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">

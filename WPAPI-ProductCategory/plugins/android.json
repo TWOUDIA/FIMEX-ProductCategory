@@ -18,6 +18,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         }
     },
     "dependent_plugins": {}
