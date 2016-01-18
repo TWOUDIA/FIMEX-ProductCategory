@@ -37,6 +37,6 @@
     <vs:plugin name="cordova-plugin-statusbar" version="2.0.0" />
     <vs:plugin name="cordova-plugin-console" version="1.0.2" />
     <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
-    <access origin="http://*.beta.fimex.com.tw" />
-    <access origin="https://*.beta.fimex.com.tw" />
+    <access origin="beta.fimex.com.tw" />
+    <vs:plugin name="cordova-plugin-whitelist" src="https://github.com/apache/cordova-plugin-whitelist.git" version="1.2.2-dev" />
 </widget>

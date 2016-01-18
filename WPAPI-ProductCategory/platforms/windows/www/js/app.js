@@ -1,44 +1,43 @@
 ﻿// angular.module is a global place for creating, registering and retrieving Angular modules
 angular.module('fimex', [
     'ionic',  // ionic framework
-    'ngCookies',
-    'ngMessages',
+    'ngCookies', // inject the angular-cookies module
+    'ngMessages', // inject the angular-messages module
     'angular.filter', // inject the angular-filter module
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
-    'ionic-toast', // inject the ionic-toast module
+    'toaster', // inject the angularjs-toaster module
     'satellizer', // inject the satellizer module, for OAuth 1 & 2 authorization
     'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
-.run(function ($ionicPlatform, $ionicHistory, ionicToast, $filter, $timeout) {
+.run(function ($ionicPlatform, $ionicHistory, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && ionic.Platform.isIOS()) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         };
-        if (window.StatusBar) {
+        if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
     });
 
+
+    // Exit APP
     var countTimerForCloseApp = false;
     $ionicPlatform.registerBackButtonAction(function (e) {
         e.preventDefault();
-        // Is there a page to go back to?
-        var previousView = $ionicHistory.backView();
-        if (!previousView) {
-            if (countTimerForCloseApp) {
-                ionic.Platform.exitApp();
-            } else {
-                countTimerForCloseApp = true;
-                ionicToast.show($filter('translate')('CLICK_AGAIN_TO_EXIT_APP'), 'middle', false, 1000);
-                $timeout(function () {
-                    countTimerForCloseApp = false;
-                }, 2000);
-            }
+        if (countTimerForCloseApp) {
+            ionic.Platform.exitApp();
         } else {
-            previousView.go();
+            countTimerForCloseApp = true;
+            toaster.pop({
+                type: 'error',
+                body: $filter('translate')('CLICK_AGAIN_TO_EXIT_APP')
+            });
+            $timeout(function () {
+                countTimerForCloseApp = false;
+            }, 5000);
         }
         return false;
     }, 101);

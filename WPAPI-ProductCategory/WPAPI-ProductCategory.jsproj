@@ -10,17 +10,9 @@
       <Configuration>Debug</Configuration>
       <Platform>iOS</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows Phone 8">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows Phone 8</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Windows Phone (Universal)">
       <Configuration>Debug</Configuration>
       <Platform>Windows Phone (Universal)</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Windows-AnyCPU">
-      <Configuration>Debug</Configuration>
-      <Platform>Windows-AnyCPU</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Android">
       <Configuration>Release</Configuration>
@@ -30,17 +22,9 @@
       <Configuration>Release</Configuration>
       <Platform>iOS</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Windows Phone 8">
-      <Configuration>Release</Configuration>
-      <Platform>Windows Phone 8</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Windows Phone (Universal)">
       <Configuration>Release</Configuration>
       <Platform>Windows Phone (Universal)</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Windows-AnyCPU">
-      <Configuration>Release</Configuration>
-      <Platform>Windows-AnyCPU</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">

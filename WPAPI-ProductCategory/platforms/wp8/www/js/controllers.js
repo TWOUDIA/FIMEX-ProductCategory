@@ -11,6 +11,7 @@ angular.module('fimex.controllers', [])
         template: $filter('translate')('LOADING_TEXT')
     });
 
+    /* TODO: Response with Network Unaccessable ? */
     // Set Categories Object
     if (AppSettings.get('wpCategroies').length == 0) {
         DataLoader.get(('products/categories?'), 1000).then(function (response) {
@@ -23,28 +24,8 @@ angular.module('fimex.controllers', [])
     }
 })
 
-.controller('ProductsCtrl', function ($scope, DataLoader, $stateParams, $timeout, $log, $filter, $ionicLoading, $ionicHistory) {
-    $ionicLoading.show({
-        template: $filter('translate')('LOADING_TEXT')
-    });
-    $scope.RSempty = false;
 
-    $scope.titleSub = $cookies.get('appFIMEXCategoriesRS');
-
-    $scope.loadResult = function () {
-        DataLoader.get('products?', 0).then(function (response) {
-            $scope.products = response.data.products;
-            $log.debug($scope.products);
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-            $scope.RSempty = true;
-        });
-    }
-    $scope.loadResult();
-})
-
+/* TODO: Change to Modal, rather than current View ? */
 .controller('ProductDetailCtrl', function ($ionicSlideBoxDelegate, $scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
@@ -54,8 +35,7 @@ angular.module('fimex.controllers', [])
     $scope.loadResult = function () {
         DataLoader.get('products/' + $stateParams.productId + '?', 0).then(function (response) {
             $scope.product = response.data.product;
-            $scope.description = $sce.trustAsHtml($scope.product.description);
-            $scope.short_description = $sce.trustAsHtml($scope.product.short_description);
+            $scope.productImg = $filter('unique')($scope.product.images, 'src');
             $ionicSlideBoxDelegate.update();
             $ionicLoading.hide();
         }, function (response) {
@@ -64,67 +44,6 @@ angular.module('fimex.controllers', [])
         });
     }
     $scope.loadResult();
-})
-
-.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
-    $scope.search = {};
-    var nextPage = 1;
-    $scope.able2Loadmore = 0;
-
-    $scope.doSearch = function () {
-        if (!$scope.search) return;
-        cordova.plugins.Keyboard.close();
-        $log.debug("search for " + $scope.search.term);
-        $scope.loadResult();
-    };
-
-    $scope.loadResult = function () {
-        $ionicLoading.show({
-            template: $filter('translate')('LOADING_TEXT')
-        });
-        $scope.RSempty = false;
-
-        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&'), 0).then(function (response) {
-            if (response.data.products.length == 0) {
-                $scope.products = null;
-                $scope.RSempty = true;
-            } else {
-                $scope.products = response.data.products;
-                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
-                    nextPage++;
-                    $scope.able2Loadmore = 1;
-                }
-            }
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-            $scope.RSempty = true;
-        });
-    }
-
-    $scope.loadMore = function () {
-        $ionicLoading.show({
-            template: $filter('translate')('LOADING_MORE_TEXT')
-        });
-        $scope.able2Loadmore = 0;
-
-        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&page=' + nextPage), 0).then(function (response) {
-            if (response.data.products.length > 0) {
-                $scope.products = $scope.products.concat(response.data.products);
-                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
-                    nextPage++;
-                    $scope.able2Loadmore = 1;
-                }
-            }
-            $ionicLoading.hide();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-        });
-    };
 })
 
 
@@ -190,7 +109,7 @@ angular.module('fimex.controllers', [])
         $scope.titleSub = '';
         AppSettings.change('appFIMEXCategoriesRS', '');
     } else if (AppSettings.get('appFIMEXCategoriesBack') == 0) {
-        $scope.titleSub = $scope.titleSub + ' >> ' + $stateParams.categoryName;
+        $scope.titleSub = $scope.titleSub + ' >> ' + $filter('unescapeHTML')($stateParams.categoryName);
         AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
         $log.debug('categoryName : ' + ($stateParams.categoryName) + ', titleSub : ' + ($scope.titleSub));
     } else {
@@ -242,6 +161,68 @@ angular.module('fimex.controllers', [])
     $scope.$on('$destroy', function () {
         deregisterSoftBack();
     });
+})
+
+
+.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+    $scope.search = {};
+    var nextPage = 1;
+    $scope.able2Loadmore = 0;
+
+    $scope.doSearch = function () {
+        if (!$scope.search) return;
+        cordova.plugins.Keyboard.close();
+        $log.debug("search for " + $scope.search.term);
+        $scope.loadResult();
+    };
+
+    $scope.loadResult = function () {
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_TEXT')
+        });
+        $scope.RSempty = false;
+
+        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&'), 0).then(function (response) {
+            if (response.data.products.length == 0) {
+                $scope.products = null;
+                $scope.RSempty = true;
+            } else {
+                $scope.products = response.data.products;
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
+            }
+            $ionicLoading.hide();
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.RSempty = true;
+        });
+    }
+
+    $scope.loadMore = function () {
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_MORE_TEXT')
+        });
+        $scope.able2Loadmore = 0;
+
+        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&page=' + nextPage), 0).then(function (response) {
+            if (response.data.products.length > 0) {
+                $scope.products = $scope.products.concat(response.data.products);
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
+            }
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
+    };
 })
 
 

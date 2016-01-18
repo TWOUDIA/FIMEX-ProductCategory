@@ -1,18 +1,10 @@
 ﻿<ion-view>
-    <ion-nav-buttons side="left">
-        <div class="bar bar-header item-input-inset" ng-if="hasFilters">
-            <label class="item-input-wrapper textbox-search">
-                <i class="icon ion-ios7-search placeholder-icon"></i>
-                <input type="search" placeholder="Search">
-            </label>
-        </div>
-    </ion-nav-buttons>
-    <ion-nav-title ng-show="!hasFilters">
-        {{::('TAB_TITLE_PRODUCTS' | translate) + titleSub}}
+    <ion-nav-title>
+        {{::('TAB_TITLE_PRODUCTS' | translate) }}
     </ion-nav-title>
 
     <ion-content>
-        <p ng-bind-html="titleSub"></p>
+        <ion-header-bar ng-if="titleSub" class="bar bar-subheader" ng-bind-html="'TAB_TITLE_CATEGORIES_SUB' | translate:({categoriesTree: titleSub })"></ion-header-bar>
         <ion-list ng-show="products">
             <ion-item class="item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="updateCategories(product.categories[0])" href="#/tab/ca-products/{{product.id}}">
                 <img ng-src="{{product.featured_src}}" />

@@ -8,7 +8,7 @@ angular.module('fimex.services', [])
                 method: 'GET',
                 url: AppSettings.getURI($term, $limit),
                 headers: {
-                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(),
+                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('wcAPIKey'), AppSettings.get('wcAPISecret')),
                     key: AppSettings.get('wcAPIKey'),
                     secret: AppSettings.get('wcAPISecret')
                 },
@@ -41,7 +41,14 @@ angular.module('fimex.services', [])
 .factory('EmailSender', function ($http, $log, AppSettings) {
     return {
         send: function ($mail) {
-            $http.post(AppSettings.get('emailAPI'), $mail).
+            $http({
+                method: 'POST',
+                url: AppSettings.get('mgAPIURI'),
+                headers: {
+                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('mgAPIName'), AppSettings.get('mgServiceKey'))
+                },
+                data: $mail
+            }).
             success(function () {
                 $log.debug('successful email send.');
             }).error(function () {
@@ -63,9 +70,10 @@ angular.module('fimex.services', [])
         wcAPIRSlimit: 5,
         language: '',
         languageURI: '',
-        emailserviceKey: 'e8yCnUcg1OaKz0dWIhIH7w',
-        emailAPI: 'https://mandrillapp.com/api/1.0/messages/send.json',
-        contactForm2Email: 'it@beta.fimex.com.tw',
+        mgAPIName:'api',
+        mgServiceKey: 'key-0c16845e030f782c3acb501cdf07b8a2',
+        mgAPIURI: 'https://api.mailgun.net/v3/mg.twoudia.com',
+        contactForm2Email: 'yannicklin@twoudia.com',
         contactForm2User: 'Support',
         dataReload: false,
         oriCategories: [{
@@ -147,8 +155,8 @@ angular.module('fimex.services', [])
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
             }
         },
-        getAuthPhrase: function () {
-            return btoa(savedData.wcAPIKey + ':' + savedData.wcAPISecret);
+        getAuthPhrase: function (name, key) {
+            return btoa(name + ':' + key);
         }
     };
 });
