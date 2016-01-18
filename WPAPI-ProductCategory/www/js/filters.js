@@ -19,3 +19,21 @@
         return $sce.trustAsHtml(x);
     }
 })
+
+.filter('unescapeHTML', function ($sce) {
+    var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': '&quot;',
+        "'": '&#39;',
+        "/": '&#x2F;'
+    };
+
+    return function (str) {
+        angular.forEach(entityMap, function (value, key) {
+            str = String(str).replace(new RegExp(value, 'gi'), key);
+        })
+        return str;
+    }
+});

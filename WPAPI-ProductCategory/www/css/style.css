@@ -1,28 +1,38 @@
 /* Empty. Add your own CSS if you like */
-.button-bar a img {
-    display: block;
-    margin: 10px auto 0 auto;
-}
 
-form input.ng-invalid.ng-dirty {
-    background-color: #FA787E;
+/* ==== GERENAL ==== */
+/* TBAS ON KEYBOARD EVENTS */
+.keyboard-open .tabs {
+    display: none;
 }
-
-h3.null {
-    color: white;
+.keyboard-open .has-tabs {
+    bottom: 0;
 }
-
-.item-avatar .item-content .item-image {
-    border-radius: 10%;
+/* LIST -> SUBHEADER */
+.bar-subheader {
+    height: auto;
+    top: 0px;
+    position: relative;
+}
+/* LIST -> PRODUCT THUMBNAIL */
+.item-avatar .item-content .item-image, .item-avatar .item-content>img:first-child, .item-avatar .item-image, .item-avatar-left .item-content .item-image, .item-avatar-left .item-content>img:first-child, .item-avatar-left .item-image, .item-avatar-left>img:first-child, .item-avatar>img:first-child {
+    border-radius: 5%;
     left: 10px;
     max-width: 50px;
     max-height: 50px;
 }
-
-.keyboard-open .tabs {
-    display: none;
+/* FOR NULL RECORD */
+h3.null {
+    color: white;
 }
 
-.keyboard-open .has-tabs {
-    bottom: 0;
+/* ==== TAB-SETTING ==== */
+/* SEC: LANGUAGE */
+.button-bar a img {
+    display: block;
+    margin: 10px auto 0 auto;
+}
+/* SEC: CONTACT US FORM*/
+form input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
 }

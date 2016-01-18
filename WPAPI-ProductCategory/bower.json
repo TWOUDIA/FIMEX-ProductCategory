@@ -19,7 +19,6 @@
   ],
   "dependencies": {
     "ionic": "^1.2.3",
-    "ionic-toast": "^0.2.0",
     "angular-dynamic-locale": "^0.1.29",
     "angular-translate": "^2.8.1",
     "angular-translate-loader-static-files": "^2.8.1",
@@ -28,7 +27,8 @@
     "angular-messages": "^1.4.8",
     "normalize-css": "^3.0.3",
     "angular-filter": "^0.5.8",
-    "satellizer": "^0.13.4"
+    "satellizer": "^0.13.4",
+    "angularjs-toaster": "^0.4.181"
   },
   "overrides": {
     "ionic": {

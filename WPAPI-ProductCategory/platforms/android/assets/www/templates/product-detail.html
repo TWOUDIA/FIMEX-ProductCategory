@@ -8,14 +8,15 @@
                 <p ng-bind-html="product.title"></p>
             </div>
             <div class="item">
-                <ion-slide-box>
-                    <ion-slide ng-repeat="image in product.images | unique: 'src'">
+                <img ng-if="productImg.length == 1" ng-src="{{productImg[0].src}}" style="max-width: 100%;">
+                <ion-slide-box ng-if="productImg.length > 1">
+                    <ion-slide ng-repeat="image in productImg">
                         <img ng-src="{{image.src}}" style="max-width: 100%;">
                     </ion-slide>
                 </ion-slide-box>
             </div>
-            <div class="item item-body" ng-if="description" ng-bind-html="description"></div>
-            <div class="item item-body" ng-if="short_description" ng-bind-html="short_description"></div>
+            <div class="item item-body" ng-if="product.description" ng-bind-html="product.description"></div>
+            <div class="item item-body" ng-if="product.short_description" ng-bind-html="product.short_description"></div>
         </div>
     </ion-content>
 </ion-view>
