@@ -91,8 +91,8 @@
   <preference name="deployment-target" value="7.0" />
   <vs:plugin name="cordova-plugin-device" version="1.1.0" />
   <vs:plugin name="cordova-plugin-statusbar" version="2.0.0" />
-  <vs:plugin name="cordova-plugin-console" version="1.0.2" />
   <vs:plugin name="ionic-plugin-keyboard" version="1.0.8" src="https://github.com/driftyco/ionic-plugin-keyboard.git" />
   <access origin="beta.fimex.com.tw" />
   <vs:plugin name="cordova-plugin-whitelist" version="1.2.2-dev" src="https://github.com/apache/cordova-plugin-whitelist.git" />
+  <access origin="api.mailgun.net" />
 </widget>

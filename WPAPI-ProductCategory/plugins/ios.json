@@ -13,9 +13,6 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
-        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },

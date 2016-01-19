@@ -11,6 +11,7 @@ angular.module('fimex.controllers', [])
         template: $filter('translate')('LOADING_TEXT')
     });
 
+    /* TODO: Response with Network Unaccessable ? */
     // Set Categories Object
     if (AppSettings.get('wpCategroies').length == 0) {
         DataLoader.get(('products/categories?'), 1000).then(function (response) {
@@ -23,28 +24,8 @@ angular.module('fimex.controllers', [])
     }
 })
 
-.controller('ProductsCtrl', function ($scope, DataLoader, $stateParams, $timeout, $log, $filter, $ionicLoading, $ionicHistory) {
-    $ionicLoading.show({
-        template: $filter('translate')('LOADING_TEXT')
-    });
-    $scope.RSempty = false;
 
-    $scope.titleSub = $cookies.get('appFIMEXCategoriesRS');
-
-    $scope.loadResult = function () {
-        DataLoader.get('products?', 0).then(function (response) {
-            $scope.products = response.data.products;
-            $log.debug($scope.products);
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-            $scope.RSempty = true;
-        });
-    }
-    $scope.loadResult();
-})
-
+/* TODO: Change to Modal, rather than current View ? */
 .controller('ProductDetailCtrl', function ($ionicSlideBoxDelegate, $scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
@@ -54,8 +35,7 @@ angular.module('fimex.controllers', [])
     $scope.loadResult = function () {
         DataLoader.get('products/' + $stateParams.productId + '?', 0).then(function (response) {
             $scope.product = response.data.product;
-            $scope.description = $sce.trustAsHtml($scope.product.description);
-            $scope.short_description = $sce.trustAsHtml($scope.product.short_description);
+            $scope.productImg = $filter('unique')($scope.product.images, 'src');
             $ionicSlideBoxDelegate.update();
             $ionicLoading.hide();
         }, function (response) {
@@ -64,67 +44,6 @@ angular.module('fimex.controllers', [])
         });
     }
     $scope.loadResult();
-})
-
-.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
-    $scope.search = {};
-    var nextPage = 1;
-    $scope.able2Loadmore = 0;
-
-    $scope.doSearch = function () {
-        if (!$scope.search) return;
-        cordova.plugins.Keyboard.close();
-        $log.debug("search for " + $scope.search.term);
-        $scope.loadResult();
-    };
-
-    $scope.loadResult = function () {
-        $ionicLoading.show({
-            template: $filter('translate')('LOADING_TEXT')
-        });
-        $scope.RSempty = false;
-
-        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&'), 0).then(function (response) {
-            if (response.data.products.length == 0) {
-                $scope.products = null;
-                $scope.RSempty = true;
-            } else {
-                $scope.products = response.data.products;
-                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
-                    nextPage++;
-                    $scope.able2Loadmore = 1;
-                }
-            }
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-            $scope.RSempty = true;
-        });
-    }
-
-    $scope.loadMore = function () {
-        $ionicLoading.show({
-            template: $filter('translate')('LOADING_MORE_TEXT')
-        });
-        $scope.able2Loadmore = 0;
-
-        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&page=' + nextPage), 0).then(function (response) {
-            if (response.data.products.length > 0) {
-                $scope.products = $scope.products.concat(response.data.products);
-                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
-                    nextPage++;
-                    $scope.able2Loadmore = 1;
-                }
-            }
-            $ionicLoading.hide();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-        });
-    };
 })
 
 
@@ -190,7 +109,7 @@ angular.module('fimex.controllers', [])
         $scope.titleSub = '';
         AppSettings.change('appFIMEXCategoriesRS', '');
     } else if (AppSettings.get('appFIMEXCategoriesBack') == 0) {
-        $scope.titleSub = $scope.titleSub + ' >> ' + $stateParams.categoryName;
+        $scope.titleSub = ($scope.titleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : ($scope.titleSub + ' >> ' + $filter('unescapeHTML')($stateParams.categoryName));
         AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
         $log.debug('categoryName : ' + ($stateParams.categoryName) + ', titleSub : ' + ($scope.titleSub));
     } else {
@@ -245,6 +164,68 @@ angular.module('fimex.controllers', [])
 })
 
 
+.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+    $scope.search = {};
+    var nextPage = 1;
+    $scope.able2Loadmore = 0;
+
+    $scope.doSearch = function () {
+        if (!$scope.search) return;
+        cordova.plugins.Keyboard.close();
+        $log.debug("search for " + $scope.search.term);
+        $scope.loadResult();
+    };
+
+    $scope.loadResult = function () {
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_TEXT')
+        });
+        $scope.RSempty = false;
+
+        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&'), 0).then(function (response) {
+            if (response.data.products.length == 0) {
+                $scope.products = null;
+                $scope.RSempty = true;
+            } else {
+                $scope.products = response.data.products;
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
+            }
+            $ionicLoading.hide();
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.RSempty = true;
+        });
+    }
+
+    $scope.loadMore = function () {
+        $ionicLoading.show({
+            template: $filter('translate')('LOADING_MORE_TEXT')
+        });
+        $scope.able2Loadmore = 0;
+
+        DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&page=' + nextPage), 0).then(function (response) {
+            if (response.data.products.length > 0) {
+                $scope.products = $scope.products.concat(response.data.products);
+                if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
+                    nextPage++;
+                    $scope.able2Loadmore = 1;
+                }
+            }
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
+    };
+})
+
+
 .controller('SettingCtrl', function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter) {
     $scope.forms = {};
     $scope.ctForm = {};
@@ -262,38 +243,19 @@ angular.module('fimex.controllers', [])
 
     // contact form submitting
     $scope.formSubmit = function () {
-        var mailJSON = {
-            "key": AppSettings.get('emailserviceKey'),
-            "message": {
-                "html": $scope.ctForm.ctMessage,
-                "text": $scope.ctForm.ctMessage,
-                "subject": "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
-                "from_email": $scope.ctForm.ctEmail,
-                "from_name": $scope.ctForm.ctName,
-                "to": [
-                    {
-                        "email": AppSettings.get('contactForm2Email'),
-                        "name": AppSettings.get('contactForm2User'),
-                        "type": "to"
-                    }
-                ],
-                "important": false,
-                "track_opens": null,
-                "track_clicks": null,
-                "auto_text": null,
-                "auto_html": null,
-                "inline_css": null,
-                "url_strip_qs": null,
-                "preserve_recipients": null,
-                "view_content_link": null,
-                "tracking_domain": null,
-                "signing_domain": null,
-                "return_path_domain": null
-            },
-            "async": false,
-            "ip_pool": "Main Pool"
+        var mailObj = {
+            'from': $scope.ctForm.ctName + ' <' + $scope.ctForm.ctEmail + '>',
+            'to': AppSettings.get('contactForm2User') + ' <' + AppSettings.get('contactForm2Email') + '>',
+            'cc': '',
+            'bcc': '',
+            'subject': "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
+            "html": "<table style='border: 1px solid black;'>" + "<caption>" + AppSettings.get('appName')+ "</caption>" +
+                "<tr><td>Name</td>" + "<td>" + $scope.ctForm.ctName + "</td></tr>" +
+                "<tr><td>Email</td>" + "<td>" + $scope.ctForm.ctEmail + "</td></tr>" +
+                "<tr><td>Message</td>" + "<td>" + $scope.ctForm.ctMessage + "</td></tr></table>",
+            "text": 'TEXT VERSION: ' + $scope.ctForm.ctMessage
         };
-        EmailSender.send(mailJSON);
+        EmailSender.send(mailObj);
         alert($filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName }));
 
         //reset Form

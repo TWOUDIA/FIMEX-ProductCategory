@@ -1,9 +1,8 @@
 angular.module('fimex.services', [])
 
-.factory('DataLoader', function ($http, $log, AppSettings) {
+.factory('DataLoader', function ($http, AppSettings) {
     return {
         get: function ($term, $limit) {
-            $log.debug(AppSettings.getURI($term, $limit));
             var result = $http({
                 method: 'GET',
                 url: AppSettings.getURI($term, $limit),
@@ -19,7 +18,7 @@ angular.module('fimex.services', [])
     }
 })
 
-.factory('PHPJSfunc', function ($log) {
+.factory('PHPJSfunc', function () {
     return {
         urlencode: function ($uri) {
             $uri = ($uri + '').toString();
@@ -33,7 +32,6 @@ angular.module('fimex.services', [])
               .replace(/%20/g, '+');
 
             return result;
-            $log.debug(result);
         }
     }
 })
@@ -45,13 +43,22 @@ angular.module('fimex.services', [])
                 method: 'POST',
                 url: AppSettings.get('mgAPIURI'),
                 headers: {
-                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('mgAPIName'), AppSettings.get('mgServiceKey'))
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('mgAPIName'), AppSettings.get('mgServiceKey')),
                 },
-                data: $mail
-            }).
-            success(function () {
+                transformRequest: function (obj) {
+                            var str = [];
+                            for (var p in obj) {
+                                if (obj[p].length > 0) { str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])); }
+                            }
+                            return str.join('&');
+                        },
+                data: $mail,
+                timeout: 5000 
+            }).then(
+            function success() {
                 $log.debug('successful email send.');
-            }).error(function () {
+            }, function error() {
                 $log.debug('error sending email.');
             });
             return null;
@@ -59,9 +66,9 @@ angular.module('fimex.services', [])
     }
 })
 
-.factory('AppSettings', function ($translate, tmhDynamicLocale, $log) {
+.factory('AppSettings', function ($translate, tmhDynamicLocale) {
     var savedData = {
-        appName: 'APP - FIMEX CATEGORIES',
+        appName: 'FIMEX PRODUCT CATEGORIES',
         domainURI: 'https://beta.fimex.com.tw/',
         wcAPIURI: 'wc-api/v3/',
         wcAPIKey: 'ck_e3d52fbb954e57758cc7ea5bdadb6d44d9fd8be3',
@@ -72,7 +79,7 @@ angular.module('fimex.services', [])
         languageURI: '',
         mgAPIName:'api',
         mgServiceKey: 'key-0c16845e030f782c3acb501cdf07b8a2',
-        mgAPIURI: 'https://api.mailgun.net/v3/mg.twoudia.com',
+        mgAPIURI: 'https://api.mailgun.net/v3/mg.twoudia.com/messages',
         contactForm2Email: 'yannicklin@twoudia.com',
         contactForm2User: 'Support',
         dataReload: false,
@@ -139,7 +146,6 @@ angular.module('fimex.services', [])
                 $translate.use(value);
                 tmhDynamicLocale.set(value);
             }
-            $log.debug($item + ' : ' + value);
         },
         get: function ($item) {
             return savedData[$item];

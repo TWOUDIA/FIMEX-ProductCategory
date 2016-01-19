@@ -17,22 +17,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
-        "id": "cordova-plugin-console.console",
-        "pluginId": "cordova-plugin-console",
-        "clobbers": [
-            "console"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-console/www/logger.js",
-        "id": "cordova-plugin-console.logger",
-        "pluginId": "cordova-plugin-console",
-        "clobbers": [
-            "cordova.logger"
-        ]
-    },
-    {
         "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
         "id": "ionic-plugin-keyboard.keyboard",
         "pluginId": "ionic-plugin-keyboard",
@@ -47,7 +31,6 @@ module.exports.metadata =
 {
     "cordova-plugin-device": "1.1.0",
     "cordova-plugin-statusbar": "2.0.0",
-    "cordova-plugin-console": "1.0.2",
     "ionic-plugin-keyboard": "1.0.8",
     "cordova-plugin-whitelist": "1.2.2-dev"
 }

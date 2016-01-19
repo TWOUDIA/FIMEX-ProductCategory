@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "{833104c0-bb25-11e5-b6a7-75a308a02562}"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "{833104c0-bb25-11e5-b6a7-75a308a02562}"
         },

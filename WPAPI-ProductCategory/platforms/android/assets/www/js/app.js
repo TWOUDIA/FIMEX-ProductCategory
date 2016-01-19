@@ -11,7 +11,7 @@ angular.module('fimex', [
     'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
-.run(function ($ionicPlatform, $ionicHistory, toaster, $filter, $timeout) {
+.run(function ($ionicPlatform, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && ionic.Platform.isIOS()) {
@@ -21,7 +21,6 @@ angular.module('fimex', [
             StatusBar.styleLightContent();
         };
     });
-
 
     // Exit APP
     var countTimerForCloseApp = false;

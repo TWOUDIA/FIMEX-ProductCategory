@@ -218,9 +218,6 @@
         </PostBuildEvent>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Plugins\cordova-plugin-console\DebugConsole.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Compile Include="Plugins\cordova-plugin-device\Device.cs" />
     </ItemGroup>
     <ItemGroup>

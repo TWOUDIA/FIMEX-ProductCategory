@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "FIMEX PRODUCT"
         },

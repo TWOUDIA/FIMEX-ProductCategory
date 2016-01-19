@@ -31,7 +31,7 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Your message should be between 10 to 1000 letters.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "SEND",
 
-  "CATEGORY_PRODUCTS_COUNT": "Products Amount: {{count}}",
+  "CATEGORY_PRODUCTS_COUNT": "Product Items : {{count}}",
 
   "NOTES_EMPTY_TITLE": "Sorry�I",
   "NOTES_EMPTY_CONTENT": "Now no update bulletin�I {{date|date:'short'}}",

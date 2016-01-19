@@ -1,12 +1,14 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Pressione novamente para sair.",
   "LOADING_TEXT": "Carregando ... ",
+  "LOADING_MORE_TEXT":  "Carregando mais ... ", 
   "ALERT_MAIL_SENT": "Graças {{name}}, sua mensagem foi enviada.",
   "ALERT_RECORD_NULL": "Não há registros recuperados.",
 
   "TAB_TITLE_DASH": "STATUS",
 
   "TAB_TITLE_CATEGORIES": "CATEGORIAS",
+  "TAB_TITLE_CATEGORIES_SUB": "lista Under {{categoriesTree}}",
 
   "TAB_TITLE_SEARCH": "PESQUISA",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Principais palavras ... ",
@@ -28,6 +30,8 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Você não keyin qualquer mensagem.",
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "A sua mensagem deverá situar-se entre 10 a 1000 letras.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "MANDAR",
+
+  "CATEGORY_PRODUCTS_COUNT": "Itens do produto : {{count}}",
 
   "NOTES_EMPTY_TITLE": "pesaroso！",
   "NOTES_EMPTY_CONTENT": "Agora nenhum boletim de atualização！ {{date|date:'short'}}",

@@ -9,10 +9,6 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Console\"><param name=\"wp-package\" value=\"DebugConsole\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Device\"><param name=\"wp-package\" value=\"Device\" /></feature>",
                             "count": 1
                         },
@@ -36,9 +32,6 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "{833104c0-bb25-11e5-b6a7-75a308a02562}"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "{833104c0-bb25-11e5-b6a7-75a308a02562}"
         },
@@ -54,22 +47,6 @@
     },
     "dependent_plugins": {},
     "modules": [
-        {
-            "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
-            "id": "cordova-plugin-console.console",
-            "pluginId": "cordova-plugin-console",
-            "clobbers": [
-                "console"
-            ]
-        },
-        {
-            "file": "plugins/cordova-plugin-console/www/logger.js",
-            "id": "cordova-plugin-console.logger",
-            "pluginId": "cordova-plugin-console",
-            "clobbers": [
-                "cordova.logger"
-            ]
-        },
         {
             "file": "plugins/cordova-plugin-device/www/device.js",
             "id": "cordova-plugin-device.device",
@@ -88,7 +65,6 @@
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-console": "1.0.2",
         "cordova-plugin-device": "1.1.0",
         "cordova-plugin-statusbar": "2.0.0",
         "ionic-plugin-keyboard": "1.0.8",

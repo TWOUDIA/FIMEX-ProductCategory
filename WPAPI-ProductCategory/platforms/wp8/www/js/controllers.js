@@ -109,7 +109,7 @@ angular.module('fimex.controllers', [])
         $scope.titleSub = '';
         AppSettings.change('appFIMEXCategoriesRS', '');
     } else if (AppSettings.get('appFIMEXCategoriesBack') == 0) {
-        $scope.titleSub = $scope.titleSub + ' >> ' + $filter('unescapeHTML')($stateParams.categoryName);
+        $scope.titleSub = ($scope.titleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : ($scope.titleSub + ' >> ' + $filter('unescapeHTML')($stateParams.categoryName));
         AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
         $log.debug('categoryName : ' + ($stateParams.categoryName) + ', titleSub : ' + ($scope.titleSub));
     } else {
@@ -243,38 +243,19 @@ angular.module('fimex.controllers', [])
 
     // contact form submitting
     $scope.formSubmit = function () {
-        var mailJSON = {
-            "key": AppSettings.get('emailserviceKey'),
-            "message": {
-                "html": $scope.ctForm.ctMessage,
-                "text": $scope.ctForm.ctMessage,
-                "subject": "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
-                "from_email": $scope.ctForm.ctEmail,
-                "from_name": $scope.ctForm.ctName,
-                "to": [
-                    {
-                        "email": AppSettings.get('contactForm2Email'),
-                        "name": AppSettings.get('contactForm2User'),
-                        "type": "to"
-                    }
-                ],
-                "important": false,
-                "track_opens": null,
-                "track_clicks": null,
-                "auto_text": null,
-                "auto_html": null,
-                "inline_css": null,
-                "url_strip_qs": null,
-                "preserve_recipients": null,
-                "view_content_link": null,
-                "tracking_domain": null,
-                "signing_domain": null,
-                "return_path_domain": null
-            },
-            "async": false,
-            "ip_pool": "Main Pool"
+        var mailObj = {
+            'from': $scope.ctForm.ctName + ' <' + $scope.ctForm.ctEmail + '>',
+            'to': AppSettings.get('contactForm2User') + ' <' + AppSettings.get('contactForm2Email') + '>',
+            'cc': '',
+            'bcc': '',
+            'subject': "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
+            "html": "<table style='border: 1px solid black;'>" + "<caption>" + AppSettings.get('appName')+ "</caption>" +
+                "<tr><td>Name</td>" + "<td>" + $scope.ctForm.ctName + "</td></tr>" +
+                "<tr><td>Email</td>" + "<td>" + $scope.ctForm.ctEmail + "</td></tr>" +
+                "<tr><td>Message</td>" + "<td>" + $scope.ctForm.ctMessage + "</td></tr></table>",
+            "text": 'TEXT VERSION: ' + $scope.ctForm.ctMessage
         };
-        EmailSender.send(mailJSON);
+        EmailSender.send(mailObj);
         alert($filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName }));
 
         //reset Form

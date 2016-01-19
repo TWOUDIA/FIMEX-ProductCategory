@@ -1,6 +1,6 @@
 ﻿angular.module('fimex.filters', [])
 
-.filter('linkremove', function ($sce, $log) {
+.filter('linkremove', function ($sce) {
     return function (text) {
         var htmlObject = document.createElement('div');
         htmlObject.innerHTML = text;
@@ -20,7 +20,7 @@
     }
 })
 
-.filter('unescapeHTML', function ($sce) {
+.filter('unescapeHTML', function () {
     var entityMap = {
         "&": "&amp;",
         "<": "&lt;",

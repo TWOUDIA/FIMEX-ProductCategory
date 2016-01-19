@@ -41,7 +41,7 @@
     };
 })
 
-.directive('keyboardHind', function ($window) {
+.directive('keyboardHind', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

@@ -1,12 +1,14 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Drücken Sie erneut, um zu beenden.",
   "LOADING_TEXT": "Laden ... ",
+  "LOADING_MORE_TEXT":  "Loading more ...", 
   "ALERT_MAIL_SENT": "Dank {{name}}, Ihre Nachricht wurde gesendet.",
   "ALERT_RECORD_NULL": "No records abgerufen.",
 
   "TAB_TITLE_DASH": "STATUS",
 
   "TAB_TITLE_CATEGORIES": "KATEGORIEN",
+  "TAB_TITLE_CATEGORIES_SUB": "List Under {{categoriesTree}}",
 
   "TAB_TITLE_SEARCH": "SUCHE",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Key Words ... ",
@@ -28,6 +30,8 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Sie keine Mitteilung KEYIN.",
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Ihre Nachricht sollte zwischen 10 bis 1000 Buchstaben sein.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "SENDEN",
+
+  "CATEGORY_PRODUCTS_COUNT": "Products : {{count}}",
 
   "NOTES_EMPTY_TITLE":"Entschuldigung！",
   "NOTES_EMPTY_CONTENT":"Jetzt kein Update Bulletin！ {{date|date:'short'}}",

@@ -26,7 +26,7 @@ angular.module('fimex.controllers', [])
 
 
 /* TODO: Change to Modal, rather than current View ? */
-.controller('ProductDetailCtrl', function ($ionicSlideBoxDelegate, $scope, $stateParams, DataLoader, $sce, $timeout, $log, $filter, $ionicLoading) {
+.controller('ProductDetailCtrl', function ($ionicSlideBoxDelegate, $scope, $stateParams, DataLoader, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
@@ -47,7 +47,7 @@ angular.module('fimex.controllers', [])
 })
 
 
-.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $ionicPlatform, $filter, AppSettings, $stateParams, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
@@ -111,7 +111,6 @@ angular.module('fimex.controllers', [])
     } else if (AppSettings.get('appFIMEXCategoriesBack') == 0) {
         $scope.titleSub = ($scope.titleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : ($scope.titleSub + ' >> ' + $filter('unescapeHTML')($stateParams.categoryName));
         AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
-        $log.debug('categoryName : ' + ($stateParams.categoryName) + ', titleSub : ' + ($scope.titleSub));
     } else {
         AppSettings.change('appFIMEXCategoriesBack', 0);
     }
@@ -164,7 +163,7 @@ angular.module('fimex.controllers', [])
 })
 
 
-.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $timeout, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -172,7 +171,6 @@ angular.module('fimex.controllers', [])
     $scope.doSearch = function () {
         if (!$scope.search) return;
         cordova.plugins.Keyboard.close();
-        $log.debug("search for " + $scope.search.term);
         $scope.loadResult();
     };
 
@@ -242,15 +240,22 @@ angular.module('fimex.controllers', [])
     });
 
     // contact form submitting
-    $scope.formSubmit = function () {
-        var mailJSON = {
+    $scope.formSubmit = function () {        
+        var mailObj = {
             'from': $scope.ctForm.ctName + ' <' + $scope.ctForm.ctEmail + '>',
             'to': AppSettings.get('contactForm2User') + ' <' + AppSettings.get('contactForm2Email') + '>',
-            'subject': "Message sent via Mobile APP - " + AppSettings.get('appName') + ", " + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm:ss Z'),
-            "html": $scope.ctForm.ctMessage,
-            "text": $scope.ctForm.ctMessage
+            'cc': '',
+            'bcc': '',
+            'subject': 'Message sent via Mobile APP - ' + AppSettings.get('appName') + ', ' + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm Z'),
+            'html': '<table style="border: 1px dashed black; border-collapse: collapse;">' + '<caption>' + AppSettings.get('appName') + '</caption>' +
+                '<tfoot style="color: red;"><tr><td style="border: 1px dashed black; padding: 5px;">Time</td><td style="border: 1px dashed black; padding: 5px;">' + $filter('date')(Date.now(), 'yyyy-MM-dd HH:mm Z') + '</td></tr>' +
+                '<tr><td style="border: 1px dashed black; padding: 5px;">SPEC</td><td style="border: 1px dashed black; padding: 5px;">Platform: ' + device.platform + ', Version: ' + device.version + ', Manufacturer: ' + device.manufacturer + ', Model: ' + device.model + ', UUID: ' + device.uuid + '</td></tr></tfoot>' +
+                '<tbody><tr><td style="border: 1px dashed black; padding: 5px;">Name</td>' + '<td style="border: 1px dashed black; padding: 5px;">' + $scope.ctForm.ctName + '</td></tr>' +
+                '<tr><td style="border: 1px dashed black; padding: 5px;">Email</td>' + '<td style="border: 1px dashed black; padding: 5px;">' + $scope.ctForm.ctEmail + '</td></tr>' +
+                '<tr><td style="border: 1px dashed black; padding: 5px;">Message</td>' + '<td style="border: 1px dashed black; padding: 5px;">' + $scope.ctForm.ctMessage + '</td></tr></tbody></table>',
+            'text': 'TEXT VERSION: ' + $scope.ctForm.ctMessage
         };
-        EmailSender.send(mailJSON);
+        EmailSender.send(mailObj);
         alert($filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName }));
 
         //reset Form
