@@ -4,11 +4,16 @@
   "LOADING_MORE_TEXT":  "تحميل المزيد ...", 
   "ALERT_MAIL_SENT": "{{name}} اسم، وقد تم ارسال رسالتك شكرا.",
   "ALERT_RECORD_NULL": "لا توجد سجلات استردادها.",
+    
+  "MODAL_PRODUCTDETAIL_TITLE": "المنتج : ",
+  "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "أغلق",
 
   "TAB_TITLE_DASH": "الحالة",
 
   "TAB_TITLE_CATEGORIES": "أقسام",
-  "TAB_TITLE_CATEGORIES_SUB": "{{categoriesTree}} قائمة تحت",
+  "TAB_CATEGORIES_SUBTITLE": "قائمة تحت {{categoriesTree}}",
+  "TAB_CATEGORIES_TITLE_PRODUCT": "قائمة المنتجات",
+  "TAB_CATEGORIES_PRODUCTS_COUNT": "عناصر المنتج:  {{count}}",
 
   "TAB_TITLE_SEARCH": "البحث عن",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "الكلمات الدالة ... ",
@@ -30,8 +35,6 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "أنت لم keyin أي رسالة.",
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "يجب أن تكون رسالتك بين 10-1000 الحروف.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "إرسال",
-
-  "CATEGORY_PRODUCTS_COUNT": "المنتجات : {{count}}",
 
   "NOTES_EMPTY_TITLE":"آسف!",
   "NOTES_EMPTY_CONTENT":"الآن أي نشرات التحديث！ {{date|date:'short'}}",

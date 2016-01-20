@@ -79,7 +79,7 @@ angular.module('fimex.services', [])
         languageURI: '',
         mgAPIName:'api',
         mgServiceKey: 'key-0c16845e030f782c3acb501cdf07b8a2',
-        mgAPIURI: 'https://api.mailgun.net/v3/mg.twoudia.com/messages',
+        mgAPIURI: 'https://api.mailgun.net/v3/mg.fimex.com.tw/messages',
         contactForm2Email: 'yannicklin@twoudia.com',
         contactForm2User: 'Support',
         dataReload: false,

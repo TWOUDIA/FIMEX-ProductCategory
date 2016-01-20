@@ -4,11 +4,11 @@
     </ion-nav-title>
 
     <ion-content>
-        <ion-header-bar ng-if="titleSub" class="bar bar-subheader" ng-bind-html="'TAB_TITLE_CATEGORIES_SUB' | translate:({categoriesTree: titleSub })"></ion-header-bar>
+        <ion-header-bar ng-if="titleSub" class="bar bar-subheader" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
         <ion-list ng-show="categories">
             <ion-item class="item-icon-right" ng-repeat="category in categories" type="item-text-wrap" ng-href="{{(showCount - category.count == 1) ? '':(RSitemURI + '/' + category.id + '/' + category.slug + '/' + category.name)}}">
                 <p ng-bind-html="category.name"></p>
-                <p ng-if="showCount">{{'CATEGORY_PRODUCTS_COUNT' | translate:({count:category.count})}}</p>
+                <p ng-if="showCount">{{'TAB_CATEGORIES_PRODUCTS_COUNT' | translate:({count:category.count})}}</p>
                 <i ng-if="showCount - category.count != 1" class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>

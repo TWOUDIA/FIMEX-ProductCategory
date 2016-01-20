@@ -4,11 +4,16 @@
   "LOADING_MORE_TEXT":  "資料加載中 ... ", 
   "ALERT_MAIL_SENT": "{{name}}，多謝！您的訊息已經送出。",
   "ALERT_RECORD_NULL": "查無資料。",
+  
+  "MODAL_PRODUCTDETAIL_TITLE": "產品 : ",
+  "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "關閉",
 
   "TAB_TITLE_DASH": "狀態",
 
   "TAB_TITLE_CATEGORIES": "分類",
-  "TAB_TITLE_CATEGORIES_SUB": "位於 {{categoriesTree}} 之下",
+  "TAB_CATEGORIES_SUBTITLE": "分類為 {{categoriesTree}}",
+  "TAB_CATEGORIES_TITLE_PRODUCT": "產品列表",
+  "TAB_CATEGORIES_PRODUCTS_COUNT": "項目數 : {{count}}",
 
   "TAB_TITLE_SEARCH": "搜索",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "關鍵詞 ... ",
@@ -30,8 +35,6 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "你沒有輸入任何訊息。",
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "你的訊息長度應該是10至1000字數之間的。",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "遞送",
-
-  "CATEGORY_PRODUCTS_COUNT": "產品項目 : {{count}}",
 
   "NOTES_EMPTY_TITLE":"抱歉！",
   "NOTES_EMPTY_CONTENT":"現無更新公告！ {{date|date:'short'}}",

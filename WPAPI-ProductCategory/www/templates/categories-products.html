@@ -1,12 +1,12 @@
 <ion-view>
     <ion-nav-title>
-        {{::('TAB_TITLE_PRODUCTS' | translate) }}
+        {{::('TAB_CATEGORIES_TITLE_PRODUCT' | translate) }}
     </ion-nav-title>
 
     <ion-content>
-        <ion-header-bar ng-if="titleSub" class="bar bar-subheader" ng-bind-html="'TAB_TITLE_CATEGORIES_SUB' | translate:({categoriesTree: titleSub })"></ion-header-bar>
+        <ion-header-bar ng-if="titleSub" class="bar bar-subheader" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
         <ion-list ng-show="products">
-            <ion-item class="item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="updateCategories(product.categories[0])" href="#/tab/ca-products/{{product.id}}">
+            <ion-item class="item-avatar item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
                 <img ng-src="{{product.featured_src}}" />
                 <p ng-bind-html="product.title" style="white-space:initial;"></p>
                 <p ng-if="product.categories" ng-bind-html="product.categories[0]" style="white-space:initial;"></p>
