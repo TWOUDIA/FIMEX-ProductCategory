@@ -47,14 +47,14 @@
                     'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('mgAPIName'), AppSettings.get('mgServiceKey')),
                 },
                 transformRequest: function (obj) {
-                            var str = [];
-                            for (var p in obj) {
-                                if (obj[p].length > 0) { str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])); }
-                            }
-                            return str.join('&');
-                        },
+                    var str = [];
+                    for (var p in obj) {
+                        if (obj[p].length > 0) { str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])); }
+                    }
+                    return str.join('&');
+                },
                 data: $mail,
-                timeout: 5000 
+                timeout: 5000
             }).then(
             function success() {
                 $log.debug('successful email send.');
@@ -66,58 +66,11 @@
     }
 })
 
-.factory('AppSettings', function ($translate, tmhDynamicLocale) {
-    var savedData = {
-        appName: 'FIMEX PRODUCT CATEGORIES',
-        domainURI: 'https://beta.fimex.com.tw/',
-        wcAPIURI: 'wc-api/v3/',
-        wcAPIKey: 'ck_e3d52fbb954e57758cc7ea5bdadb6d44d9fd8be3',
-        wcAPISecret: 'cs_894c2f79bd330af5eba70473c6a921593139f034',
-        wcAPIURIsuffix: 'filter[orderby]=id&filter[order]=ASC&filter[limit]=',
-        wcAPIRSlimit: 5,
-        language: '',
-        languageURI: '',
-        mgAPIName:'api',
-        mgServiceKey: 'key-0c16845e030f782c3acb501cdf07b8a2',
-        mgAPIURI: 'https://api.mailgun.net/v3/mg.twoudia.com/messages',
-        contactForm2Email: 'yannicklin@twoudia.com',
-        contactForm2User: 'Support',
-        dataReload: false,
-        oriCategories: [{
-            "id": 9,
-            "name": "Electrical Materials",
-            "slug": "electrical-materials",
-            "parent": 0,
-            "description": "",
-            "display": "default",
-            "image": "",
-            "count": 0,
-            "sublevels": 2
-        }, {
-            "id": 10,
-            "name": "Electrical Materials - American Category",
-            "slug": "electrical-materials-aa",
-            "parent": 0,
-            "description": "",
-            "display": "default",
-            "image": "",
-            "count": 0,
-            "sublevels": 2
-        }, {
-            "id": 11,
-            "name": "Wiring Devices",
-            "slug": "wiring-devices",
-            "parent": 0,
-            "description": "",
-            "display": "default",
-            "image": "",
-            "count": 0,
-            "sublevels": 3
-        }],
-        wpCategroies: [],
-        appFIMEXCategoriesRS: "",
-        appFIMEXCategoriesBack: 0
-    };
+.factory('AppSettings', function ($translate, tmhDynamicLocale, AppConfig) {
+    var savedData = AppConfig;
+    savedData.wpCategroies = [];
+    savedData.appFIMEXCategoriesRS = "";
+    savedData.appFIMEXCategoriesBack = 0;
 
     function setLanguageURI(value) {
         switch (value) {
@@ -132,7 +85,7 @@
         }
     }
 
-    // Set Language and LanguageURI
+    // Initial Language and LanguageURI
     savedData.language = $translate.use();
     setLanguageURI(savedData.language);
 

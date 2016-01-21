@@ -32,28 +32,13 @@
   },
   "overrides": {
     "ionic": {
-      "main": "**/release/js/ionic.bundle.min.*"
-    },
-    "ionic-toast": {
-      "main": "**/src/*.*"
+      "main": "**/release/*/*.*"
     },
     "angular-dynamic-locale": {
-      "main": "**/src/*.*"
+      "main": "**/dist/*.*"
     },
-    "angular-translate": {
-      "main": "**/*.min.*"
-    },
-    "angular-translate-loader-static-files": {
-      "main": "**/*.min.*"
-    },
-    "angular-translate-storage-cookie": {
-      "main": "**/*.min.*"
-    },
-    "angular-translate-storage-local": {
-      "main": "**/*.min.*"
-    },
-    "angular-messages": {
-      "main": "**/*.min.*"
+    "angular-filter": {
+      "main": "**/dist/*.*"
     }
   },
   "resolutions": {

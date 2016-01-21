@@ -25,29 +25,7 @@
 })
 
 
-/* TODO: Change to Modal, rather than current View ? */
-.controller('ProductDetailCtrl', function ($ionicSlideBoxDelegate, $scope, $stateParams, DataLoader, $log, $filter, $ionicLoading) {
-    $ionicLoading.show({
-        template: $filter('translate')('LOADING_TEXT')
-    });
-    $scope.RSempty = false;
-    
-    $scope.loadResult = function () {
-        DataLoader.get('products/' + $stateParams.productId + '?', 0).then(function (response) {
-            $scope.product = response.data.product;
-            $scope.productImg = $filter('unique')($scope.product.images, 'src');
-            $ionicSlideBoxDelegate.update();
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-        });
-    }
-    $scope.loadResult();
-})
-
-
-.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading) {
+.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
@@ -160,16 +138,46 @@
     $scope.$on('$destroy', function () {
         deregisterSoftBack();
     });
+
+    // Modal for Product Detal
+    $ionicModal.fromTemplateUrl('templates/product-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.modal = modal;
+        $scope.detail = null;
+        $scope.detailImg = null;
+    });
+    $scope.openModal = function ($data) {
+        $scope.detail = $data;
+        $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
+        $ionicSlideBoxDelegate.update();
+        $scope.modal.show();
+    };
+    $scope.closeModal = function () {
+        $scope.modal.hide();
+    };
+    $scope.$on('$destroy', function () {
+        $scope.modal.remove();
+    });
 })
 
 
-.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
 
+    // Clean All
+    $scope.cleanSearch = function () {
+        $scope.search.term = '';
+        $scope.products = null;
+        $scope.RSempty = false;
+    };
+
+    // Start Search
     $scope.doSearch = function () {
-        if (!$scope.search) return;
+        if (!$scope.search.term) return;
         cordova.plugins.Keyboard.close();
         $scope.loadResult();
     };
@@ -221,10 +229,32 @@
             $scope.$broadcast('scroll.infiniteScrollComplete');
         });
     };
+
+    // Modal for Product Detal
+    $ionicModal.fromTemplateUrl('templates/product-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.modal = modal;
+        $scope.detail = null;
+        $scope.detailImg = null;
+    });
+    $scope.openModal = function ($data) {
+        $scope.detail = $data;
+        $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
+        $ionicSlideBoxDelegate.update();
+        $scope.modal.show();
+    };
+    $scope.closeModal = function () {
+        $scope.modal.hide();
+    };
+    $scope.$on('$destroy', function () {
+        $scope.modal.remove();
+    });
 })
 
 
-.controller('SettingCtrl', function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter) {
+.controller('SettingCtrl', function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
@@ -240,7 +270,7 @@
     });
 
     // contact form submitting
-    $scope.formSubmit = function () {        
+    $scope.formSubmit = function () {
         var mailObj = {
             'from': $scope.ctForm.ctName + ' <' + $scope.ctForm.ctEmail + '>',
             'to': AppSettings.get('contactForm2User') + ' <' + AppSettings.get('contactForm2Email') + '>',
@@ -256,7 +286,10 @@
             'text': 'TEXT VERSION: ' + $scope.ctForm.ctMessage
         };
         EmailSender.send(mailObj);
-        alert($filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName }));
+        toaster.pop({
+            type: 'info',
+            body: $filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName })
+        });
 
         //reset Form
         $scope.ctForm = {};

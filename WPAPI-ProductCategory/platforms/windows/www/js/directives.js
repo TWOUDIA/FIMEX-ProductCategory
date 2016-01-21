@@ -34,7 +34,6 @@
                 scope.$apply(function () {
                     scope.$eval(attrs.keyInput);
                 });
-
                 event.preventDefault();
             }
         });

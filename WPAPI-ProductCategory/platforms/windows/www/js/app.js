@@ -8,7 +8,7 @@ angular.module('fimex', [
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'toaster', // inject the angularjs-toaster module
     'satellizer', // inject the satellizer module, for OAuth 1 & 2 authorization
-    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
+    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
 .run(function ($ionicPlatform, toaster, $filter, $timeout) {
@@ -81,6 +81,7 @@ angular.module('fimex', [
         })
         .state('tab.dash', {
             url: '/dash',
+            cache: true,
             views: {
                 'tab-dash': {
                     templateUrl: 'templates/tab-dash.html',
@@ -90,7 +91,7 @@ angular.module('fimex', [
         })
         .state('tab.categories', {
             url: '/categories/{categoryLevel}/{categoryId}/{categorySlug}/{categoryName:.*}',
-            cache: false,
+            cache: true,
             views: {
                 'tab-categories': {
                     templateUrl: function ($stateParams) {
@@ -104,15 +105,6 @@ angular.module('fimex', [
                 }
             }
         })
-        .state('tab.ca-product-detail', {
-            url: '/ca-products/:productId',
-            views: {
-                'tab-categories': {
-                    templateUrl: 'templates/product-detail.html',
-                    controller: 'ProductDetailCtrl'
-                }
-            }
-        })
         .state('tab.search', {
             url: '/search',
             cache: false,
@@ -120,15 +112,6 @@ angular.module('fimex', [
                 'tab-search': {
                     templateUrl: 'templates/tab-search.html',
                     controller: 'SearchCtrl'
-                }
-            }
-        })
-        .state('tab.se-product-detail', {
-            url: '/se-products/:productId',
-            views: {
-                'tab-search': {
-                    templateUrl: 'templates/product-detail.html',
-                    controller: 'ProductDetailCtrl'
                 }
             }
         })

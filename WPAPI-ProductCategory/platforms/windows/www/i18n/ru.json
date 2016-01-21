@@ -4,11 +4,16 @@
   "LOADING_MORE_TEXT":  "Загрузка более ... ", 
   "ALERT_MAIL_SENT": "Благодаря {{name}}, Ваше сообщение было отправлено.",
   "ALERT_RECORD_NULL": "Нет записей извлекаются.",
+    
+  "MODAL_PRODUCTDETAIL_TITLE": "ТОВАРОВ : ",
+  "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "ЗАКРЫТЬ",
 
   "TAB_TITLE_DASH": "ПОЛОЖЕНИЕ ДЕЛ",
 
   "TAB_TITLE_CATEGORIES": "КАТЕГОРИИ",
-  "TAB_TITLE_CATEGORIES_SUB": "Список соответствии {{categoriesTree}}",
+  "TAB_CATEGORIES_SUBTITLE": "Список соответствии {{categoriesTree}}",
+  "TAB_CATEGORIES_TITLE_PRODUCT": "СПИСОК ПРОДУКТОВ",
+  "TAB_CATEGORIES_PRODUCTS_COUNT": "Продукт: {{count}}",
 
   "TAB_TITLE_SEARCH": "ПОИСК",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Ключевые слова ... ",
@@ -30,8 +35,6 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED": "Вы не keyin любое сообщение.",
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Ваше сообщение должно быть от 10 до 1000 писем.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "ОТПРАВИТЬ",
-
-  "CATEGORY_PRODUCTS_COUNT": "Предметы продукта : {{count}}",
 
   "NOTES_EMPTY_TITLE":"Извините！",
   "NOTES_EMPTY_CONTENT":"Теперь нет бюллетень обновление！ {{date|date:'short'}}",

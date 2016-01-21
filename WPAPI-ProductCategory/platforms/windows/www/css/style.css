@@ -1,6 +1,4 @@
-﻿/* Empty. Add your own CSS if you like */
-
-/* ==== GERENAL ==== */
+﻿/* ==== GERENAL ==== */
 /* TBAS ON KEYBOARD EVENTS */
 .keyboard-open .tabs {
     display: none;
@@ -8,11 +6,25 @@
 .keyboard-open .has-tabs {
     bottom: 0;
 }
+.tabs-stable>.tabs, .tabs.tabs-stable {
+    padding-bottom: 0px;
+}
 /* LIST -> SUBHEADER */
 .bar-subheader {
     height: auto;
     top: 0px;
     position: relative;
+    padding: 10px;
+    background-color: lightgrey;
+    font-size: 16px;
+    line-height: 22px;
+}
+/* LIST ITEM */
+.item, .item p, .item-content, .item-content p {
+    white-space: normal;
+}
+.item-complex .item-content {
+    padding: 10px;
 }
 /* LIST -> PRODUCT THUMBNAIL */
 .item-avatar .item-content .item-image, .item-avatar .item-content>img:first-child, .item-avatar .item-image, .item-avatar-left .item-content .item-image, .item-avatar-left .item-content>img:first-child, .item-avatar-left .item-image, .item-avatar-left>img:first-child, .item-avatar>img:first-child {
@@ -24,6 +36,24 @@
 /* FOR NULL RECORD */
 h3.null {
     color: white;
+}
+/* PRODUCT-DETAIL MODAL*/
+.modal .bar-header {
+    height: auto;
+    padding: 10px;
+    background-color: lightgrey;
+    font-size: 16px;
+    line-height: 22px;
+    white-space: normal;
+}
+.modal .card {
+    margin: 0px;
+}
+.modal .card .item, .modal .card .item-body {
+    padding: 10px;
+}
+.modal .card img {
+    max-width: 100%;
 }
 
 /* ==== TAB-SETTING ==== */

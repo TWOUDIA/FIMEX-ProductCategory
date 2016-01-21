@@ -8,7 +8,7 @@ angular.module('fimex', [
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'toaster', // inject the angularjs-toaster module
     'satellizer', // inject the satellizer module, for OAuth 1 & 2 authorization
-    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
+    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
 .run(function ($ionicPlatform, toaster, $filter, $timeout) {

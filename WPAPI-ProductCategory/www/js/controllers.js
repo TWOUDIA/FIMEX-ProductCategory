@@ -139,7 +139,7 @@ angular.module('fimex.controllers', [])
         deregisterSoftBack();
     });
 
-    // Product Detail Modal
+    // Modal for Product Detal
     $ionicModal.fromTemplateUrl('templates/product-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -148,18 +148,15 @@ angular.module('fimex.controllers', [])
         $scope.detail = null;
         $scope.detailImg = null;
     });
-
     $scope.openModal = function ($data) {
         $scope.detail = $data;
         $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
         $ionicSlideBoxDelegate.update();
         $scope.modal.show();
     };
-
     $scope.closeModal = function () {
         $scope.modal.hide();
     };
-
     $scope.$on('$destroy', function () {
         $scope.modal.remove();
     });
@@ -171,11 +168,14 @@ angular.module('fimex.controllers', [])
     var nextPage = 1;
     $scope.able2Loadmore = 0;
 
+    // Clean All
     $scope.cleanSearch = function () {
         $scope.search.term = '';
         $scope.products = null;
+        $scope.RSempty = false;
     };
 
+    // Start Search
     $scope.doSearch = function () {
         if (!$scope.search.term) return;
         cordova.plugins.Keyboard.close();
@@ -230,7 +230,7 @@ angular.module('fimex.controllers', [])
         });
     };
 
-
+    // Modal for Product Detal
     $ionicModal.fromTemplateUrl('templates/product-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -239,18 +239,15 @@ angular.module('fimex.controllers', [])
         $scope.detail = null;
         $scope.detailImg = null;
     });
-
     $scope.openModal = function ($data) {
         $scope.detail = $data;
         $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
         $ionicSlideBoxDelegate.update();
         $scope.modal.show();
     };
-
     $scope.closeModal = function () {
         $scope.modal.hide();
     };
-
     $scope.$on('$destroy', function () {
         $scope.modal.remove();
     });

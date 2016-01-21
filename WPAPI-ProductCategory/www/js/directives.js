@@ -34,7 +34,6 @@ angular.module('fimex.directives', [])
                 scope.$apply(function () {
                     scope.$eval(attrs.keyInput);
                 });
-
                 event.preventDefault();
             }
         });
