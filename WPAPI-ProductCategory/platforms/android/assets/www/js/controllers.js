@@ -1,6 +1,6 @@
 angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading, $log) {
+.controller('DashCtrl', ["$scope", "Notes", "$filter", "DataLoader", "AppSettings", "$ionicLoading", "$log", function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading, $log) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
@@ -22,10 +22,10 @@ angular.module('fimex.controllers', [])
             $ionicLoading.hide();
         });
     }
-})
+}])
 
 
-.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('CategoriesCtrl', ["$ionicHistory", "$rootScope", "$filter", "AppSettings", "$stateParams", "$scope", "DataLoader", "$log", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
@@ -160,10 +160,10 @@ angular.module('fimex.controllers', [])
     $scope.$on('$destroy', function () {
         $scope.modal.remove();
     });
-})
+}])
 
 
-.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('SearchCtrl', ["AppSettings", "PHPJSfunc", "$scope", "DataLoader", "$log", "$filter", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -251,10 +251,10 @@ angular.module('fimex.controllers', [])
     $scope.$on('$destroy', function () {
         $scope.modal.remove();
     });
-})
+}])
 
 
-.controller('SettingCtrl', function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster) {
+.controller('SettingCtrl', ["$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
@@ -295,4 +295,4 @@ angular.module('fimex.controllers', [])
         $scope.ctForm = {};
         $scope.forms.contactForm.$setPristine();
     };
-});
+}]);

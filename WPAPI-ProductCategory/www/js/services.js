@@ -1,6 +1,6 @@
 angular.module('fimex.services', [])
 
-.factory('DataLoader', function ($http, AppSettings) {
+.factory('DataLoader', ["$http", "AppSettings", function ($http, AppSettings) {
     return {
         get: function ($term, $limit) {
             var result = $http({
@@ -16,7 +16,7 @@ angular.module('fimex.services', [])
             return result;
         }
     }
-})
+}])
 
 .factory('PHPJSfunc', function () {
     return {
@@ -36,7 +36,7 @@ angular.module('fimex.services', [])
     }
 })
 
-.factory('EmailSender', function ($http, $log, AppSettings) {
+.factory('EmailSender', ["$http", "$log", "AppSettings", function ($http, $log, AppSettings) {
     return {
         send: function ($mail) {
             $http({
@@ -64,9 +64,9 @@ angular.module('fimex.services', [])
             return null;
         }
     }
-})
+}])
 
-.factory('AppSettings', function ($translate, tmhDynamicLocale, AppConfig) {
+.factory('AppSettings', ["$translate", "tmhDynamicLocale", "AppConfig", function ($translate, tmhDynamicLocale, AppConfig) {
     var savedData = AppConfig;
     savedData.wpCategroies = [];
     savedData.appFIMEXCategoriesRS = "";
@@ -118,4 +118,4 @@ angular.module('fimex.services', [])
             return btoa(name + ':' + key);
         }
     };
-});
+}]);

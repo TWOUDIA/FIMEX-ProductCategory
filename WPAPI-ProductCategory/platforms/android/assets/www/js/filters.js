@@ -1,6 +1,6 @@
-﻿angular.module('fimex.filters', [])
+angular.module('fimex.filters', [])
 
-.filter('partRemove', function ($sce) {
+.filter('partRemove', ["$sce", function ($sce) {
     return function (original, tag) {
         var htmlObject = document.createElement('div');
         htmlObject.innerHTML = original;
@@ -12,13 +12,13 @@
 
         return $sce.trustAsHtml(htmlObject.outerHTML);
     }
-})
+}])
 
-.filter('unicode', function ($sce) {
+.filter('unicode', ["$sce", function ($sce) {
     return function (x) {
         return $sce.trustAsHtml(x);
     }
-})
+}])
 
 .filter('unescapeHTML', function () {
     var entityMap = {

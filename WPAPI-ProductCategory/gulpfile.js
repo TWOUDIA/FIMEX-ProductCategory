@@ -1,4 +1,4 @@
-/// <binding />
+/// <binding BeforeBuild='beforeBuild' />
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'gulp.*', 'bower-files', 'del'],
@@ -6,45 +6,10 @@ var plugins = require('gulp-load-plugins')({
 });
 
 gulp.task('cleanVendor', function () {
-    // You can use multiple globbing patterns as you would with `gulp.src`
-    return plugins.del(['www/js/lib/**/*', 'www/css/lib/**/*', 'www/css/fonts/**/*']);
+    return plugins.del(['www/js/lib', 'www/css/lib', 'www/fonts', 'www/js/*.min.*', 'www/css/*.min.*']);
 });
 
-gulp.task("app-js-combine", function () {
-    return gulp.src('www/js/*.js')
-        .pipe(plugins.replace('/*!', '/*'))
-        .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.concat('app.min.js'))
-        .pipe(plugins.uglify())
-        .pipe(plugins.sourcemaps.write())
-        .pipe(gulp.dest(dest));
-});
-
-gulp.task("vendor-css-combine", function () {
-    return gulp.src('www/css/lib/*.css')
-        //.pipe(plugins.replace('/*!', '/*'))
-        .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.concat('vendor.min.css'))
-        .pipe(plugins.minifyCss())
-        .pipe(plugins.sourcemaps.write())
-        .pipe(gulp.dest('www/css'));
-});
-
-gulp.task("vendor-js-combine", function () {
-
-    return gulp.src('www/js/lib/*.js')
-        //.pipe(plugins.replace('/*!', '/*'))
-        .pipe(plugins.resolveDependencies({
-            pattern: /\* @requires [\s-]*(.*\.js)/g
-        }))
-        .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.concat('vendor.min.js'))
-        //.pipe(plugins.uglify())
-        .pipe(plugins.sourcemaps.write())
-        .pipe(gulp.dest('www/js'));
-});
-
-gulp.task("vendor-files-copy", ['cleanVendor'], function () {
+gulp.task("vendor-files", ['cleanVendor'], function () {
 
     var jsFilter = plugins.filter('*.js', { restore: true }),
      cssFilter = plugins.filter('*.css', { restore: true }),
@@ -66,6 +31,27 @@ gulp.task("vendor-files-copy", ['cleanVendor'], function () {
         .pipe(cssFilter.restore)
 
         .pipe(fontFilter)
-        .pipe(gulp.dest('www/css/fonts'))
+        .pipe(gulp.dest('www/fonts'))
         .pipe(fontFilter.restore);
+});
+
+gulp.task("annoAPPJSs", ['vendor-files'], function () {
+
+    return gulp.src('www/js/*.js')
+        .pipe(plugins.ngAnnotate())
+        .pipe(gulp.dest('www/js'));
+});
+
+gulp.task("minPackage", ['annoAPPJSs'], function () {
+
+    return gulp.src('www/index-gulp.html')
+        .pipe(plugins.rename("index.html"))
+        .pipe(plugins.useref({}))
+        .pipe(plugins.if('*.js', plugins.uglify()))
+        .pipe(plugins.if('*.css', plugins.minifyCss({ keepSpecialComments: 0 })))
+        .pipe(gulp.dest('www'));
+});
+
+gulp.task('beforeBuild', ['minPackage'], function () {
+    return plugins.del(['www/js/lib', 'www/css/lib']);
 });
