@@ -1,4 +1,7 @@
 /* ==== GERENAL ==== */
+.ionic-scroll.scroll-content {
+    background:url(../img/fimex_bg.png) repeat white;
+}
 /* TBAS ON KEYBOARD EVENTS */
 .keyboard-open .tabs {
     display: none;
