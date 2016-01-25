@@ -13,7 +13,7 @@ angular.module('fimex.info', [])
                 "content": 'NOTES_20160108_CONTENT'
         }, {
                 "id": 2,
-                "top": 0,
+                "top": 1,
                 "title": 'NOTES_20160109_TITLE',
                 "content": 'NOTES_20160109_CONTENT'
     }];

@@ -70,7 +70,6 @@ angular.module('fimex.services', [])
     var savedData = AppConfig;
     savedData.wpCategroies = [];
     savedData.appFIMEXCategoriesRS = "";
-    savedData.appFIMEXCategoriesBack = 0;
 
     function setLanguageURI(value) {
         switch (value) {

@@ -1,19 +1,18 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Drücken Sie erneut, um zu beenden.",
   "LOADING_TEXT": "Laden ... ",
-  "LOADING_MORE_TEXT":  "Lädt mehr ... ", 
+  "LOADING_MORE_TEXT": "Lädt mehr ... ",
   "ALERT_MAIL_SENT": "Dank {{name}}, Ihre Nachricht wurde gesendet.",
   "ALERT_RECORD_NULL": "No records abgerufen.",
-    
+
   "MODAL_PRODUCTDETAIL_TITLE": "PRODUKT : ",
   "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "NAH DRAN",
 
-  "TAB_TITLE_DASH": "STATUS",
+  "TAB_TITLE_DASH": "Eintrag",
 
   "TAB_TITLE_CATEGORIES": "KATEGORIEN",
   "TAB_CATEGORIES_SUBTITLE": "Liste unter {{categoriesTree}}",
   "TAB_CATEGORIES_TITLE_PRODUCT": "PRODUKTLISTE",
-  "TAB_CATEGORIES_PRODUCTS_COUNT": "Items: {{count}}",
 
   "TAB_TITLE_SEARCH": "SUCHE",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Schlüsselwörter ... ",
@@ -36,12 +35,12 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Ihre Nachricht sollte zwischen 10 bis 1000 Buchstaben sein.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "SENDEN",
 
-  "NOTES_EMPTY_TITLE":"Entschuldigung！",
-  "NOTES_EMPTY_CONTENT":"Jetzt kein Update Bulletin！ {{date|date:'short'}}",
-  "NOTES_20160107_TITLE":"7. Januar 2016 Nachrichten",
-  "NOTES_20160107_CONTENT":"sehen",
-  "NOTES_20160108_TITLE":"8. Januar 2016 Nachrichten",
-  "NOTES_20160108_CONTENT":"Auch ich",
-  "NOTES_20160109_TITLE":"9. Januar 2016 Nachrichten",
-  "NOTES_20160109_CONTENT":"Ich hoffe, nicht zu sein."
+  "NOTES_EMPTY_TITLE": "Entschuldigung！",
+  "NOTES_EMPTY_CONTENT": "Jetzt kein Update Bulletin！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE": "Beachten Sie auf 7. Januar 2016",
+  "NOTES_20160107_CONTENT": "Diese App ist endlich bereit für den Zugang der Öffentlichkeit. In dieser App können Sie alle Produkte von FIMEX vorgesehen Umfrage. Obwohl wir sechs Sprachschnittstelle, für die Masse Menge Menge, die derzeit nur englische Version von Produktinformationen. Sorry für die Unannehmlichkeiten.",
+  "NOTES_20160108_TITLE": "Beachten Sie, auf 8. Januar 2016",
+  "NOTES_20160108_CONTENT": "Wenn Sie Ihre Erfahrung mit diesem app oder zeigen Sie Ihre Interessen in FIMEX Produkt freigeben möchten, können Sie Nachricht über KONTAKT Form in der Registerkarte Einstellungen zu senden. Wir werden Sie in kürzester Werktagen kontaktieren.",
+  "NOTES_20160109_TITLE": "Verfahren zum Programm verlassen",
+  "NOTES_20160109_CONTENT": "Bitte Doppelklick auf Back / Exit 2 Sekunden, um diese App zu verlassen."
 }

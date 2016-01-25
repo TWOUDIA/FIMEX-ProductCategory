@@ -2,16 +2,17 @@
     <ion-nav-title>
         {{::('TAB_TITLE_CATEGORIES' | translate)}}
     </ion-nav-title>
+    <ion-header-bar ng-if="titleSub" class="bar-subheader bar-dark" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
 
-    <ion-content>
-        <ion-header-bar ng-if="titleSub" class="bar bar-subheader" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
+    <ion-content ng-class="{'has-subheader' : titleSub}">
         <ion-list ng-show="categories">
             <ion-item class="item-icon-right" ng-repeat="category in categories" type="item-text-wrap" ng-href="{{(showCount - category.count == 1) ? '':(RSitemURI + '/' + category.id + '/' + category.slug + '/' + category.name)}}">
                 <p ng-bind-html="category.name"></p>
-                <p ng-if="showCount">{{'TAB_CATEGORIES_PRODUCTS_COUNT' | translate:({count:category.count})}}</p>
-                <i ng-if="showCount - category.count != 1" class="icon ion-chevron-right icon-accessory"></i>
+                <span ng-if="showCount" ng-class="category.count ? 'badge badge-calm' : 'hide'">{{category.count}}</span>
+                <i ng-if="!showCount" class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>
         </ion-list>
+
         <h3 ng-hide="categories" ng-class="{null: !RSempty}">{{'ALERT_RECORD_NULL' | translate}}</h3>
     </ion-content>
 </ion-view>

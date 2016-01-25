@@ -12,10 +12,6 @@ angular.module('fimex', [
 
 .run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
-        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && ionic.Platform.isIOS()) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        };
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };

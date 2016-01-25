@@ -6,10 +6,12 @@
   <content src="index.html" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
+  <preference name="ShowSplashScreenSpinner" value="false"/>
   <preference name="windows-target-version" value="8.1" />
   <preference name="windows-phone-target-version" value="8.1" />
   <preference name="Orientation" value="portrait" />
   <preference name="Fullscreen" value="False" />
+  <preference name="HideKeyboardFormAccessoryBar" value="true"/>
   <preference name="target-device" value="universal" />
   <preference name="BackupWebStorage" value="none" />
   <preference name="SplashScreenDelay" value="2000" />
@@ -32,6 +34,7 @@
     <splash src="res/screens/android/drawable-port-xhdpi-screen.png" density="port-xhdpi" />
     <splash src="res/screens/android/drawable-port-xxhdpi-screen.png" density="port-xxhdpi" />
     <splash src="res/screens/android/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi" />
+    <preference name="android-windowSoftInputMode" value="adjustPan" />
   </platform>
   <platform name="ios">
     <icon src="res/icons/ios/icon.png" width="57" height="57" />

@@ -6,19 +6,18 @@ var plugins = require('gulp-load-plugins')({
 });
 
 gulp.task('cleanVendor', function () {
-    return plugins.del(['www/js/lib', 'www/css/lib', 'www/fonts', 'www/js/*.min.*', 'www/css/*.min.*']);
+    return plugins.del(['www/js/lib', 'www/css/lib', 'www/js/*.min.*', 'www/css/*.min.*', 'scss']);
 });
 
-gulp.task("vendor-files", ['cleanVendor'], function () {
+gulp.task("vendor-js-css", ['cleanVendor'], function () {
 
     var jsFilter = plugins.filter('*.js', { restore: true }),
-     cssFilter = plugins.filter('*.css', { restore: true }),
-     fontFilter = plugins.filter('*.+(eot|woff|ttf|svg)', { restore: true });
+     cssFilter = plugins.filter('*.css', { restore: true });
 
     return gulp.src(plugins.bowerFiles({ dir: 'lib' })
         .self()
             .dev()
-            .ext(['js', 'css', 'eot', 'woff', 'ttf', 'svg'])
+            .ext(['js', 'css'])
             .match('!**/*.min.*')
             .files)
 
@@ -28,14 +27,28 @@ gulp.task("vendor-files", ['cleanVendor'], function () {
 
         .pipe(cssFilter)
         .pipe(gulp.dest('www/css/lib'))
-        .pipe(cssFilter.restore)
-
-        .pipe(fontFilter)
-        .pipe(gulp.dest('www/fonts'))
-        .pipe(fontFilter.restore);
+        .pipe(cssFilter.restore);
 });
 
-gulp.task("annoAPPJSs", ['vendor-files'], function () {
+gulp.task("ionic-scss", ['vendor-js-css'], function () {
+
+    return gulp.src(['lib/ionic/scss/**', 'www/css/*.scss'])
+        .pipe(gulp.dest('scss'));
+});
+
+gulp.task('sass-compile', ['ionic-scss'], function () {
+    gulp.src('scss/fimex.scss')
+        .pipe(plugins.sass({
+            errLogToConsole: true
+        }))
+        .pipe(plugins.minifyCss({
+            keepSpecialComments: 0
+        }))
+        .pipe(plugins.rename({ extname: '.min.css' }))
+        .pipe(gulp.dest('www/css'));
+});
+
+gulp.task("annoAPPJSs", ['sass-compile'], function () {
 
     return gulp.src('www/js/*.js')
         .pipe(plugins.ngAnnotate())
