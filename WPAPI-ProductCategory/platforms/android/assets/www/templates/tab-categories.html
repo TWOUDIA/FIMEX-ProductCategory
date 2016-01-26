@@ -2,7 +2,7 @@
     <ion-nav-title>
         {{::('TAB_TITLE_CATEGORIES' | translate)}}
     </ion-nav-title>
-    <ion-header-bar ng-if="titleSub" class="bar-subheader bar-dark" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
+    <ion-header-bar ng-if="titleSub" class="bar-subheader bar-calm" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
 
     <ion-content ng-class="{'has-subheader' : titleSub}">
         <ion-list ng-show="categories">
