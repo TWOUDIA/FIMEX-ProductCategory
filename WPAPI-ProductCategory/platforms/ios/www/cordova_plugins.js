@@ -9,6 +9,15 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
+        "id": "ionic-plugin-keyboard.keyboard",
+        "pluginId": "ionic-plugin-keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
+    },
+    {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
         "id": "cordova-plugin-statusbar.statusbar",
         "pluginId": "cordova-plugin-statusbar",
@@ -17,22 +26,22 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
-        "id": "ionic-plugin-keyboard.keyboard",
-        "pluginId": "ionic-plugin-keyboard",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
         "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-device": "1.1.0",
-    "cordova-plugin-statusbar": "2.0.0",
     "ionic-plugin-keyboard": "1.0.8",
-    "cordova-plugin-whitelist": "1.2.2-dev"
+    "cordova-plugin-whitelist": "1.2.2-dev",
+    "cordova-plugin-statusbar": "2.1.0",
+    "cordova-plugin-splashscreen": "3.1.0"
 }
 // BOTTOM OF METADATA
 });

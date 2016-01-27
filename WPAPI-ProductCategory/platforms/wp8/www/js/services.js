@@ -1,9 +1,8 @@
 angular.module('fimex.services', [])
 
-.factory('DataLoader', function ($http, $log, AppSettings) {
+.factory('DataLoader', ["$http", "AppSettings", function ($http, AppSettings) {
     return {
         get: function ($term, $limit) {
-            $log.debug(AppSettings.getURI($term, $limit));
             var result = $http({
                 method: 'GET',
                 url: AppSettings.getURI($term, $limit),
@@ -12,14 +11,14 @@ angular.module('fimex.services', [])
                     key: AppSettings.get('wcAPIKey'),
                     secret: AppSettings.get('wcAPISecret')
                 },
-                timeout: 5000
+                timeout: 10000
             });
             return result;
         }
     }
-})
+}])
 
-.factory('PHPJSfunc', function ($log) {
+.factory('PHPJSfunc', function () {
     return {
         urlencode: function ($uri) {
             $uri = ($uri + '').toString();
@@ -33,12 +32,11 @@ angular.module('fimex.services', [])
               .replace(/%20/g, '+');
 
             return result;
-            $log.debug(result);
         }
     }
 })
 
-.factory('EmailSender', function ($http, $log, AppSettings, $httpParamSerializerJQLike) {
+.factory('EmailSender', ["$http", "$log", "AppSettings", function ($http, $log, AppSettings) {
     return {
         send: function ($mail) {
             $http({
@@ -49,14 +47,14 @@ angular.module('fimex.services', [])
                     'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('mgAPIName'), AppSettings.get('mgServiceKey')),
                 },
                 transformRequest: function (obj) {
-                            var str = [];
-                            for (var p in obj) {
-                                if (obj[p].length > 0) { str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])); }
-                            }
-                            return str.join('&');
-                        },
+                    var str = [];
+                    for (var p in obj) {
+                        if (obj[p].length > 0) { str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p])); }
+                    }
+                    return str.join('&');
+                },
                 data: $mail,
-                timeout: 5000 
+                timeout: 10000
             }).then(
             function success() {
                 $log.debug('successful email send.');
@@ -66,60 +64,12 @@ angular.module('fimex.services', [])
             return null;
         }
     }
-})
+}])
 
-.factory('AppSettings', function ($translate, tmhDynamicLocale, $log) {
-    var savedData = {
-        appName: 'FIMEX CATEGORIES',
-        domainURI: 'https://beta.fimex.com.tw/',
-        wcAPIURI: 'wc-api/v3/',
-        wcAPIKey: 'ck_e3d52fbb954e57758cc7ea5bdadb6d44d9fd8be3',
-        wcAPISecret: 'cs_894c2f79bd330af5eba70473c6a921593139f034',
-        wcAPIURIsuffix: 'filter[orderby]=id&filter[order]=ASC&filter[limit]=',
-        wcAPIRSlimit: 5,
-        language: '',
-        languageURI: '',
-        mgAPIName:'api',
-        mgServiceKey: 'key-0c16845e030f782c3acb501cdf07b8a2',
-        mgAPIURI: 'https://api.mailgun.net/v3/mg.twoudia.com/messages',
-        contactForm2Email: 'yannicklin@twoudia.com',
-        contactForm2User: 'Support',
-        dataReload: false,
-        oriCategories: [{
-            "id": 9,
-            "name": "Electrical Materials",
-            "slug": "electrical-materials",
-            "parent": 0,
-            "description": "",
-            "display": "default",
-            "image": "",
-            "count": 0,
-            "sublevels": 2
-        }, {
-            "id": 10,
-            "name": "Electrical Materials - American Category",
-            "slug": "electrical-materials-aa",
-            "parent": 0,
-            "description": "",
-            "display": "default",
-            "image": "",
-            "count": 0,
-            "sublevels": 2
-        }, {
-            "id": 11,
-            "name": "Wiring Devices",
-            "slug": "wiring-devices",
-            "parent": 0,
-            "description": "",
-            "display": "default",
-            "image": "",
-            "count": 0,
-            "sublevels": 3
-        }],
-        wpCategroies: [],
-        appFIMEXCategoriesRS: "",
-        appFIMEXCategoriesBack: 0
-    };
+.factory('AppSettings', ["$translate", "tmhDynamicLocale", "AppConfig", function ($translate, tmhDynamicLocale, AppConfig) {
+    var savedData = AppConfig;
+    savedData.wpCategroies = [];
+    savedData.appFIMEXCategoriesRS = "";
 
     function setLanguageURI(value) {
         switch (value) {
@@ -134,7 +84,7 @@ angular.module('fimex.services', [])
         }
     }
 
-    // Set Language and LanguageURI
+    // Initial Language and LanguageURI
     savedData.language = $translate.use();
     setLanguageURI(savedData.language);
 
@@ -148,7 +98,6 @@ angular.module('fimex.services', [])
                 $translate.use(value);
                 tmhDynamicLocale.set(value);
             }
-            $log.debug($item + ' : ' + value);
         },
         get: function ($item) {
             return savedData[$item];
@@ -168,4 +117,4 @@ angular.module('fimex.services', [])
             return btoa(name + ':' + key);
         }
     };
-});
+}]);

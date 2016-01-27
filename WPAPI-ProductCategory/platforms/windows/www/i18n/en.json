@@ -8,12 +8,11 @@
   "MODAL_PRODUCTDETAIL_TITLE": "PRODUCT : ",
   "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "CLOSE",
 
-  "TAB_TITLE_DASH": "STATUS",
+  "TAB_TITLE_DASH": "HOME",
 
   "TAB_TITLE_CATEGORIES": "CATEGORIES",
   "TAB_CATEGORIES_SUBTITLE": "List Under {{categoriesTree}}",
   "TAB_CATEGORIES_TITLE_PRODUCT": "PRODUCT LIST",
-  "TAB_CATEGORIES_PRODUCTS_COUNT": "Product Items : {{count}}",
 
   "TAB_TITLE_SEARCH": "SEARCH",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Key Words ... ",
@@ -38,10 +37,10 @@
 
   "NOTES_EMPTY_TITLE": "Sorry�I",
   "NOTES_EMPTY_CONTENT": "Now no update bulletin�I {{date|date:'short'}}",
-  "NOTES_20160107_TITLE": "January 7, 2016 News",
-  "NOTES_20160107_CONTENT": "can not see",
-  "NOTES_20160108_TITLE": "January 8, 2016 News",
-  "NOTES_20160108_CONTENT": "me too",
-  "NOTES_20160109_TITLE": "January 9, 2016 News",
-  "NOTES_20160109_CONTENT": "I hope not to be."
+  "NOTES_20160107_TITLE": "Notice on January 7, 2016",
+  "NOTES_20160107_CONTENT": "This APP is finally got ready for public access. In this APP you could survey all products provided by FIMEX. Though we have six language interface, for the mass amount of amount, currently only English version of product information. Sorry for the inconvience.",
+  "NOTES_20160108_TITLE": "Notice on January 8, 2016",
+  "NOTES_20160108_CONTENT": "If you want to share your experience of using this APP or show your interests in FIMEX product, you may send message via CONTACT US form in the SETTING Tab. We will contact you in shortest business days.",
+  "NOTES_20160109_TITLE": "Method to Exit APP",
+  "NOTES_20160109_CONTENT": "Please double click on BACK/EXIT during 2 seconds to exit this app."
 }

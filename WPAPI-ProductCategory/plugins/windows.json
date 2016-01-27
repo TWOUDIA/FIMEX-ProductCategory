@@ -10,13 +10,16 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "FIMEX PRODUCT"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
-        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "FIMEX PRODUCT"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "FIMEX PRODUCT"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "FIMEX PRODUCT"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "FIMEX PRODUCT"
         }
     },

@@ -11,7 +11,7 @@ angular.module('fimex.services', [])
                     key: AppSettings.get('wcAPIKey'),
                     secret: AppSettings.get('wcAPISecret')
                 },
-                timeout: 5000
+                timeout: AppSettings.get('wcConnectTimeout')
             });
             return result;
         }
@@ -54,7 +54,7 @@ angular.module('fimex.services', [])
                     return str.join('&');
                 },
                 data: $mail,
-                timeout: 5000
+                timeout: AppSettings.get('mgConnectTimeout')
             }).then(
             function success() {
                 $log.debug('successful email send.');

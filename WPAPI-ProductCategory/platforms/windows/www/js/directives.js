@@ -40,7 +40,7 @@
     };
 })
 
-.directive('keyboardHind', function () {
+.directive('keyboardHide', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

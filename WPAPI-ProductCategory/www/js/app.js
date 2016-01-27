@@ -12,12 +12,13 @@ angular.module('fimex', [
 
 .run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
+        cordova.plugins.Keyboard.disableScroll(true);
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
     });
 
-    // Exit APP
+    // TODO: Exit APP but the notice did not show up
     var countTimerForCloseApp = false;
     $ionicPlatform.registerBackButtonAction(function (e) {
         e.preventDefault();

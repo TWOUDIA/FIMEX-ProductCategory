@@ -4,7 +4,7 @@
     <Languages xmlns="">
         <Language code="en-US" />
     </Languages>
-    <App Author="TWOUDIA-YANNICK" BitsPerPixel="32" Description="Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder." Genre="apps.normal" ProductID="{833104c0-bb25-11e5-b6a7-75a308a02562}" Publisher="TWOUDIA-YANNICK" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="FIMEX PRODUCT" Version="0.1.1" xmlns="">
+    <App Author="TWOUDIA-YANNICK" BitsPerPixel="32" Description="Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder." Genre="apps.normal" ProductID="{833104c0-bb25-11e5-b6a7-75a308a02562}" Publisher="TWOUDIA-YANNICK" PublisherID="{db093ed5-53b1-45f7-af72-751e8f36ab80}" RuntimeType="Silverlight" Title="FIMEX PRODUCT" Version="0.1.12" xmlns="">
         <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
         <Capabilities>
             <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />

@@ -1,5 +1,7 @@
 ﻿<ion-view view-title="{{'TAB_TITLE_DASH' | translate }}">
   <ion-content class="padding">
+    <img class="center" ng-src="img/app_fimex_tab_home.png">
+
     <div ng-if="notesTop" class="list card notesTop" ng-repeat="new in notesTop| orderBy:id:reverse">
       <div class="item item-divider" translate>{{new.title}}</div>
       <div class="item item-body" ng-bind-html="new.content | translate"></div>

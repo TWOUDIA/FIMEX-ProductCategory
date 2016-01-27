@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-    <Identity Name="com.twoudia.FIMEX2016WPAPIproduct" Publisher="CN=$username$" Version="0.1.1.0" />
+    <Identity Name="com.twoudia.FIMEX2016WPAPIproduct" Publisher="CN=$username$" Version="0.1.12.0" />
     <mp:PhoneIdentity PhoneProductId="a7b21c80-bb25-11e5-ba3c-c341a3bcaa27" PhonePublisherId="db093ed5-53b1-45f7-af72-751e8f36ab80" />
     <Properties>
         <DisplayName>FIMEX PRODUCT</DisplayName>

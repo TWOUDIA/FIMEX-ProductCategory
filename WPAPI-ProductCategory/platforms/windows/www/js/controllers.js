@@ -1,6 +1,6 @@
 ﻿angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading, $log) {
+.controller('DashCtrl', ["$scope", "Notes", "$filter", "DataLoader", "AppSettings", "$ionicLoading", "$log", function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading, $log) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
@@ -22,10 +22,10 @@
             $ionicLoading.hide();
         });
     }
-})
+}])
 
 
-.controller('CategoriesCtrl', function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('CategoriesCtrl', ["$ionicHistory", "$rootScope", "$filter", "AppSettings", "$stateParams", "$scope", "DataLoader", "$log", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $ionicLoading.show({
         template: $filter('translate')('LOADING_TEXT')
     });
@@ -33,8 +33,10 @@
     var nextPage = 1;
     $scope.able2Loadmore = 0;
 
+    var CategoriesSplitTerm = ' >> ';
     $scope.RSitemURI = '#/tab/categories/' + (parseInt($stateParams.categoryLevel) + 1);
-    $scope.titleSub = AppSettings.get('appFIMEXCategoriesRS');
+    var PretitleSub = AppSettings.get('appFIMEXCategoriesRS');
+    var arrPrevtitleSub = PretitleSub.split(CategoriesSplitTerm, 2);
     $scope.showCount = 0;
 
     switch (parseInt($stateParams.categoryLevel)) {
@@ -65,11 +67,11 @@
                     $scope.RSempty = true;
                 });
             }
+            PretitleSub = arrPrevtitleSub[0] + CategoriesSplitTerm + arrPrevtitleSub[1];
 
             break;
         case 2: // The bottom subcategories, which has direct product counts, would execute the "default section" also
             $scope.showCount = 1;
-
         default: // Subcategories
             $scope.loadResult = function () {
                 $scope.categories = $filter('filter')(AppSettings.get('wpCategroies'), { parent: parseInt($stateParams.categoryId) }, true);
@@ -79,6 +81,7 @@
                 }
                 $ionicLoading.hide();
             }
+            PretitleSub = (parseInt($stateParams.categoryLevel) > 1) ? arrPrevtitleSub[0] : '';
 
             break;
     }
@@ -86,13 +89,10 @@
     if (parseInt($stateParams.categoryLevel) == 0) {
         $scope.titleSub = '';
         AppSettings.change('appFIMEXCategoriesRS', '');
-    } else if (AppSettings.get('appFIMEXCategoriesBack') == 0) {
-        $scope.titleSub = ($scope.titleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : ($scope.titleSub + ' >> ' + $filter('unescapeHTML')($stateParams.categoryName));
-        AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
     } else {
-        AppSettings.change('appFIMEXCategoriesBack', 0);
+        $scope.titleSub = (PretitleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : (PretitleSub + CategoriesSplitTerm + $filter('unescapeHTML')($stateParams.categoryName));
+        AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
     }
-
     $scope.loadResult();
 
     $scope.loadMore = function () {
@@ -118,27 +118,6 @@
         });
     };
 
-    // Override Soft Back 
-    function triggerBackAction() {
-        $ionicHistory.goBack();
-        var RSstring = AppSettings.get('appFIMEXCategoriesRS');
-        RSstring = RSstring.substring(0, RSstring.lastIndexOf(" >> "));
-        AppSettings.change('appFIMEXCategoriesRS', RSstring);
-        AppSettings.change('appFIMEXCategoriesBack', 1);
-    }
-    // framework calls $rootScope.$ionicGoBack when soft back button is pressed
-    var oldSoftBack = $rootScope.$ionicGoBack;
-    $rootScope.$ionicGoBack = function () {
-        triggerBackAction();
-    };
-    var deregisterSoftBack = function () {
-        $rootScope.$ionicGoBack = oldSoftBack;
-    };
-    // cancel custom back behaviour
-    $scope.$on('$destroy', function () {
-        deregisterSoftBack();
-    });
-
     // Modal for Product Detal
     $ionicModal.fromTemplateUrl('templates/product-modal.html', {
         scope: $scope,
@@ -160,10 +139,10 @@
     $scope.$on('$destroy', function () {
         $scope.modal.remove();
     });
-})
+}])
 
 
-.controller('SearchCtrl', function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('SearchCtrl', ["AppSettings", "PHPJSfunc", "$scope", "DataLoader", "$log", "$filter", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -251,22 +230,23 @@
     $scope.$on('$destroy', function () {
         $scope.modal.remove();
     });
-})
+}])
 
 
-.controller('SettingCtrl', function ($scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster) {
+.controller('SettingCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
-        enableFriends: true,
         language: $translate.use()
     }
 
+    //TODO: auto redirect to dash tab after chaning languages
     $scope.$watch('settings.language', function () {
         AppSettings.change('language', $scope.settings.language);
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
         AppSettings.change('wpCategroies', []);
+        //$state.go('tab.dash');
     });
 
     // contact form submitting
@@ -295,4 +275,4 @@
         $scope.ctForm = {};
         $scope.forms.contactForm.$setPristine();
     };
-});
+}]);

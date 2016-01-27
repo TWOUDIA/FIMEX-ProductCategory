@@ -1,6 +1,6 @@
 ﻿angular.module('fimex.services', [])
 
-.factory('DataLoader', function ($http, AppSettings) {
+.factory('DataLoader', ["$http", "AppSettings", function ($http, AppSettings) {
     return {
         get: function ($term, $limit) {
             var result = $http({
@@ -11,12 +11,12 @@
                     key: AppSettings.get('wcAPIKey'),
                     secret: AppSettings.get('wcAPISecret')
                 },
-                timeout: 5000
+                timeout: 10000
             });
             return result;
         }
     }
-})
+}])
 
 .factory('PHPJSfunc', function () {
     return {
@@ -36,7 +36,7 @@
     }
 })
 
-.factory('EmailSender', function ($http, $log, AppSettings) {
+.factory('EmailSender', ["$http", "$log", "AppSettings", function ($http, $log, AppSettings) {
     return {
         send: function ($mail) {
             $http({
@@ -54,7 +54,7 @@
                     return str.join('&');
                 },
                 data: $mail,
-                timeout: 5000
+                timeout: 10000
             }).then(
             function success() {
                 $log.debug('successful email send.');
@@ -64,13 +64,12 @@
             return null;
         }
     }
-})
+}])
 
-.factory('AppSettings', function ($translate, tmhDynamicLocale, AppConfig) {
+.factory('AppSettings', ["$translate", "tmhDynamicLocale", "AppConfig", function ($translate, tmhDynamicLocale, AppConfig) {
     var savedData = AppConfig;
     savedData.wpCategroies = [];
     savedData.appFIMEXCategoriesRS = "";
-    savedData.appFIMEXCategoriesBack = 0;
 
     function setLanguageURI(value) {
         switch (value) {
@@ -118,4 +117,4 @@
             return btoa(name + ':' + key);
         }
     };
-});
+}]);

@@ -1,26 +1,26 @@
-﻿angular.module('fimex.filters', [])
+angular.module('fimex.filters', [])
 
-.filter('linkremove', function ($sce, $log) {
-    return function (text) {
+.filter('partRemove', ["$sce", function ($sce) {
+    return function (original, tag) {
         var htmlObject = document.createElement('div');
-        htmlObject.innerHTML = text;
+        htmlObject.innerHTML = original;
 
-        var links = htmlObject.getElementsByTagName('a');
-        for (var i = links.length; i > 0 ; i--) {
-            links[i-1].parentNode.removeChild(links[i-1]);
+        var parts = htmlObject.getElementsByTagName(tag);
+        for (var i = parts.length; i > 0 ; i--) {
+            parts[i - 1].parentNode.removeChild(parts[i - 1]);
         }
 
         return $sce.trustAsHtml(htmlObject.outerHTML);
     }
-})
+}])
 
-.filter('unicode', function ($sce) {
+.filter('unicode', ["$sce", function ($sce) {
     return function (x) {
         return $sce.trustAsHtml(x);
     }
-})
+}])
 
-.filter('unescapeHTML', function ($sce) {
+.filter('unescapeHTML', function () {
     var entityMap = {
         "&": "&amp;",
         "<": "&lt;",

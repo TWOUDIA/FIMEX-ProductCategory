@@ -27,6 +27,7 @@ angular.module('fimex.directives', [])
     };
 })
 
+// Handling Keyboard KeyIn Event; especially for search
 .directive('keyInput', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -40,7 +41,8 @@ angular.module('fimex.directives', [])
     };
 })
 
-.directive('keyboardHind', function () {
+// Handling Element to hide while Keyboard shows up
+.directive('keyboardHide', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

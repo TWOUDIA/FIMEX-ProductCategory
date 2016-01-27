@@ -34,14 +34,13 @@ angular.module('fimex.directives', [])
                 scope.$apply(function () {
                     scope.$eval(attrs.keyInput);
                 });
-
                 event.preventDefault();
             }
         });
     };
 })
 
-.directive('keyboardHind', function ($window) {
+.directive('keyboardHide', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {

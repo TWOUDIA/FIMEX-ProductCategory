@@ -13,6 +13,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
@@ -25,7 +29,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -37,13 +41,16 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
-        },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         }
     },
@@ -58,6 +65,15 @@
             ]
         },
         {
+            "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
+            "id": "ionic-plugin-keyboard.keyboard",
+            "pluginId": "ionic-plugin-keyboard",
+            "clobbers": [
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
+        },
+        {
             "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
             "id": "cordova-plugin-statusbar.statusbar",
             "pluginId": "cordova-plugin-statusbar",
@@ -66,19 +82,19 @@
             ]
         },
         {
-            "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
-            "id": "ionic-plugin-keyboard.keyboard",
-            "pluginId": "ionic-plugin-keyboard",
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
             "clobbers": [
-                "cordova.plugins.Keyboard"
-            ],
-            "runs": true
+                "navigator.splashscreen"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-device": "1.1.0",
-        "cordova-plugin-statusbar": "2.0.0",
         "ionic-plugin-keyboard": "1.0.8",
-        "cordova-plugin-whitelist": "1.2.2-dev"
+        "cordova-plugin-whitelist": "1.2.2-dev",
+        "cordova-plugin-statusbar": "2.1.0",
+        "cordova-plugin-splashscreen": "3.1.0"
     }
 }

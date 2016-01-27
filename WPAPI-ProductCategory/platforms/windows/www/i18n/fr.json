@@ -1,19 +1,18 @@
 ﻿{
   "CONFIRM_BEFORE_APP_EXIT": "Appuyez à nouveau pour quitter.",
   "LOADING_TEXT": "Chargement ... ",
-  "LOADING_MORE_TEXT":  "Chargement plus ... ", 
+  "LOADING_MORE_TEXT": "Chargement plus ... ",
   "ALERT_MAIL_SENT": "Merci {{name}}, votre message a été envoyé.",
   "ALERT_RECORD_NULL": "Pas de résultats de recherche.",
-    
+
   "MODAL_PRODUCTDETAIL_TITLE": "PRODUIT : ",
   "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "PRÈS",
 
-  "TAB_TITLE_DASH": "STATUT",
+  "TAB_TITLE_DASH": "MAISON",
 
   "TAB_TITLE_CATEGORIES": "CATÉGORIES",
   "TAB_CATEGORIES_SUBTITLE": "Liste Sous {{categoriesTree}}",
   "TAB_CATEGORIES_TITLE_PRODUCT": "LISTE DE PRODUITS",
-  "TAB_CATEGORIES_PRODUCTS_COUNT": "Articles de produit: {{count}}",
 
   "TAB_TITLE_SEARCH": "CHERCHER",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Mots clés ... ",
@@ -36,12 +35,12 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "Votre message doit être compris entre 10 à 1000 lettres.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "ENVOYER",
 
-  "NOTES_EMPTY_TITLE":"désolé！",
-  "NOTES_EMPTY_CONTENT":"Maintenant, aucun bulletin de mise à jour！ {{date|date:'short'}}",
-  "NOTES_20160107_TITLE":"7 janvier 2016 Nouvelles",
-  "NOTES_20160107_CONTENT":"Ne peut pas voir",
-  "NOTES_20160108_TITLE":"8 janvier 2016 Nouvelles",
-  "NOTES_20160108_CONTENT":"moi aussi",
-  "NOTES_20160109_TITLE":"9 janvier 2016 Nouvelles",
-  "NOTES_20160109_CONTENT":"Je l'espère ne pas être."
+  "NOTES_EMPTY_TITLE": "désolé！",
+  "NOTES_EMPTY_CONTENT": "Maintenant, aucun bulletin de mise à jour！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE": "Remarquez le 7 Janvier 2016",
+  "NOTES_20160107_CONTENT": "Ce soft est finalement obtenu prêt pour l'accès du public. Dans cette application, vous pouvez surveiller tous les produits fournis par FIMEX. Bien que nous ayons six interface de langage, pour le montant masse de montant, actuellement uniquement la version anglaise de l'information produit. Désolé pour cet inconvénient.",
+  "NOTES_20160108_TITLE": "Remarquez le 8 Janvier 2016",
+  "NOTES_20160108_CONTENT": "Si vous souhaitez partager votre expérience de l'utilisation de cette application ou montrer vos intérêts dans le produit FIMEX, vous pouvez envoyer un message via le formulaire CONTACT dans l'onglet Paramètres. Nous vous contacterons dans les plus courts jours ouvrables.",
+  "NOTES_20160109_TITLE": "Méthode pour quitter APP",
+  "NOTES_20160109_CONTENT": "S'il vous plaît cliquer deux fois sur BACK / EXIT pendant 2 secondes pour quitter cette appli."
 }

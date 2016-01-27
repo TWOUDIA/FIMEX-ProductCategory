@@ -1,14 +1,18 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "再次按下退出。",
   "LOADING_TEXT": "讀取中 ... ",
-  "LOADING_MORE_TEXT":  "Loading more ...", 
+  "LOADING_MORE_TEXT": "資料加載中 ... ",
   "ALERT_MAIL_SENT": "{{name}}，多謝！您的訊息已經送出。",
   "ALERT_RECORD_NULL": "查無資料。",
 
-  "TAB_TITLE_DASH": "狀態",
+  "MODAL_PRODUCTDETAIL_TITLE": "產品 : ",
+  "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "關閉",
+
+  "TAB_TITLE_DASH": "首頁",
 
   "TAB_TITLE_CATEGORIES": "分類",
-  "TAB_TITLE_CATEGORIES_SUB": "List Under {{categoriesTree}}",
+  "TAB_CATEGORIES_SUBTITLE": "分類為 {{categoriesTree}}",
+  "TAB_CATEGORIES_TITLE_PRODUCT": "產品列表",
 
   "TAB_TITLE_SEARCH": "搜索",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "關鍵詞 ... ",
@@ -31,15 +35,13 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "你的訊息長度應該是10至1000字數之間的。",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "遞送",
 
-  "CATEGORY_PRODUCTS_COUNT": "Products : {{count}}",
+  "NOTES_EMPTY_TITLE": "抱歉！",
+  "NOTES_EMPTY_CONTENT": "現無更新公告！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE": "於2016年1月7日公告",
+  "NOTES_20160107_CONTENT": "這個程序是終於準備好供公眾查閱。在這個程序，你可以調查聯意提供的所有產品。雖然我們有六個語言界面，為大眾量量，產品信息目前只有英文版本。很抱歉造成您的不便。",
+  "NOTES_20160108_TITLE": "於2016年1月8日公告",
+  "NOTES_20160108_CONTENT": "如果你想分享你使用這個程序，或顯示你在聯意的產品利益的經驗，您可以在設置選項卡上，通過聯繫表格發送消息。我們將在最短的工作日內與您聯繫。",
+  "NOTES_20160109_TITLE": "方法來退出APP",
+  "NOTES_20160109_CONTENT": "請仔細期間2秒單擊後退/退出退出這個程序。"
 
-  "NOTES_EMPTY_TITLE":"抱歉！",
-  "NOTES_EMPTY_CONTENT":"現無更新公告！ {{date|date:'short'}}",
-  "NOTES_20160107_TITLE":"二零一六年一月七號新聞",
-  "NOTES_20160107_CONTENT":"看不到",
-  "NOTES_20160108_TITLE":"二零一六年一月八號新聞",
-  "NOTES_20160108_CONTENT":"我也一樣",
-  "NOTES_20160109_TITLE":"二零一六年一月九號新聞",
-  "NOTES_20160109_CONTENT":"希望不會再有了。"
-  
 }

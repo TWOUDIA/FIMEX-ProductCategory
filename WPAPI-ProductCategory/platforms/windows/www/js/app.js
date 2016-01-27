@@ -7,16 +7,11 @@ angular.module('fimex', [
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'toaster', // inject the angularjs-toaster module
-    'satellizer', // inject the satellizer module, for OAuth 1 & 2 authorization
     'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
-.run(function ($ionicPlatform, toaster, $filter, $timeout) {
+.run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
-        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && ionic.Platform.isIOS()) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        };
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
@@ -40,9 +35,9 @@ angular.module('fimex', [
         }
         return false;
     }, 101);
-})
+}])
 
-.config(function ($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $stateProvider, $urlRouterProvider) {
+.config(["$ionicConfigProvider", "tmhDynamicLocaleProvider", "$translateProvider", "$stateProvider", "$urlRouterProvider", function ($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $stateProvider, $urlRouterProvider) {
     //global configure for tabs position
     $ionicConfigProvider.tabs.position('bottom');
 
@@ -127,4 +122,4 @@ angular.module('fimex', [
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
-});
+}]);

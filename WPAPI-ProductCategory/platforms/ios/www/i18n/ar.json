@@ -1,14 +1,18 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "اضغط مرة أخرى للخروج.",
   "LOADING_TEXT": "تحميل ... ",
-  "LOADING_MORE_TEXT":  "Loading more ...", 
+  "LOADING_MORE_TEXT": "تحميل المزيد ...",
   "ALERT_MAIL_SENT": "{{name}} اسم، وقد تم ارسال رسالتك شكرا.",
   "ALERT_RECORD_NULL": "لا توجد سجلات استردادها.",
 
-  "TAB_TITLE_DASH": "الحالة",
+  "MODAL_PRODUCTDETAIL_TITLE": "المنتج : ",
+  "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "أغلق",
+
+  "TAB_TITLE_DASH": "منزل",
 
   "TAB_TITLE_CATEGORIES": "أقسام",
-  "TAB_TITLE_CATEGORIES_SUB": "List Under {{categoriesTree}}",
+  "TAB_CATEGORIES_SUBTITLE": "قائمة تحت {{categoriesTree}}",
+  "TAB_CATEGORIES_TITLE_PRODUCT": "قائمة المنتجات",
 
   "TAB_TITLE_SEARCH": "البحث عن",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "الكلمات الدالة ... ",
@@ -31,14 +35,12 @@
   "TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH": "يجب أن تكون رسالتك بين 10-1000 الحروف.",
   "TAB_SETTING_FORM_CONTACT_BUTTON_SEND": "إرسال",
 
-  "CATEGORY_PRODUCTS_COUNT": "Products : {{count}}",
-
-  "NOTES_EMPTY_TITLE":"آسف!",
-  "NOTES_EMPTY_CONTENT":"الآن أي نشرات التحديث！ {{date|date:'short'}}",
-  "NOTES_20160107_TITLE":"7 يناير 2016 أخبار",
-  "NOTES_20160107_CONTENT":"لا أستطيع أن أرى",
-  "NOTES_20160108_TITLE":"8 يناير 2016 أخبار",
-  "NOTES_20160108_CONTENT":"أنا أيضًا",
-  "NOTES_20160109_TITLE":"9 يناير 2016 أخبار",
-  "NOTES_20160109_CONTENT":"وآمل أن لا يكون."
+  "NOTES_EMPTY_TITLE": "آسف!",
+  "NOTES_EMPTY_CONTENT": "الآن أي نشرات التحديث！ {{date|date:'short'}}",
+  "NOTES_20160107_TITLE": "لاحظ في 7 يناير 2016",
+  "NOTES_20160107_CONTENT": "وحصلت هذه APP أخيرا جاهزة للوصول الجمهور. في هذا APP هل يمكن مسح جميع المنتجات التي توفرها FIMEX. رغم ان لدينا ستة اجهة لغة، لكمية الشامل من المبلغ، في الوقت الراهن سوى إصدار اللغة الإنجليزية من المعلومات عن المنتجات. آسف للإزعاج.",
+  "NOTES_20160108_TITLE": "لاحظ في 8 يناير 2016",
+  "NOTES_20160108_CONTENT": "إذا كنت ترغب في تبادل الخبرات الخاصة بك باستخدام هذا التطبيق أو إظهار مصالحكم في المنتج FIMEX، يمكنك إرسال رسالة عبر نموذج الاتصال بنا في التبويب إعدادات. سوف نتصل بك في أيام العمل أقصر.",
+  "NOTES_20160109_TITLE": "طريقة لخروج APP",
+  "NOTES_20160109_CONTENT": "الرجاء النقر المزدوج على BACK / EXIT خلال 2 ثانية للخروج من هذه APP."
 }

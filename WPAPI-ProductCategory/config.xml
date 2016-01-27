@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.twoudia.FIMEX2016WPAPIproduct" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
-  <name>FIMEX PRODUCT</name>
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="com.twoudia.FIMEX2016WPAPIproduct" version="0.1.12" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US" windows-packageVersion="0.1.12.0">
+  <name>FIMEX PRODUCT CATEGORY</name>
   <description>Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder.</description>
-  <author href="http://cordova.io" email="dev@cordova.apache.org">TWOUDIA-YANNICK</author>
+  <author href="https://www.twoudia.com/" email="yannicklin@twoudia.com">TWOUDIA-YANNICK</author>
   <content src="index.html" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
-  <preference name="ShowSplashScreenSpinner" value="false"/>
+  <preference name="ShowSplashScreenSpinner" value="false" />
   <preference name="windows-target-version" value="8.1" />
   <preference name="windows-phone-target-version" value="8.1" />
   <preference name="Orientation" value="portrait" />
-  <preference name="Fullscreen" value="False" />
-  <preference name="HideKeyboardFormAccessoryBar" value="true"/>
+  <preference name="Fullscreen" value="false" />
+  <preference name="HideKeyboardFormAccessoryBar" value="true" />
   <preference name="target-device" value="universal" />
   <preference name="BackupWebStorage" value="none" />
-  <preference name="SplashScreenDelay" value="2000" />
+  <preference name="SplashScreenDelay" value="2500" />
   <platform name="android">
     <icon src="res/icons/android/drawable-ldpi-icon.png" density="ldpi" />
     <icon src="res/icons/android/drawable-mdpi-icon.png" density="mdpi" />
@@ -34,6 +34,7 @@
     <splash src="res/screens/android/drawable-port-xhdpi-screen.png" density="port-xhdpi" />
     <splash src="res/screens/android/drawable-port-xxhdpi-screen.png" density="port-xxhdpi" />
     <splash src="res/screens/android/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi" />
+    <preference name="Fullscreen" value="false" />
     <preference name="android-windowSoftInputMode" value="adjustPan" />
   </platform>
   <platform name="ios">
@@ -63,6 +64,9 @@
     <splash src="res/screens/ios/Default-Portrait~ipad.png" width="768" height="1024" />
     <splash src="res/screens/ios/Default@2x~iphone.png" width="640" height="960" />
     <splash src="res/screens/ios/Default~iphone.png" width="320" height="480" />
+    <feature name="Keyboard">
+      <param name="ios-package" value="IonicKeyboard" onload="true" />
+    </feature>
   </platform>
   <platform name="windows">
     <icon src="res/icons/windows/Square150x150Logo.scale-100.png" width="150" height="150" />
@@ -92,10 +96,14 @@
   <preference name="InAppBrowserStorageEnabled" value="True" />
   <preference name="SuppressesIncrementalRendering" value="True" />
   <preference name="deployment-target" value="7.0" />
-  <vs:plugin name="cordova-plugin-device" version="1.1.0" />
-  <vs:plugin name="cordova-plugin-statusbar" version="2.0.0" />
-  <vs:plugin name="ionic-plugin-keyboard" version="1.0.8" src="https://github.com/driftyco/ionic-plugin-keyboard.git" />
-  <access origin="beta.fimex.com.tw" />
-  <vs:plugin name="cordova-plugin-whitelist" version="1.2.2-dev" src="https://github.com/apache/cordova-plugin-whitelist.git" />
   <access origin="api.mailgun.net" />
+  <access origin="beta.fimex.com.tw" />
+  <vs:plugin name="cordova-plugin-device" version="1.1.0" />
+  <vs:plugin name="ionic-plugin-keyboard" version="1.0.8" src="https://github.com/driftyco/ionic-plugin-keyboard.git" />
+  <vs:plugin name="cordova-plugin-whitelist" version="1.2.2-dev" src="https://github.com/apache/cordova-plugin-whitelist.git" />
+  <vs:platformSpecificValues>
+    <vs:platformSpecificWidget platformName="windows" version="0.1.12.0" />
+  </vs:platformSpecificValues>
+  <vs:plugin name="cordova-plugin-statusbar" version="2.1.0" />
+  <vs:plugin name="cordova-plugin-splashscreen" version="3.1.0" />
 </widget>

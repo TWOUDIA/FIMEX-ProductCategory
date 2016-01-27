@@ -7,21 +7,15 @@ angular.module('fimex', [
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'toaster', // inject the angularjs-toaster module
-    'satellizer', // inject the satellizer module, for OAuth 1 & 2 authorization
-    'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
+    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
-.run(function ($ionicPlatform, $ionicHistory, toaster, $filter, $timeout) {
+.run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard for form inputs)
-        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && ionic.Platform.isIOS()) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        };
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
     });
-
 
     // Exit APP
     var countTimerForCloseApp = false;
@@ -41,9 +35,9 @@ angular.module('fimex', [
         }
         return false;
     }, 101);
-})
+}])
 
-.config(function ($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $stateProvider, $urlRouterProvider) {
+.config(["$ionicConfigProvider", "tmhDynamicLocaleProvider", "$translateProvider", "$stateProvider", "$urlRouterProvider", function ($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $stateProvider, $urlRouterProvider) {
     //global configure for tabs position
     $ionicConfigProvider.tabs.position('bottom');
 
@@ -82,6 +76,7 @@ angular.module('fimex', [
         })
         .state('tab.dash', {
             url: '/dash',
+            cache: true,
             views: {
                 'tab-dash': {
                     templateUrl: 'templates/tab-dash.html',
@@ -91,7 +86,7 @@ angular.module('fimex', [
         })
         .state('tab.categories', {
             url: '/categories/{categoryLevel}/{categoryId}/{categorySlug}/{categoryName:.*}',
-            cache: false,
+            cache: true,
             views: {
                 'tab-categories': {
                     templateUrl: function ($stateParams) {
@@ -105,15 +100,6 @@ angular.module('fimex', [
                 }
             }
         })
-        .state('tab.ca-product-detail', {
-            url: '/ca-products/:productId',
-            views: {
-                'tab-categories': {
-                    templateUrl: 'templates/product-detail.html',
-                    controller: 'ProductDetailCtrl'
-                }
-            }
-        })
         .state('tab.search', {
             url: '/search',
             cache: false,
@@ -121,15 +107,6 @@ angular.module('fimex', [
                 'tab-search': {
                     templateUrl: 'templates/tab-search.html',
                     controller: 'SearchCtrl'
-                }
-            }
-        })
-        .state('tab.se-product-detail', {
-            url: '/se-products/:productId',
-            views: {
-                'tab-search': {
-                    templateUrl: 'templates/product-detail.html',
-                    controller: 'ProductDetailCtrl'
                 }
             }
         })
@@ -145,4 +122,4 @@ angular.module('fimex', [
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
-});
+}]);
