@@ -4,6 +4,14 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Keyboard">
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
@@ -12,13 +20,8 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="StatusBar">
-        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
     <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
@@ -38,6 +41,7 @@
     <splash density="port-xhdpi" src="res/screens/android/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="res/screens/android/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="res/screens/android/drawable-port-xxxhdpi-screen.png" />
+    <preference name="Fullscreen" value="false" />
     <preference name="android-windowSoftInputMode" value="adjustPan" />
     <name>FIMEX PRODUCT CATEGORY</name>
     <description>Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder.</description>
@@ -49,7 +53,7 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="Orientation" value="portrait" />
-    <preference name="Fullscreen" value="false" />
+    <preference name="Fullscreen" value="False" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="none" />
@@ -65,10 +69,6 @@
     <access origin="beta.fimex.com.tw" />
     <vs:plugin name="cordova-plugin-device" version="1.1.0" />
     <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
-    <vs:plugin name="cordova-plugin-whitelist" src="https://github.com/apache/cordova-plugin-whitelist.git" version="1.2.2-dev" />
-    <vs:platformSpecificValues>
-        <vs:platformSpecificWidget platformName="windows" version="0.1.12.0" />
-    </vs:platformSpecificValues>
     <vs:plugin name="cordova-plugin-statusbar" version="2.1.0" />
     <vs:plugin name="cordova-plugin-splashscreen" version="3.1.0" />
 </widget>

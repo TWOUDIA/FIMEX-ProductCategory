@@ -5,13 +5,8 @@
         get: function ($term, $limit) {
             var result = $http({
                 method: 'GET',
-                url: AppSettings.getURI($term, $limit),
-                headers: {
-                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('wcAPIKey'), AppSettings.get('wcAPISecret')),
-                    key: AppSettings.get('wcAPIKey'),
-                    secret: AppSettings.get('wcAPISecret')
-                },
-                timeout: 10000
+                url: AppSettings.getURI($term, $limit) + '&consumer_key='+ AppSettings.get('wcAPIKey')+ '&consumer_secret=' + AppSettings.get('wcAPISecret'),
+                timeout: AppSettings.get('wcConnectTimeout')
             });
             return result;
         }
@@ -54,7 +49,7 @@
                     return str.join('&');
                 },
                 data: $mail,
-                timeout: 10000
+                timeout: AppSettings.get('mgConnectTimeout')
             }).then(
             function success() {
                 $log.debug('successful email send.');
@@ -68,7 +63,7 @@
 
 .factory('AppSettings', ["$translate", "tmhDynamicLocale", "AppConfig", function ($translate, tmhDynamicLocale, AppConfig) {
     var savedData = AppConfig;
-    savedData.wpCategroies = [];
+    savedData.wcCategories = [];
     savedData.appFIMEXCategoriesRS = "";
 
     function setLanguageURI(value) {
@@ -113,8 +108,8 @@
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
             }
         },
-        getAuthPhrase: function (name, key) {
-            return btoa(name + ':' + key);
+        getAuthPhrase: function ($name, $key) {
+            return btoa($name + ':' + $key);
         }
     };
 }]);

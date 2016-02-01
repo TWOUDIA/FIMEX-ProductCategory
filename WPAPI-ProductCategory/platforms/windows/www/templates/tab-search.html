@@ -13,7 +13,7 @@
             <button class="button button-full button-calm no-margin" ng-click="doSearch()" ng-disabled="!search.term" translate>{{'TAB_SEARCH_INPUT_SEARCH_BUTTON'}}</button>
         </div>
 
-        <ion-list ng-show="products">
+        <ion-list ng-show="products" keyboard-hide>
             <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
                 <img ng-src="{{product.featured_src}}" />
                 <p ng-bind-html="product.title"></p>

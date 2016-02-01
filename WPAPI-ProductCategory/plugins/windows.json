@@ -8,19 +8,22 @@
     },
     "installed_plugins": {
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "FIMEX PRODUCT"
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         }
     },
     "dependent_plugins": {}

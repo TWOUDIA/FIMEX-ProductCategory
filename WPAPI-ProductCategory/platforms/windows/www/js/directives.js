@@ -3,7 +3,7 @@
 // Set up for grouped Radio Buttons, used in Language Selection
 .directive('gpRadio', function () {
     return {
-        restrict: 'A',
+        restrict: 'AE',
         require: 'ngModel',
         scope: {
             model: '=ngModel',
@@ -27,6 +27,7 @@
     };
 })
 
+// Handling Keyboard KeyIn Event; especially for search
 .directive('keyInput', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -40,6 +41,7 @@
     };
 })
 
+// Handling Element to hide while Keyboard shows up
 .directive('keyboardHide', function () {
     return {
         restrict: 'A',

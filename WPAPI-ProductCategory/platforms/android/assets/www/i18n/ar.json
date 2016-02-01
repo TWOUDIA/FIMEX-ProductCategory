@@ -1,5 +1,6 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "اضغط مرة أخرى للخروج.",
+  "INTERNET_CONNECTION_NONE": "لا يعمل الانترنت",
   "LOADING_TEXT": "تحميل ... ",
   "LOADING_MORE_TEXT": "تحميل المزيد ...",
   "ALERT_MAIL_SENT": "{{name}} اسم، وقد تم ارسال رسالتك شكرا.",

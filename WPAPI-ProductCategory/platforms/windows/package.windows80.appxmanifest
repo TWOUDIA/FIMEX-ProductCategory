@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
     <Identity Name="com.twoudia.FIMEX2016WPAPIproduct" Publisher="CN=$username$" Version="0.1.12.0" />
     <Properties>
-        <DisplayName>FIMEX PRODUCT</DisplayName>
+        <DisplayName>FIMEX PRODUCT CATEGORY</DisplayName>
         <PublisherDisplayName>TWOUDIA-YANNICK</PublisherDisplayName>
         <Logo>images\storelogo.png</Logo>
     </Properties>
@@ -15,7 +15,7 @@
     </Resources>
     <Applications>
         <Application Id="com.twoudia.FIMEX2016WPAPIproduct" StartPage="www/index.html">
-            <VisualElements BackgroundColor="#464646" Description="Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder." DisplayName="FIMEX PRODUCT" ForegroundText="light" Logo="images\Square150x150Logo.png" SmallLogo="images\Square30x30Logo.png">
+            <VisualElements BackgroundColor="#464646" Description="Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder." DisplayName="FIMEX PRODUCT CATEGORY" ForegroundText="light" Logo="images\Square150x150Logo.png" SmallLogo="images\Square30x30Logo.png">
                 <DefaultTile ShowName="allLogos" WideLogo="images\Wide310x150Logo.png" />
                 <SplashScreen Image="images\splashscreen.png" />
                 <InitialRotationPreference>

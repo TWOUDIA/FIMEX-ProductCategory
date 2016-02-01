@@ -5,12 +5,7 @@ angular.module('fimex.services', [])
         get: function ($term, $limit) {
             var result = $http({
                 method: 'GET',
-                url: AppSettings.getURI($term, $limit),
-                headers: {
-                    'Authorization': 'Basic ' + AppSettings.getAuthPhrase(AppSettings.get('wcAPIKey'), AppSettings.get('wcAPISecret')),
-                    key: AppSettings.get('wcAPIKey'),
-                    secret: AppSettings.get('wcAPISecret')
-                },
+                url: AppSettings.getURI($term, $limit) + '&consumer_key='+ AppSettings.get('wcAPIKey')+ '&consumer_secret=' + AppSettings.get('wcAPISecret'),
                 timeout: AppSettings.get('wcConnectTimeout')
             });
             return result;
@@ -68,7 +63,7 @@ angular.module('fimex.services', [])
 
 .factory('AppSettings', ["$translate", "tmhDynamicLocale", "AppConfig", function ($translate, tmhDynamicLocale, AppConfig) {
     var savedData = AppConfig;
-    savedData.wpCategroies = [];
+    savedData.wcCategories = [];
     savedData.appFIMEXCategoriesRS = "";
 
     function setLanguageURI(value) {
@@ -113,8 +108,8 @@ angular.module('fimex.services', [])
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
             }
         },
-        getAuthPhrase: function (name, key) {
-            return btoa(name + ':' + key);
+        getAuthPhrase: function ($name, $key) {
+            return btoa($name + ':' + $key);
         }
     };
 }]);

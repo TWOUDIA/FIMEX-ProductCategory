@@ -8,11 +8,13 @@
     wcAPISecret: 'cs_894c2f79bd330af5eba70473c6a921593139f034',
     wcAPIURIsuffix: 'filter[orderby]=id&filter[order]=ASC&filter[limit]=',
     wcAPIRSlimit: 5,
+    wcConnectTimeout: 10000,
     mgAPIName: 'api',
     mgServiceKey: 'key-0c16845e030f782c3acb501cdf07b8a2',
     mgAPIURI: 'https://api.mailgun.net/v3/mg.fimex.com.tw/messages',
     contactForm2Email: 'yannicklin@twoudia.com',
     contactForm2User: 'Support',
+    mgConnectTimeout: 10000,
     oriCategories: [{
         "id": 9,
         "name": "Electrical Materials",

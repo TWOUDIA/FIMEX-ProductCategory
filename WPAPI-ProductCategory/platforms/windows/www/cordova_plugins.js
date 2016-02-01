@@ -17,26 +17,26 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/ionic-plugin-keyboard/src/windows/KeyboardProxy.js",
-        "id": "ionic-plugin-keyboard.KeyboardProxy",
-        "pluginId": "ionic-plugin-keyboard",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "id": "cordova-plugin-network-information.network",
+        "pluginId": "cordova-plugin-network-information",
         "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-        "id": "cordova-plugin-statusbar.statusbar",
-        "pluginId": "cordova-plugin-statusbar",
-        "clobbers": [
-            "window.StatusBar"
+            "navigator.connection",
+            "navigator.network.connection"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-statusbar/src/windows/StatusBarProxy.js",
-        "id": "cordova-plugin-statusbar.StatusBarProxy",
-        "pluginId": "cordova-plugin-statusbar",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "id": "cordova-plugin-network-information.Connection",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "Connection"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-network-information/src/windows/NetworkInfoProxy.js",
+        "id": "cordova-plugin-network-information.NetworkInfoProxy",
+        "pluginId": "cordova-plugin-network-information",
         "runs": true
     },
     {
@@ -54,16 +54,40 @@ module.exports = [
         "merges": [
             ""
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "id": "cordova-plugin-statusbar.statusbar",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-statusbar/src/windows/StatusBarProxy.js",
+        "id": "cordova-plugin-statusbar.StatusBarProxy",
+        "pluginId": "cordova-plugin-statusbar",
+        "runs": true
+    },
+    {
+        "file": "plugins/ionic-plugin-keyboard/src/windows/KeyboardProxy.js",
+        "id": "ionic-plugin-keyboard.KeyboardProxy",
+        "pluginId": "ionic-plugin-keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-plugin-device": "1.1.0",
-    "ionic-plugin-keyboard": "1.0.8",
-    "cordova-plugin-whitelist": "1.2.2-dev",
+    "cordova-plugin-network-information": "1.2.0",
+    "cordova-plugin-splashscreen": "3.1.0",
     "cordova-plugin-statusbar": "2.1.0",
-    "cordova-plugin-splashscreen": "3.1.0"
+    "cordova-plugin-whitelist": "1.2.2-dev",
+    "ionic-plugin-keyboard": "1.0.8"
 }
 // BOTTOM OF METADATA
 });

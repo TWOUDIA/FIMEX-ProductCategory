@@ -1,5 +1,6 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "再次按下退出。",
+  "INTERNET_CONNECTION_NONE": "上網不工作",
   "LOADING_TEXT": "讀取中 ... ",
   "LOADING_MORE_TEXT": "資料加載中 ... ",
   "ALERT_MAIL_SENT": "{{name}}，多謝！您的訊息已經送出。",

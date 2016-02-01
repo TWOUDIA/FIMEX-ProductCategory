@@ -12,12 +12,26 @@ angular.module('fimex', [
 
 .run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
     $ionicPlatform.ready(function () {
+        cordova.plugins.Keyboard.disableScroll(true);
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
+
+        function alert4Offline() {
+            $timeout(function () {
+                toaster.pop({
+                    type: 'error',
+                    body: $filter('translate')('INTERNET_CONNECTION_NONE')
+                });
+            }, 0);
+        }
+
+        /* TODO: Response with Network Unaccessable ? */
+        document.addEventListener("offline", alert4Offline, false);
+
     });
 
-    // Exit APP
+    // Exit App
     var countTimerForCloseApp = false;
     $ionicPlatform.registerBackButtonAction(function (e) {
         e.preventDefault();
@@ -25,10 +39,14 @@ angular.module('fimex', [
             ionic.Platform.exitApp();
         } else {
             countTimerForCloseApp = true;
-            toaster.pop({
-                type: 'error',
-                body: $filter('translate')('CLICK_AGAIN_TO_EXIT_APP')
-            });
+            // Force to popup immediately
+            $timeout(function () {
+                toaster.pop({
+                    type: 'error',
+                    body: $filter('translate')('CONFIRM_BEFORE_APP_EXIT')
+                });
+            }, 0);
+            
             $timeout(function () {
                 countTimerForCloseApp = false;
             }, 5000);

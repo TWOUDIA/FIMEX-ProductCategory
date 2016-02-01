@@ -1,5 +1,6 @@
 {
   "CONFIRM_BEFORE_APP_EXIT": "Pulse de nuevo para salir.",
+  "INTERNET_CONNECTION_NONE": "Internet no funciona",
   "LOADING_TEXT": "Cargando ... ",
   "LOADING_MORE_TEXT": "Cargando más ... ",
   "ALERT_MAIL_SENT": "Gracias {{name}}, su mensaje ha sido enviado.",

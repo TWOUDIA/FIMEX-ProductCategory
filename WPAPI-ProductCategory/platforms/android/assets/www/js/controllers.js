@@ -1,21 +1,20 @@
 angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', ["$scope", "Notes", "$filter", "DataLoader", "AppSettings", "$ionicLoading", "$log", function ($scope, Notes, $filter, DataLoader, AppSettings, $ionicLoading, $log) {
+.controller('DashCtrl', ["$scope", "Notes", "$filter", "$log", "DataLoader", "AppSettings", "$ionicLoading", function ($scope, Notes, $filter, $log, DataLoader, AppSettings, $ionicLoading) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
     $scope.notesCount = NotesRS.length;
     $scope.today = new Date();
 
-    $ionicLoading.show({
-        template: $filter('translate')('LOADING_TEXT')
-    });
+    // Get Categories Object
+    if (AppSettings.get('wcCategories').length == 0) {
+        $ionicLoading.show({
+            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
+        });
 
-    /* TODO: Response with Network Unaccessable ? */
-    // Set Categories Object
-    if (AppSettings.get('wpCategroies').length == 0) {
         DataLoader.get(('products/categories?'), 1000).then(function (response) {
-            AppSettings.change('wpCategroies', response.data.product_categories);
+            AppSettings.change('wcCategories', response.data.product_categories);
             $ionicLoading.hide();
         }, function (response) {
             $log.error('error', response);
@@ -27,7 +26,7 @@ angular.module('fimex.controllers', [])
 
 .controller('CategoriesCtrl', ["$ionicHistory", "$rootScope", "$filter", "AppSettings", "$stateParams", "$scope", "DataLoader", "$log", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
     $ionicLoading.show({
-        template: $filter('translate')('LOADING_TEXT')
+        template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
     var nextPage = 1;
@@ -74,7 +73,7 @@ angular.module('fimex.controllers', [])
             $scope.showCount = 1;
         default: // Subcategories
             $scope.loadResult = function () {
-                $scope.categories = $filter('filter')(AppSettings.get('wpCategroies'), { parent: parseInt($stateParams.categoryId) }, true);
+                $scope.categories = $filter('filter')(AppSettings.get('wcCategories'), { parent: parseInt($stateParams.categoryId) }, true);
                 if ($scope.categories.length == 0) {
                     $scope.categories = null;
                     $scope.RSempty = true;
@@ -97,7 +96,7 @@ angular.module('fimex.controllers', [])
 
     $scope.loadMore = function () {
         $ionicLoading.show({
-            template: $filter('translate')('LOADING_MORE_TEXT')
+            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_MORE_TEXT')
         });
         $scope.able2Loadmore = 0;
 
@@ -147,11 +146,15 @@ angular.module('fimex.controllers', [])
     var nextPage = 1;
     $scope.able2Loadmore = 0;
 
+    $scope.cleanResult = function () {
+        $scope.products = null;
+        $scope.RSempty = false;
+    }
+
     // Clean All
     $scope.cleanSearch = function () {
         $scope.search.term = '';
-        $scope.products = null;
-        $scope.RSempty = false;
+        $scope.cleanResult();
     };
 
     // Start Search
@@ -163,9 +166,9 @@ angular.module('fimex.controllers', [])
 
     $scope.loadResult = function () {
         $ionicLoading.show({
-            template: $filter('translate')('LOADING_TEXT')
+            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
         });
-        $scope.RSempty = false;
+        $scope.cleanResult();
 
         DataLoader.get(('products?filter[q]=' + PHPJSfunc.urlencode($scope.search.term) + '&'), 0).then(function (response) {
             if (response.data.products.length == 0) {
@@ -188,7 +191,7 @@ angular.module('fimex.controllers', [])
 
     $scope.loadMore = function () {
         $ionicLoading.show({
-            template: $filter('translate')('LOADING_MORE_TEXT')
+            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_MORE_TEXT')
         });
         $scope.able2Loadmore = 0;
 
@@ -233,20 +236,25 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('SettingCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster) {
+.controller('SettingCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", "$timeout", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster, $timeout) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
         language: $translate.use()
     }
 
-    //TODO: auto redirect to dash tab after chaning languages
+    // Change Lanuage and auto redirect to dash tab
     $scope.$watch('settings.language', function () {
-        AppSettings.change('language', $scope.settings.language);
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
-        AppSettings.change('wpCategroies', []);
-        //$state.go('tab.dash');
+        if ($scope.settings.language != AppSettings.get('language')) {
+            AppSettings.change('language', $scope.settings.language);
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
+
+            AppSettings.change('wcCategories', []);
+            $timeout(function () {
+                $state.go('tab.dash', { reload: true });
+            }, 50);
+        }
     });
 
     // contact form submitting

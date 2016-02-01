@@ -14,9 +14,9 @@
     <splash height="300" src="res/screens/windows/SplashScreen.scale-100.png" width="620" />
     <splash height="1920" src="res/screens/windows/SplashScreen.scale-240.png" width="1152" />
     <splash height="1920" src="res/screens/windows/SplashScreenPhone.scale-240.png" width="1152" />
-    <name>FIMEX PRODUCT</name>
+    <name>FIMEX PRODUCT CATEGORY</name>
     <description>Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder.</description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">TWOUDIA-YANNICK</author>
+    <author email="yannicklin@twoudia.com" href="https://www.twoudia.com/">TWOUDIA-YANNICK</author>
     <content src="index.html" />
     <vs:features />
     <preference name="SplashScreen" value="screen" />
@@ -24,11 +24,11 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="Orientation" value="portrait" />
-    <preference name="Fullscreen" value="True" />
+    <preference name="Fullscreen" value="False" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="SplashScreenDelay" value="2500" />
     <preference name="KeyboardShrinksView" value="true" />
     <icon src="res/icons/android/drawable-xhdpi-icon.png" />
     <preference name="KeepRunning" value="True" />
@@ -36,12 +36,10 @@
     <preference name="InAppBrowserStorageEnabled" value="True" />
     <preference name="SuppressesIncrementalRendering" value="True" />
     <preference name="deployment-target" value="7.0" />
+    <access origin="api.mailgun.net" />
+    <access origin="beta.fimex.com.tw" />
     <vs:plugin name="cordova-plugin-device" version="1.1.0" />
     <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
-    <access origin="beta.fimex.com.tw" />
-    <vs:plugin name="cordova-plugin-whitelist" src="https://github.com/apache/cordova-plugin-whitelist.git" version="1.2.2-dev" />
-    <access origin="api.mailgun.net" />
-    <vs:platformSpecificValues>
-        <vs:platformSpecificWidget platformName="windows" version="0.1.12.0" />
-    </vs:platformSpecificValues>
+    <vs:plugin name="cordova-plugin-statusbar" version="2.1.0" />
+    <vs:plugin name="cordova-plugin-splashscreen" version="3.1.0" />
 </widget>

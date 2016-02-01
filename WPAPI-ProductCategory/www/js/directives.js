@@ -3,7 +3,7 @@ angular.module('fimex.directives', [])
 // Set up for grouped Radio Buttons, used in Language Selection
 .directive('gpRadio', function () {
     return {
-        restrict: 'A',
+        restrict: 'AE',
         require: 'ngModel',
         scope: {
             model: '=ngModel',
