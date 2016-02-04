@@ -10,13 +10,14 @@ angular.module('fimex', [
     'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
-.run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
+.run(["$ionicPlatform", "toaster", "$filter", "$timeout", "$log", "DataLoader", "AppSettings", "$ionicLoading", "$interval", function ($ionicPlatform, toaster, $filter, $timeout, $log, DataLoader, AppSettings, $ionicLoading, $interval) {
     $ionicPlatform.ready(function () {
         cordova.plugins.Keyboard.disableScroll(true);
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
 
+        /* TODO: Response with Network Unaccessable ? */
         function alert4Offline() {
             $timeout(function () {
                 toaster.pop({
@@ -25,10 +26,28 @@ angular.module('fimex', [
                 });
             }, 0);
         }
-
-        /* TODO: Response with Network Unaccessable ? */
         document.addEventListener("offline", alert4Offline, false);
 
+        // Check wcCategories every five seconds
+        function updatewcCategories() {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
+            });
+
+            DataLoader.get(('products/categories?'), 1000).then(function (response) {
+                AppSettings.change('wcCategories', response.data.product_categories);
+                $ionicLoading.hide();
+            }, function (response) {
+                $log.error('error', response);
+                $ionicLoading.hide();
+            });
+        }
+        $interval(function () {
+            if (AppSettings.get('wcCategories').length == 0) {
+                updatewcCategories();
+            }
+        }, 5000);
+        
         // Make elements disappear immediately
         window.addEventListener('native.keyboardshow', function () {
             document.body.classList.add('keyboard-open');
