@@ -13,7 +13,7 @@
 
   "TAB_TITLE_CATEGORIES": "CATEGORIES",
   "TAB_CATEGORIES_SUBTITLE": "List Under {{categoriesTree}}",
-  "TAB_CATEGORIES_TITLE_PRODUCT": "PRODUCT LIST",
+  "TAB_CATEGORIES_TITLE_PRODUCT": "PRODUCT",
 
   "TAB_TITLE_SEARCH": "SEARCH",
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Key Words ... ",
@@ -39,7 +39,7 @@
   "NOTES_EMPTY_TITLE": "Sorry¡I",
   "NOTES_EMPTY_CONTENT": "Currently there are no updates to the bulletin¡I {{date|date:'short'}}",
   "NOTES_20160107_TITLE": "Notice on January 7, 2016",
-  "NOTES_20160107_CONTENT": "This APP is now ready for public access. With this APP, users will be able to survey all products provided by FIMEX. Currently, we have six language interfaces. However, only the English version has detailed product information.  Translation of detailed product information for the other five languages are yet to be implemented. Sorry for the inconvenience.",
+  "NOTES_20160107_CONTENT": "This APP is now ready for public access. With this APP, users will be able to survey all products provided by FIMEX. Currently, we have four language interfaces. However, only the English version has detailed product information.  Translation of detailed product information for the other languages are yet to be implemented. Sorry for the inconvenience.",
   "NOTES_20160108_TITLE": "Notice on January 8, 2016",
   "NOTES_20160108_CONTENT": "If you want to share your experience of using this APP or show your interests in FIMEX product, please send message via CONTACT US form in the SETTING Tab. We will get in contact you as soon as possible.",
   "NOTES_20160109_TITLE": "Method to Exit APP",

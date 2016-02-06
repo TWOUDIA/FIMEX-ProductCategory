@@ -1,26 +1,11 @@
 angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', ["$scope", "Notes", "$filter", "$log", "DataLoader", "AppSettings", "$ionicLoading", function ($scope, Notes, $filter, $log, DataLoader, AppSettings, $ionicLoading) {
+.controller('DashCtrl', ["$scope", "Notes", "$filter", function ($scope, Notes, $filter) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
     $scope.notesCount = NotesRS.length;
     $scope.today = new Date();
-
-    // Get Categories Object
-    if (AppSettings.get('wcCategories').length == 0) {
-        $ionicLoading.show({
-            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
-        });
-
-        DataLoader.get(('products/categories?'), 1000).then(function (response) {
-            AppSettings.change('wcCategories', response.data.product_categories);
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-        });
-    }
 }])
 
 
@@ -236,7 +221,16 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('SettingCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", "$timeout", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster, $timeout) {
+.controller('BookmarksCtrl', ["$scope", "Notes", "$filter", function ($scope, Notes, $filter) {
+    var NotesRS = Notes.all();
+    $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
+    $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
+    $scope.notesCount = NotesRS.length;
+    $scope.today = new Date();
+}])
+
+
+.controller('SettingsCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", "$timeout", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster, $timeout) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
@@ -249,11 +243,7 @@ angular.module('fimex.controllers', [])
             AppSettings.change('language', $scope.settings.language);
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
-
             AppSettings.change('wcCategories', []);
-            $timeout(function () {
-                $state.go('tab.dash', { reload: true });
-            }, 50);
         }
     });
 

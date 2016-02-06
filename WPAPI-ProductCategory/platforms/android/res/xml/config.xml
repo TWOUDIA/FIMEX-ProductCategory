@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget defaultlocale="en-US" id="com.twoudia.FIMEX2016WPAPIproduct" version="0.1.12" windows-packageVersion="0.1.12.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+<widget android-versionCode="1" defaultlocale="en-US" id="com.twoudia.FIMEX2016WPAPIproduct" version="1.1.12" windows-packageVersion="0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -44,7 +44,7 @@
     <preference name="Fullscreen" value="false" />
     <preference name="android-windowSoftInputMode" value="adjustPan" />
     <name>FIMEX PRODUCT CATEGORY</name>
-    <description>Multiple Platform APPs using Apache Cordova + WordPress, w/ IONbuilder.</description>
+    <description>The APP for FIMEX Product Category. Users can see the update-to-date product information provided by FIMEX. With localized interface and easy-to-understand controls, users would simply navigate FIMEX product data.</description>
     <author email="yannicklin@twoudia.com" href="https://www.twoudia.com/">TWOUDIA-YANNICK</author>
     <content src="index.html" />
     <vs:features />
@@ -53,7 +53,7 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="Orientation" value="portrait" />
-    <preference name="Fullscreen" value="False" />
+    <preference name="Fullscreen" value="True" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="none" />
@@ -67,8 +67,7 @@
     <preference name="deployment-target" value="7.0" />
     <access origin="api.mailgun.net" />
     <access origin="beta.fimex.com.tw" />
-    <vs:plugin name="cordova-plugin-device" version="1.1.0" />
-    <vs:plugin name="ionic-plugin-keyboard" src="https://github.com/driftyco/ionic-plugin-keyboard.git" version="1.0.8" />
-    <vs:plugin name="cordova-plugin-statusbar" version="2.1.0" />
-    <vs:plugin name="cordova-plugin-splashscreen" version="3.1.0" />
+    <preference name="android-maxSdkVersion" value="23" />
+    <preference name="android-targetSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="14" />
 </widget>

@@ -1,0 +1,38 @@
+﻿<div class="modal">
+    <ion-content class="padding">
+        <div class="card">
+            <div class="item item-divider" translate>{{'TAB_SETTING_SECTION_TITLE_CONTACTUS'}}</div>
+            <form class="item item-body" name="forms.contactForm" novalidate="" ng-submit="formSubmit(contactForm)">
+                <div class="list">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label" translate>{{'TAB_SETTING_FORM_CONTACT_LABEL_NAME'}}</span>
+                        <input type="text" name="ctName" placeholder="{{'TAB_SETTING_FORM_CONTACT_PLACEHODER_NAME' | translate }}" ng-model="ctForm.ctName" ng-minlength="3" ng-maxlength="50" required>
+                    </label>
+                    <div class="error-container" ng-show="forms.contactForm.ctName.$dirty" ng-messages="forms.contactForm.ctName.$error" role="alert">
+                        <div ng-message="required">{{'TAB_SETTING_FORM_CONTACT_ALERT_NAME_REQUIRED' | translate }}</div>
+                        <div ng-message="minlength, maxlength">{{'TAB_SETTING_FORM_CONTACT_ALERT_NAME_LENGTH' | translate }}</div>
+                    </div>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label" translate>{{'TAB_SETTING_FORM_CONTACT_LABEL_EMAIL'}}</span>
+                        <input type="email" name="ctEmail" placeholder="{{'TAB_SETTING_FORM_CONTACT_PLACEHODER_EMAIL' | translate }}" ng-model="ctForm.ctEmail" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                    </label>
+                    <div class="error-container" ng-show="forms.contactForm.ctEmail.$dirty" ng-messages="forms.contactForm.ctEmail.$error" role="alert">
+                        <div ng-message="required">{{'TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_REQUIRED' | translate }}</div>
+                        <div ng-message="email">{{'TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID' | translate }}</div>
+                        <div ng-message="pattern">{{'TAB_SETTING_FORM_CONTACT_ALERT_EMAIL_INVALID' | translate }}</div>
+                    </div>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label" translate>{{'TAB_SETTING_FORM_CONTACT_LABEL_MESSAGE'}}</span>
+                        <textarea type="text" name="ctMessage" placeholder="{{'TAB_SETTING_FORM_CONTACT_PLACEHODER_MESSAGE' | translate }}" ng-model="ctForm.ctMessage" ng-minlength="10" ng-maxlength="1000" required></textarea>
+                    </label>
+                    <div class="error-container" ng-show="forms.contactForm.ctMessage.$dirty" ng-messages="forms.contactForm.ctMessage.$error" role="alert">
+                        <div ng-message="required">{{'TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_REQUIRED' | translate }}</div>
+                        <div ng-message="minlength, maxlength">{{'TAB_SETTING_FORM_CONTACT_ALERT_MESSAGE_LENGTH' | translate }}</div>
+                    </div>
+                </div>
+                <button class="button button-full button-calm" ng-disabled="forms.contactForm.$pristine || forms.contactForm.$invalid" type="submit" translate>{{'TAB_SETTING_FORM_CONTACT_BUTTON_SEND'}}</button>
+            </form>
+        </div>
+    </ion-content>
+</div>
