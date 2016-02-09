@@ -1,6 +1,6 @@
 angular.module('fimex.services', [])
 
-.factory('DataLoader', ["$http", "AppSettings", function ($http, AppSettings) {
+.factory('DataLoader', ["AppSettings", "$http", function (AppSettings, $http) {
     return {
         get: function ($term, $limit) {
             var result = $http({
@@ -31,7 +31,93 @@ angular.module('fimex.services', [])
     }
 })
 
-.factory('EmailSender', ["$http", "$log", "AppSettings", function ($http, $log, AppSettings) {
+.service('BookMarks', ["$localForage", "$log", function ($localForage, $log) {
+    var lf = $localForage.instance();
+
+    return {
+        countos: function(){
+            return lf.length().then(function (value) {
+                $log.debug(value);
+                return value;
+            });
+        },
+        count: function () {
+            return lf.length();
+        },
+        check: function($id){
+            return lf.getItem($id);
+        },
+        add: function($id, $product){
+            lf.setItem($id, {
+                name: $product.title,
+                id: $product.id,
+                thumbnail: $product.featured_src,
+                category: $product.categories[0],
+                path: $product.permalink
+            }).then(function () {
+                $log.debug('LocalForage Add #:' + $id);
+            });
+        },
+        drop: function ($id) {
+            lf.removeItem($id).then(function () {
+                $log.debug('LocalForage Remove #:' + $id);
+            });
+        },
+        getall: function(){
+            var objArray = [];
+            lf.iterate(function (value, key) {
+                objArray.push(value);}
+                ).then(function () { });
+            return objArray;
+        }
+    }
+}])
+
+.service('ModalHandler_product', ["BookMarks", "$ionicModal", "$filter", "$ionicSlideBoxDelegate", "$localForage", function (BookMarks, $ionicModal, $filter, $ionicSlideBoxDelegate, $localForage) {
+    return {
+        init: function ($sce) {
+            $ionicModal.fromTemplateUrl('templates/product-modal.html', {
+                scope: $sce,
+                animation: 'slide-in-up'
+            }).then(function (modal) {
+                $sce.modal = modal;
+                $sce.detail = null;
+                $sce.detailImg = null;
+            });
+
+            $sce.openModal = function ($data) {
+                $sce.detail = $data;
+                $sce.detailImg = $filter('unique')($sce.detail.images, 'src');
+                BookMarks.check($data.id).then(function (result) {
+                    $sce.detail.bookmarked = (angular.isObject(result)) ? true : false;
+                });
+                $sce.detail.bookmarked = (BookMarks.check($data.id)) ? true : false;
+                $ionicSlideBoxDelegate.update();
+                $sce.modal.show();
+            };
+            $sce.closeModal = function () {
+                $sce.modal.hide();
+            };
+            $sce.$on('$destroy', function () {
+                $sce.modal.remove();
+            });
+
+            //Bookmark Processing
+            $sce.triggerBookmark = function ($product) {
+                BookMarks.check($product.id).then(function(result) {
+                    if (angular.isObject(result)) {
+                        BookMarks.drop($product.id);
+                    }else{
+                        BookMarks.add($product.id, $product);
+                    }
+                });
+                $sce.detail.bookmarked = !$sce.detail.bookmarked;    
+            };
+        }
+    }
+}])
+
+.factory('EmailSender', ["AppSettings", "$http", "$log", function (AppSettings, $http, $log) {
     return {
         send: function ($mail) {
             $http({
@@ -61,7 +147,7 @@ angular.module('fimex.services', [])
     }
 }])
 
-.factory('AppSettings', ["$translate", "tmhDynamicLocale", "AppConfig", function ($translate, tmhDynamicLocale, AppConfig) {
+.factory('AppSettings', ["AppConfig", "$translate", "tmhDynamicLocale", function (AppConfig, $translate, tmhDynamicLocale) {
     var savedData = AppConfig;
     savedData.wcCategories = [];
     savedData.appFIMEXCategoriesRS = "";

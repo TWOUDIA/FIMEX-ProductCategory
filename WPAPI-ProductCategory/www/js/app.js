@@ -11,7 +11,7 @@ angular.module('fimex', [
     'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
 ])
 
-.run(["$ionicPlatform", "toaster", "$filter", "$timeout", "$log", "DataLoader", "AppSettings", "$ionicLoading", "$interval", function ($ionicPlatform, toaster, $filter, $timeout, $log, DataLoader, AppSettings, $ionicLoading, $interval) {
+.run(["AppSettings", "DataLoader", "$ionicPlatform", "$filter", "$timeout", "$interval", "$log", "toaster", "$ionicLoading", function (AppSettings, DataLoader, $ionicPlatform, $filter, $timeout, $interval, $log, toaster, $ionicLoading) {
     $ionicPlatform.ready(function () {
         cordova.plugins.Keyboard.disableScroll(true);
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
@@ -92,7 +92,7 @@ angular.module('fimex', [
           prefix: 'i18n/',
           suffix: '.json'
       })
-      .registerAvailableLanguageKeys(['ar', 'de', 'en', 'es', 'fr', 'pt', 'ru', 'zh'], {
+      .registerAvailableLanguageKeys(['ar', 'de', 'en', 'es', 'fr', 'pt', 'ru'], {
           'ar': 'ar', 'ar_*': 'ar',
           'de': 'de', 'de_*': 'de',
           'en': 'en', 'en_*': 'en',
@@ -102,8 +102,8 @@ angular.module('fimex', [
           'ru': 'ru', 'ru_*': 'ru',
           'zh': 'zh', 'zh_*': 'zh'
       })
-      .preferredLanguage('de')
-      .fallbackLanguage(['en', 'zh', 'es', 'fr'])
+      .preferredLanguage('en')
+      .fallbackLanguage(['en', 'de', 'es', 'ru'])
       .determinePreferredLanguage()
       .useSanitizeValueStrategy('escapeParameters')
       .useLocalStorage();
@@ -163,7 +163,7 @@ angular.module('fimex', [
             url: '/bookmarks',
             cache: false,
             views: {
-                'tab-search': {
+                'tab-bookmarks': {
                     templateUrl: 'templates/tab-bookmarks.html',
                     controller: 'BookmarksCtrl'
                 }

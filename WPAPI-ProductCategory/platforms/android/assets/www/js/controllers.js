@@ -1,6 +1,6 @@
 angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', ["$scope", "Notes", "$filter", function ($scope, Notes, $filter) {
+.controller('DashCtrl', ["Notes", "$scope", "$filter", function (Notes, $scope, $filter) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
@@ -9,7 +9,7 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('CategoriesCtrl', ["$ionicHistory", "$rootScope", "$filter", "AppSettings", "$stateParams", "$scope", "DataLoader", "$log", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function(AppSettings, DataLoader, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
     });
@@ -103,30 +103,11 @@ angular.module('fimex.controllers', [])
     };
 
     // Modal for Product Detal
-    $ionicModal.fromTemplateUrl('templates/product-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.modal = modal;
-        $scope.detail = null;
-        $scope.detailImg = null;
-    });
-    $scope.openModal = function ($data) {
-        $scope.detail = $data;
-        $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
-        $ionicSlideBoxDelegate.update();
-        $scope.modal.show();
-    };
-    $scope.closeModal = function () {
-        $scope.modal.hide();
-    };
-    $scope.$on('$destroy', function () {
-        $scope.modal.remove();
-    });
+    ModalHandler_product.init($scope);
 }])
 
 
-.controller('SearchCtrl', ["AppSettings", "PHPJSfunc", "$scope", "DataLoader", "$log", "$filter", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, $scope, $log, $filter, $ionicLoading) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -198,39 +179,46 @@ angular.module('fimex.controllers', [])
     };
 
     // Modal for Product Detal
-    $ionicModal.fromTemplateUrl('templates/product-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.modal = modal;
-        $scope.detail = null;
-        $scope.detailImg = null;
-    });
-    $scope.openModal = function ($data) {
-        $scope.detail = $data;
-        $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
-        $ionicSlideBoxDelegate.update();
-        $scope.modal.show();
-    };
-    $scope.closeModal = function () {
-        $scope.modal.hide();
-    };
-    $scope.$on('$destroy', function () {
-        $scope.modal.remove();
-    });
+    ModalHandler_product.init($scope);
 }])
 
 
-.controller('BookmarksCtrl', ["$scope", "Notes", "$filter", function ($scope, Notes, $filter) {
-    var NotesRS = Notes.all();
-    $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
-    $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
-    $scope.notesCount = NotesRS.length;
-    $scope.today = new Date();
+.controller('BookmarksCtrl', ["BookMarks", "$scope", "$ionicPopup", function (BookMarks, $scope, $ionicPopup) {
+    $scope.RSempty = false;
+    $scope.bookmarks = null;
+    $scope.RScount = 0;
+
+    BookMarks.count().then(function (value) {
+        console.debug('# for BookMarks is ' + value);
+        if (value > 0) {
+            $scope.RScount = value;
+            $scope.bookmarks = BookMarks.getall();
+        } else {
+            $scope.RSempty = true;
+        }
+    });
+
+    $scope.gotoSearch = function () { };
+    $scope.openEnquiry = function () { };
+
+    $scope.dropBookmark = function ($target) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Consume Ice Cream',
+            template: 'Are you sure you want to eat this ice cream?'
+        });
+        confirmPopup.then(function (res) {
+            if (res) {
+                BookMarks.drop($target.id);
+                $scope.bookmarks = BookMarks.getall();
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    }
 }])
 
 
-.controller('SettingsCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", "$timeout", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster, $timeout) {
+.controller('SettingsCtrl', ["AppSettings", "EmailSender", "$scope", "$ionicHistory", "$translate", "$filter", "toaster", function (AppSettings, EmailSender, $scope, $ionicHistory, $translate, $filter, toaster) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {

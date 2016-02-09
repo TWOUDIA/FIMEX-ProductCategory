@@ -1,18 +1,23 @@
 <ion-view>
     <ion-nav-title>
-        {{::('TAB_CATEGORIES_TITLE_PRODUCT' | translate) }}
+        {{::('TAB_TITLE_BOOKMARKS' | translate) }}
     </ion-nav-title>
-    <ion-header-bar ng-if="titleSub" class="bar-subheader bar-dark" ng-bind-html="'TAB_CATEGORIES_SUBTITLE' | translate:({categoriesTree: titleSub })"></ion-header-bar>
+    <ion-header-bar class="bar-subheader bar-calm">
+        <button class="button icon-left ion-plus-circled" ng-click="gotoSearch()">SEARCH</button>
+        {{RScount}}
+        <button class="button icon-left ion-email" ng-click="openEnquiry()">ENQUIRY</button>
+    </ion-header-bar>
 
-    <ion-content ng-class="{'has-subheader' : titleSub}">
-        <ion-list ng-show="products">
-            <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
-                <img ng-src="{{product.featured_src}}" />
-                <p ng-bind-html="product.title"></p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
+    <ion-content class="has-subheader">
+        <ion-list ng-show="bookmarks">
+            <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="item in bookmarks" type="item-text-wrap">
+                <img ng-src="{{item.thumbnail}}" />
+                <p ng-bind-html="item.name"></p>
+                <p ng-bind-html="item.category"></p>
+                <i class="icon ion-close-circled assertive" ng-click="dropBookmark(item)"></i>
             </ion-item>
         </ion-list>
 
-        <h3 ng-hide="products" ng-class="{null: !RSempty}" translate>{{'ALERT_RECORD_NULL'}}</h3>
+        <h3 ng-hide="bookmarks" ng-class="{null: !RSempty}" translate>{{'NO_BOOKMARK_RECORDS'}}</h3>
     </ion-content>
 </ion-view>
