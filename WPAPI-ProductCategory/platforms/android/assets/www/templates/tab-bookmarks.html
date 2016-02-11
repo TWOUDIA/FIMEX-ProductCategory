@@ -2,13 +2,8 @@
     <ion-nav-title>
         {{::('TAB_TITLE_BOOKMARKS' | translate) }}
     </ion-nav-title>
-    <ion-header-bar class="bar-subheader bar-calm">
-        <button class="button icon-left ion-plus-circled" ng-click="gotoSearch()">SEARCH</button>
-        {{RScount}}
-        <button class="button icon-left ion-email" ng-click="openEnquiry()">ENQUIRY</button>
-    </ion-header-bar>
-
-    <ion-content class="has-subheader">
+    
+    <ion-content>
         <ion-list ng-show="bookmarks">
             <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="item in bookmarks" type="item-text-wrap">
                 <img ng-src="{{item.thumbnail}}" />
@@ -18,6 +13,11 @@
             </ion-item>
         </ion-list>
 
-        <h3 ng-hide="bookmarks" ng-class="{null: !RSempty}" translate>{{'NO_BOOKMARK_RECORDS'}}</h3>
+        <h3 ng-hide="bookmarks" ng-class="{null: !RSempty}" translate>{{'ALERT_BOOKMARK_NULL'}}</h3>
     </ion-content>
+    <ion-footer-bar class="bar-light">
+        <button class="button icon-left ion-plus-circled button-royal" ng-click="gotoSearch()" translate>{{'TAB_BOOKMARKS_BUTTON_ADDMORE'}}</button>
+        <h5 class="center" ng-bind-html="'TAB_BOOKMARKS_SUBTITLE' | translate:({amount: RScount })"></h5>
+        <button class="button icon-left ion-email button-royal" ng-click="openEnquiry()" ng-disabled="!bookmarks" translate>{{'TAB_BOOKMARKS_BUTTON_ENQUIRY'}}</button>
+    </ion-footer-bar>
 </ion-view>

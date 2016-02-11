@@ -41,7 +41,6 @@
     <splash density="port-xhdpi" src="res/screens/android/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="res/screens/android/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="res/screens/android/drawable-port-xxxhdpi-screen.png" />
-    <preference name="Fullscreen" value="false" />
     <preference name="android-windowSoftInputMode" value="adjustPan" />
     <name>FIMEX PRODUCT CATEGORY</name>
     <description>The APP for FIMEX Product Category. Users can see the update-to-date product information provided by FIMEX. With localized interface and easy-to-understand controls, users would simply navigate FIMEX product data.</description>
@@ -53,7 +52,7 @@
     <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="Orientation" value="portrait" />
-    <preference name="Fullscreen" value="True" />
+    <preference name="Fullscreen" value="false" />
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="none" />

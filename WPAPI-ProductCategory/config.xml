@@ -10,7 +10,7 @@
   <preference name="windows-target-version" value="8.1" />
   <preference name="windows-phone-target-version" value="8.1" />
   <preference name="Orientation" value="portrait" />
-  <preference name="Fullscreen" value="True" />
+  <preference name="Fullscreen" value="false" />
   <preference name="HideKeyboardFormAccessoryBar" value="true" />
   <preference name="target-device" value="universal" />
   <preference name="BackupWebStorage" value="none" />

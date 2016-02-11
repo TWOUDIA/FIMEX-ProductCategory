@@ -8,7 +8,7 @@ angular.module('fimex', [
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'toaster', // inject the angularjs-toaster module
     'LocalForageModule', // inject the angular-localforage module
-    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
+    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.notes' //customs
 ])
 
 .run(["AppSettings", "DataLoader", "$ionicPlatform", "$filter", "$timeout", "$interval", "$log", "toaster", "$ionicLoading", function (AppSettings, DataLoader, $ionicPlatform, $filter, $timeout, $interval, $log, toaster, $ionicLoading) {
@@ -23,7 +23,8 @@ angular.module('fimex', [
             $timeout(function () {
                 toaster.pop({
                     type: 'error',
-                    body: $filter('translate')('INTERNET_CONNECTION_NONE')
+                    body: $filter('translate')('INTERNET_CONNECTION_NONE'),
+                    toasterId: 1
                 });
             }, 0);
         }
@@ -67,7 +68,8 @@ angular.module('fimex', [
             $timeout(function () {
                 toaster.pop({
                     type: 'error',
-                    body: $filter('translate')('CONFIRM_BEFORE_APP_EXIT')
+                    body: $filter('translate')('CONFIRM_BEFORE_APP_EXIT'),
+                    toasterId: 1
                 });
             }, 0);
             
@@ -79,7 +81,9 @@ angular.module('fimex', [
     }, 101);
 }])
 
-.config(["$ionicConfigProvider", "tmhDynamicLocaleProvider", "$translateProvider", "$localForageProvider", "$stateProvider", "$urlRouterProvider", function ($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $localForageProvider, $stateProvider, $urlRouterProvider) {
+.config(["$httpProvider", "$ionicConfigProvider", "tmhDynamicLocaleProvider", "$translateProvider", "$localForageProvider", "$stateProvider", "$urlRouterProvider", function ($httpProvider, $ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $localForageProvider, $stateProvider, $urlRouterProvider) {
+    $httpProvider.defaults.useXDomain = true;
+
     //global configure for tabs position
     $ionicConfigProvider.tabs.position('bottom');
 

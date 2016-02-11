@@ -19,7 +19,7 @@ angular.module('fimex.controllers', [])
 
     var CategoriesSplitTerm = ' >> ';
     $scope.RSitemURI = '#/tab/categories/' + (parseInt($stateParams.categoryLevel) + 1);
-    var PretitleSub = AppSettings.get('appFIMEXCategoriesRS');
+    var PretitleSub = AppSettings.get('curCategoriesLv');
     var arrPrevtitleSub = PretitleSub.split(CategoriesSplitTerm, 2);
     $scope.showCount = 0;
 
@@ -72,10 +72,10 @@ angular.module('fimex.controllers', [])
 
     if (parseInt($stateParams.categoryLevel) == 0) {
         $scope.titleSub = '';
-        AppSettings.change('appFIMEXCategoriesRS', '');
+        AppSettings.change('curCategoriesLv', '');
     } else {
         $scope.titleSub = (PretitleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : (PretitleSub + CategoriesSplitTerm + $filter('unescapeHTML')($stateParams.categoryName));
-        AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
+        AppSettings.change('curCategoriesLv', $scope.titleSub);
     }
     $scope.loadResult();
 
@@ -183,13 +183,12 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('BookmarksCtrl', ["BookMarks", "$scope", "$ionicPopup", function (BookMarks, $scope, $ionicPopup) {
+.controller('BookmarksCtrl', ["BookMarks", "ModalHandler_enquiry", "$scope", "$state", "$ionicPopup", "$filter", function (BookMarks, ModalHandler_enquiry, $scope, $state, $ionicPopup, $filter) {
     $scope.RSempty = false;
     $scope.bookmarks = null;
     $scope.RScount = 0;
 
     BookMarks.count().then(function (value) {
-        console.debug('# for BookMarks is ' + value);
         if (value > 0) {
             $scope.RScount = value;
             $scope.bookmarks = BookMarks.getall();
@@ -198,27 +197,34 @@ angular.module('fimex.controllers', [])
         }
     });
 
-    $scope.gotoSearch = function () { };
-    $scope.openEnquiry = function () { };
+    $scope.gotoSearch = function () {
+        $state.go('tab.search');
+    };
+
+    $scope.openEnquiry = function () {
+        // Modal for Enquiry
+        ModalHandler_enquiry.init($scope);
+    };
 
     $scope.dropBookmark = function ($target) {
         var confirmPopup = $ionicPopup.confirm({
-            title: 'Consume Ice Cream',
-            template: 'Are you sure you want to eat this ice cream?'
+            title: $filter('translate')('POPUP_DROPBOOKMARK_CONFIRM_TITLE'),
+            template: $filter('translate')('POPUP_DROPBOOKMARK_CONFIRM_TEMPLATE'),
+            cancelType: 'button-light',
+            okType: 'button-assertive'
         });
         confirmPopup.then(function (res) {
             if (res) {
                 BookMarks.drop($target.id);
+                $scope.RScount--;
                 $scope.bookmarks = BookMarks.getall();
-            } else {
-                console.log('You are not sure');
             }
         });
-    }
+    };
 }])
 
 
-.controller('SettingsCtrl', ["AppSettings", "EmailSender", "$scope", "$ionicHistory", "$translate", "$filter", "toaster", function (AppSettings, EmailSender, $scope, $ionicHistory, $translate, $filter, toaster) {
+.controller('SettingsCtrl', ["AppSettings", "EmailSender", "$scope", "$ionicHistory", "$translate", "$filter", function (AppSettings, EmailSender, $scope, $ionicHistory, $translate, $filter) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
@@ -251,11 +257,7 @@ angular.module('fimex.controllers', [])
                 '<tr><td style="border: 1px dashed black; padding: 5px;">Message</td>' + '<td style="border: 1px dashed black; padding: 5px;">' + $scope.ctForm.ctMessage + '</td></tr></tbody></table>',
             'text': 'TEXT VERSION: ' + $scope.ctForm.ctMessage
         };
-        EmailSender.send(mailObj);
-        toaster.pop({
-            type: 'info',
-            body: $filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName })
-        });
+        EmailSender.send(mailObj, $scope.ctForm.ctName);
 
         //reset Form
         $scope.ctForm = {};

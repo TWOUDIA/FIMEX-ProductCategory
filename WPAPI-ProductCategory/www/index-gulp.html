@@ -43,7 +43,7 @@
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
-    <script src="js/info.js"></script>
+    <script src="js/notes.js"></script>
     <!-- endbuild -->
 </head>
 <body ng-app="fimex">
@@ -52,6 +52,7 @@
         </ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view></ion-nav-view>
-    <toaster-container toaster-options="{'close-button': false, 'position-class': 'toast-bottom-center', 'time-out': 2000, 'mouseover-timer-stop': false}"></toaster-container>
+    <toaster-container toaster-options="{'toaster-id': 1, 'close-button': false, 'position-class': 'toast-bottom-center', 'time-out': 2000, 'mouseover-timer-stop': false}"></toaster-container>
+    <toaster-container toaster-options="{'toaster-id': 2, 'close-button': false, 'position-class': 'toast-center', 'time-out': 2000, 'mouseover-timer-stop': false}"></toaster-container>
 </body>
 </html>

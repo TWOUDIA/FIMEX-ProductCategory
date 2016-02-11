@@ -63,6 +63,11 @@ $bar-subheader-height: 80px !default; // 4 lines
 
     .item, .item-body {
         padding: 10px;
+
+    }
+
+    .item-icon-right {
+        padding-right: 34px;
     }
 
     form label.item {
@@ -128,4 +133,8 @@ form {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.right-float {
+    float: right;
 }
