@@ -21,7 +21,7 @@ angular.module('fimex.directives', [])
                 element.removeClass('button-positive');
                 if (newVal === scope.value) {
                     element.addClass('button-positive');
-                }
+                };
             });
         }
     };
@@ -36,7 +36,7 @@ angular.module('fimex.directives', [])
                     scope.$eval(attrs.keyInput);
                 });
                 event.preventDefault();
-            }
+            };
         });
     };
 })

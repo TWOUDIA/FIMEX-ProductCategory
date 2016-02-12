@@ -13,9 +13,6 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         },
@@ -23,6 +20,9 @@
             "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "FIMEX PRODUCT CATEGORY"
         }
     },

@@ -40,22 +40,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-splashscreen/www/windows/SplashScreenProxy.js",
-        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
-        "pluginId": "cordova-plugin-splashscreen",
-        "merges": [
-            ""
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
         "id": "cordova-plugin-statusbar.statusbar",
         "pluginId": "cordova-plugin-statusbar",
@@ -77,6 +61,22 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/windows/SplashScreenProxy.js",
+        "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+        "pluginId": "cordova-plugin-splashscreen",
+        "merges": [
+            ""
+        ]
     }
 ];
 module.exports.metadata = 
@@ -84,10 +84,10 @@ module.exports.metadata =
 {
     "cordova-plugin-device": "1.1.0",
     "cordova-plugin-network-information": "1.2.0",
-    "cordova-plugin-splashscreen": "3.1.0",
     "cordova-plugin-statusbar": "2.1.0",
     "cordova-plugin-whitelist": "1.2.2-dev",
-    "ionic-plugin-keyboard": "1.0.8"
+    "ionic-plugin-keyboard": "1.0.8",
+    "cordova-plugin-splashscreen": "3.2.1-dev"
 }
 // BOTTOM OF METADATA
 });

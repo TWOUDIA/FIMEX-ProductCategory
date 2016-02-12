@@ -9,7 +9,7 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function(AppSettings, DataLoader, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
+.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ImagesCaching", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function (AppSettings, DataLoader, ImagesCaching, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
     });
@@ -42,8 +42,10 @@ angular.module('fimex.controllers', [])
                         if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                             nextPage++;
                             $scope.able2Loadmore = 1;
-                        }
-                    }
+                        };
+                        //Caching Images
+                        ImagesCaching.Store($scope.products, 'featured_src');
+                    };
                     $ionicLoading.hide();
                 }, function (response) {
                     $log.error('error', response);
@@ -62,7 +64,7 @@ angular.module('fimex.controllers', [])
                 if ($scope.categories.length == 0) {
                     $scope.categories = null;
                     $scope.RSempty = true;
-                }
+                };
                 $ionicLoading.hide();
             }
             PretitleSub = (parseInt($stateParams.categoryLevel) > 1) ? arrPrevtitleSub[0] : '';
@@ -76,7 +78,7 @@ angular.module('fimex.controllers', [])
     } else {
         $scope.titleSub = (PretitleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : (PretitleSub + CategoriesSplitTerm + $filter('unescapeHTML')($stateParams.categoryName));
         AppSettings.change('curCategoriesLv', $scope.titleSub);
-    }
+    };
     $scope.loadResult();
 
     $scope.loadMore = function () {
@@ -91,8 +93,10 @@ angular.module('fimex.controllers', [])
                 if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                     nextPage++;
                     $scope.able2Loadmore = 1;
-                }
-            }
+                };
+                //Caching Images
+                ImagesCaching.Store($scope.products, 'featured_src');
+            };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function (response) {
@@ -107,7 +111,7 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, $scope, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "ImagesCaching", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, ImagesCaching, $scope, $log, $filter, $ionicLoading) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -145,8 +149,10 @@ angular.module('fimex.controllers', [])
                 if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                     nextPage++;
                     $scope.able2Loadmore = 1;
-                }
-            }
+                };
+                //Caching Images
+                ImagesCaching.Store($scope.products, 'featured_src');
+            };
             $ionicLoading.hide();
         }, function (response) {
             $log.error('error', response);
@@ -167,8 +173,10 @@ angular.module('fimex.controllers', [])
                 if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                     nextPage++;
                     $scope.able2Loadmore = 1;
-                }
-            }
+                };
+                //Caching Images
+                ImagesCaching.Store($scope.products, 'featured_src');
+            };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function (response) {
@@ -194,7 +202,7 @@ angular.module('fimex.controllers', [])
             $scope.bookmarks = BookMarks.getall();
         } else {
             $scope.RSempty = true;
-        }
+        };
     });
 
     $scope.gotoSearch = function () {
@@ -218,7 +226,7 @@ angular.module('fimex.controllers', [])
                 BookMarks.drop($target.id);
                 $scope.RScount--;
                 $scope.bookmarks = BookMarks.getall();
-            }
+            };
         });
     };
 }])
@@ -238,7 +246,7 @@ angular.module('fimex.controllers', [])
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
             AppSettings.change('wcCategories', []);
-        }
+        };
     });
 
     // contact form submitting

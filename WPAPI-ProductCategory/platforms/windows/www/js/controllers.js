@@ -1,30 +1,15 @@
 ﻿angular.module('fimex.controllers', [])
 
-.controller('DashCtrl', ["$scope", "Notes", "$filter", "$log", "DataLoader", "AppSettings", "$ionicLoading", function ($scope, Notes, $filter, $log, DataLoader, AppSettings, $ionicLoading) {
+.controller('DashCtrl', ["Notes", "$scope", "$filter", function (Notes, $scope, $filter) {
     var NotesRS = Notes.all();
     $scope.notesNormal = $filter('filter')(NotesRS, { top: 0 });
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
     $scope.notesCount = NotesRS.length;
     $scope.today = new Date();
-
-    // Get Categories Object
-    if (AppSettings.get('wcCategories').length == 0) {
-        $ionicLoading.show({
-            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
-        });
-
-        DataLoader.get(('products/categories?'), 1000).then(function (response) {
-            AppSettings.change('wcCategories', response.data.product_categories);
-            $ionicLoading.hide();
-        }, function (response) {
-            $log.error('error', response);
-            $ionicLoading.hide();
-        });
-    }
 }])
 
 
-.controller('CategoriesCtrl', ["$ionicHistory", "$rootScope", "$filter", "AppSettings", "$stateParams", "$scope", "DataLoader", "$log", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function ($ionicHistory, $rootScope, $filter, AppSettings, $stateParams, $scope, DataLoader, $log, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function(AppSettings, DataLoader, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
     });
@@ -34,7 +19,7 @@
 
     var CategoriesSplitTerm = ' >> ';
     $scope.RSitemURI = '#/tab/categories/' + (parseInt($stateParams.categoryLevel) + 1);
-    var PretitleSub = AppSettings.get('appFIMEXCategoriesRS');
+    var PretitleSub = AppSettings.get('curCategoriesLv');
     var arrPrevtitleSub = PretitleSub.split(CategoriesSplitTerm, 2);
     $scope.showCount = 0;
 
@@ -57,8 +42,8 @@
                         if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                             nextPage++;
                             $scope.able2Loadmore = 1;
-                        }
-                    }
+                        };
+                    };
                     $ionicLoading.hide();
                 }, function (response) {
                     $log.error('error', response);
@@ -77,7 +62,7 @@
                 if ($scope.categories.length == 0) {
                     $scope.categories = null;
                     $scope.RSempty = true;
-                }
+                };
                 $ionicLoading.hide();
             }
             PretitleSub = (parseInt($stateParams.categoryLevel) > 1) ? arrPrevtitleSub[0] : '';
@@ -87,11 +72,11 @@
 
     if (parseInt($stateParams.categoryLevel) == 0) {
         $scope.titleSub = '';
-        AppSettings.change('appFIMEXCategoriesRS', '');
+        AppSettings.change('curCategoriesLv', '');
     } else {
         $scope.titleSub = (PretitleSub == '') ? $filter('unescapeHTML')($stateParams.categoryName) : (PretitleSub + CategoriesSplitTerm + $filter('unescapeHTML')($stateParams.categoryName));
-        AppSettings.change('appFIMEXCategoriesRS', $scope.titleSub);
-    }
+        AppSettings.change('curCategoriesLv', $scope.titleSub);
+    };
     $scope.loadResult();
 
     $scope.loadMore = function () {
@@ -106,8 +91,8 @@
                 if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                     nextPage++;
                     $scope.able2Loadmore = 1;
-                }
-            }
+                };
+            };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function (response) {
@@ -118,30 +103,11 @@
     };
 
     // Modal for Product Detal
-    $ionicModal.fromTemplateUrl('templates/product-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.modal = modal;
-        $scope.detail = null;
-        $scope.detailImg = null;
-    });
-    $scope.openModal = function ($data) {
-        $scope.detail = $data;
-        $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
-        $ionicSlideBoxDelegate.update();
-        $scope.modal.show();
-    };
-    $scope.closeModal = function () {
-        $scope.modal.hide();
-    };
-    $scope.$on('$destroy', function () {
-        $scope.modal.remove();
-    });
+    ModalHandler_product.init($scope);
 }])
 
 
-.controller('SearchCtrl', ["AppSettings", "PHPJSfunc", "$scope", "DataLoader", "$log", "$filter", "$ionicLoading", "$ionicModal", "$ionicSlideBoxDelegate", function (AppSettings, PHPJSfunc, $scope, DataLoader, $log, $filter, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate) {
+.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, $scope, $log, $filter, $ionicLoading) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -179,8 +145,8 @@
                 if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                     nextPage++;
                     $scope.able2Loadmore = 1;
-                }
-            }
+                };
+            };
             $ionicLoading.hide();
         }, function (response) {
             $log.error('error', response);
@@ -201,8 +167,8 @@
                 if (response.data.products.length == AppSettings.get('wcAPIRSlimit')) {
                     nextPage++;
                     $scope.able2Loadmore = 1;
-                }
-            }
+                };
+            };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function (response) {
@@ -213,30 +179,52 @@
     };
 
     // Modal for Product Detal
-    $ionicModal.fromTemplateUrl('templates/product-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.modal = modal;
-        $scope.detail = null;
-        $scope.detailImg = null;
-    });
-    $scope.openModal = function ($data) {
-        $scope.detail = $data;
-        $scope.detailImg = $filter('unique')($scope.detail.images, 'src');
-        $ionicSlideBoxDelegate.update();
-        $scope.modal.show();
-    };
-    $scope.closeModal = function () {
-        $scope.modal.hide();
-    };
-    $scope.$on('$destroy', function () {
-        $scope.modal.remove();
-    });
+    ModalHandler_product.init($scope);
 }])
 
 
-.controller('SettingCtrl', ["$state", "$scope", "$translate", "AppSettings", "$ionicHistory", "EmailSender", "$filter", "toaster", "$timeout", function ($state, $scope, $translate, AppSettings, $ionicHistory, EmailSender, $filter, toaster, $timeout) {
+.controller('BookmarksCtrl', ["BookMarks", "ModalHandler_enquiry", "$scope", "$state", "$ionicPopup", "$filter", function (BookMarks, ModalHandler_enquiry, $scope, $state, $ionicPopup, $filter) {
+    $scope.RSempty = false;
+    $scope.bookmarks = null;
+    $scope.RScount = 0;
+
+    BookMarks.count().then(function (value) {
+        if (value > 0) {
+            $scope.RScount = value;
+            $scope.bookmarks = BookMarks.getall();
+        } else {
+            $scope.RSempty = true;
+        };
+    });
+
+    $scope.gotoSearch = function () {
+        $state.go('tab.search');
+    };
+
+    $scope.openEnquiry = function () {
+        // Modal for Enquiry
+        ModalHandler_enquiry.init($scope);
+    };
+
+    $scope.dropBookmark = function ($target) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: $filter('translate')('POPUP_DROPBOOKMARK_CONFIRM_TITLE'),
+            template: $filter('translate')('POPUP_DROPBOOKMARK_CONFIRM_TEMPLATE'),
+            cancelType: 'button-light',
+            okType: 'button-assertive'
+        });
+        confirmPopup.then(function (res) {
+            if (res) {
+                BookMarks.drop($target.id);
+                $scope.RScount--;
+                $scope.bookmarks = BookMarks.getall();
+            };
+        });
+    };
+}])
+
+
+.controller('SettingsCtrl', ["AppSettings", "EmailSender", "$scope", "$ionicHistory", "$translate", "$filter", function (AppSettings, EmailSender, $scope, $ionicHistory, $translate, $filter) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
@@ -249,12 +237,8 @@
             AppSettings.change('language', $scope.settings.language);
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
-
             AppSettings.change('wcCategories', []);
-            $timeout(function () {
-                $state.go('tab.dash', { reload: true });
-            }, 50);
-        }
+        };
     });
 
     // contact form submitting
@@ -273,11 +257,7 @@
                 '<tr><td style="border: 1px dashed black; padding: 5px;">Message</td>' + '<td style="border: 1px dashed black; padding: 5px;">' + $scope.ctForm.ctMessage + '</td></tr></tbody></table>',
             'text': 'TEXT VERSION: ' + $scope.ctForm.ctMessage
         };
-        EmailSender.send(mailObj);
-        toaster.pop({
-            type: 'info',
-            body: $filter('translate')('ALERT_MAIL_SENT', { name: $scope.ctForm.ctName })
-        });
+        EmailSender.send(mailObj, $scope.ctForm.ctName);
 
         //reset Form
         $scope.ctForm = {};

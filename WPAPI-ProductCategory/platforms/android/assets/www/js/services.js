@@ -1,5 +1,17 @@
 angular.module('fimex.services', [])
 
+.factory('ImagesCaching', ['$ImageCacheFactory', function ($ImageCacheFactory) {
+    return {
+        Store: function (data, $attr) {
+            var images = [];
+            for (var i = 0; i < data.length; i++) {
+                images.push(data[i][$attr]);
+            }
+            $ImageCacheFactory.Cache(images);
+        }
+    }
+}])
+
 .factory('DataLoader', ["AppSettings", "$http", function (AppSettings, $http) {
     return {
         get: function ($term, $limit) {
@@ -80,7 +92,7 @@ angular.module('fimex.services', [])
                 break;
             default:
                 savedData.languageURI = value + '/';
-        }
+        };
     }
 
     // Initial Language and LanguageURI
@@ -96,7 +108,7 @@ angular.module('fimex.services', [])
                 // Apply Translate
                 $translate.use(value);
                 tmhDynamicLocale.set(value);
-            }
+            };
         },
         get: function ($item) {
             return savedData[$item];
@@ -110,7 +122,7 @@ angular.module('fimex.services', [])
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + '?' + savedData.wcAPIURIsuffix + $limit;
             } else {
                 return savedData.domainURI + savedData.languageURI + savedData.wcAPIURI + $term + savedData.wcAPIURIsuffix + $limit;
-            }
+            };
         },
         getAuthPhrase: function ($name, $key) {
             return btoa($name + ':' + $key);
@@ -165,7 +177,7 @@ angular.module('fimex.services', [])
     }
 }])
 
-.service('ModalHandler_product', ["BookMarks", "$ionicModal", "$filter", "$ionicSlideBoxDelegate", "$ionicScrollDelegate", function (BookMarks, $ionicModal, $filter, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.service('ModalHandler_product', ["BookMarks", "ImagesCaching", "$ionicModal", "$filter", "$ionicSlideBoxDelegate", "$ionicScrollDelegate", function (BookMarks, ImagesCaching, $ionicModal, $filter, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
     return {
         init: function ($sce) {
             $ionicModal.fromTemplateUrl('templates/product-modal.html', {
@@ -186,6 +198,9 @@ angular.module('fimex.services', [])
                 $ionicSlideBoxDelegate.update();
                 $sce.modal.show();
                 $ionicScrollDelegate.scrollTop();
+
+                //Caching Images
+                ImagesCaching.Store($sce.detailImg, 'src');
             };
             $sce.closeModal = function () {
                 $sce.modal.hide();
@@ -201,7 +216,7 @@ angular.module('fimex.services', [])
                         BookMarks.drop($product.id);
                     } else {
                         BookMarks.add($product.id, $product);
-                    }
+                    };
                 });
                 $sce.detail.bookmarked = !$sce.detail.bookmarked;
                 $sce.closeModal();

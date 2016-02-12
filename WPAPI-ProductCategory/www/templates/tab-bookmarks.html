@@ -5,7 +5,7 @@
     
     <ion-content>
         <ion-list ng-show="bookmarks">
-            <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="item in bookmarks" type="item-text-wrap">
+            <ion-item class="item-thumbnail-left item-icon-right" collection-repeat="item in bookmarks" type="item-text-wrap">
                 <img ng-src="{{item.thumbnail}}" />
                 <p ng-bind-html="item.name"></p>
                 <p ng-bind-html="item.category"></p>

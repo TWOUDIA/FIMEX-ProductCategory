@@ -8,7 +8,7 @@ angular.module('fimex.filters', [])
         var parts = htmlObject.getElementsByTagName(tag);
         for (var i = parts.length; i > 0 ; i--) {
             parts[i - 1].parentNode.removeChild(parts[i - 1]);
-        }
+        };
 
         return $sce.trustAsHtml(htmlObject.outerHTML);
     }
@@ -33,7 +33,7 @@ angular.module('fimex.filters', [])
     return function (str) {
         angular.forEach(entityMap, function (value, key) {
             str = String(str).replace(new RegExp(value, 'gi'), key);
-        })
+        });
         return str;
     }
 });

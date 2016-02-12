@@ -2,13 +2,13 @@
   <ion-content class="padding">
     <img class="center" ng-src="img/app_fimex_tab_home.png">
 
-    <div ng-if="notesTop" class="list card notesTop" ng-repeat="new in notesTop| orderBy:id:reverse">
-      <div class="item item-divider" translate>{{new.title}}</div>
-      <div class="item item-body" ng-bind-html="new.content | translate"></div>
+    <div ng-if="notesTop" class="list card notesTop" ng-repeat="note in notesTop| orderBy:'id':true">
+      <div class="item item-divider" translate>{{note.title}}</div>
+      <div class="item item-body" ng-bind-html="note.content | translate"></div>
     </div>  
-    <div ng-if="notesNormal" class="list card notesNormal" ng-repeat="new in notesNormal | orderBy:id:reverse">
-      <div class="item item-divider" translate>{{new.title}}</div>
-      <div class="item item-body" ng-bind-html="new.content | translate"></div>
+    <div ng-if="notesNormal" class="list card notesNormal" ng-repeat="note in notesNormal | orderBy:'id':true">
+      <div class="item item-divider" translate>{{note.title}}</div>
+      <div class="item item-body" ng-bind-html="note.content | translate"></div>
     </div>
     <div ng-if="!notesCount" class="list card notesNull">
       <div class="item item-divider" translate>NOTES_EMPTY_TITLE</div>

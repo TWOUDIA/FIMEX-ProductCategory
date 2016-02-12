@@ -7,55 +7,85 @@ angular.module('fimex', [
     'pascalprecht.translate',  // inject the angular-translate module
     'tmh.dynamicLocale', // inject the angular-dynamic-locale module
     'toaster', // inject the angularjs-toaster module
-    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.info' //customs
+    'LocalForageModule', // inject the angular-localforage module
+    'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.notes' //customs
 ])
 
-.run(["$ionicPlatform", "toaster", "$filter", "$timeout", function ($ionicPlatform, toaster, $filter, $timeout) {
+.run(["AppSettings", "DataLoader", "$ionicPlatform", "$filter", "$timeout", "$interval", "$log", "toaster", "$ionicLoading", function (AppSettings, DataLoader, $ionicPlatform, $filter, $timeout, $interval, $log, toaster, $ionicLoading) {
     $ionicPlatform.ready(function () {
         cordova.plugins.Keyboard.disableScroll(true);
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
 
+        /* TODO: Response with Network Unaccessable ? */
         function alert4Offline() {
             $timeout(function () {
                 toaster.pop({
                     type: 'error',
-                    body: $filter('translate')('INTERNET_CONNECTION_NONE')
+                    body: $filter('translate')('INTERNET_CONNECTION_NONE'),
+                    toasterId: 1
                 });
             }, 0);
-        }
-
-        /* TODO: Response with Network Unaccessable ? */
+        };
         document.addEventListener("offline", alert4Offline, false);
-
     });
 
-    // Exit App
-    var countTimerForCloseApp = false;
-    $ionicPlatform.registerBackButtonAction(function (e) {
-        e.preventDefault();
-        if (countTimerForCloseApp) {
-            ionic.Platform.exitApp();
-        } else {
-            countTimerForCloseApp = true;
-            // Force to popup immediately
-            $timeout(function () {
-                toaster.pop({
-                    type: 'error',
-                    body: $filter('translate')('CONFIRM_BEFORE_APP_EXIT')
-                });
-            }, 0);
-            
-            $timeout(function () {
-                countTimerForCloseApp = false;
-            }, 5000);
+    // Check wcCategories every five seconds
+    function updatewcCategories() {
+        $ionicLoading.show({
+            template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
+        });
+
+        DataLoader.get(('products/categories?'), 1000).then(function (response) {
+            AppSettings.change('wcCategories', response.data.product_categories);
+            $ionicLoading.hide();
+        }, function (response) {
+            $log.error('error', response);
+            $ionicLoading.hide();
+        });
+    };
+    $interval(function () {
+        if (AppSettings.get('wcCategories').length == 0) {
+            updatewcCategories();
         }
-        return false;
-    }, 101);
+    }, 5000);
+
+    //// Make elements disappear immediately
+    //window.addEventListener('native.keyboardshow', function () {
+    //    document.body.classList.add('keyboard-open');
+    //});
+
+    // Exit App; only for Android System
+    if (ionic.Platform.isAndroid()) {
+        var countTimerForCloseApp = false;
+        $ionicPlatform.registerBackButtonAction(function (e) {
+            e.preventDefault();
+            if (countTimerForCloseApp) {
+                ionic.Platform.exitApp();
+            } else {
+                countTimerForCloseApp = true;
+                // Force to popup immediately
+                $timeout(function () {
+                    toaster.pop({
+                        type: 'error',
+                        body: $filter('translate')('CONFIRM_BEFORE_APP_EXIT'),
+                        toasterId: 1
+                    });
+                }, 0);
+
+                $timeout(function () {
+                    countTimerForCloseApp = false;
+                }, 5000);
+            };
+            return false;
+        }, 101);
+    };
 }])
 
-.config(["$ionicConfigProvider", "tmhDynamicLocaleProvider", "$translateProvider", "$stateProvider", "$urlRouterProvider", function ($ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $stateProvider, $urlRouterProvider) {
+.config(["$httpProvider", "$ionicConfigProvider", "tmhDynamicLocaleProvider", "$translateProvider", "$localForageProvider", "$stateProvider", "$urlRouterProvider", function ($httpProvider, $ionicConfigProvider, tmhDynamicLocaleProvider, $translateProvider, $localForageProvider, $stateProvider, $urlRouterProvider) {
+    $httpProvider.defaults.useXDomain = true;
+
     //global configure for tabs position
     $ionicConfigProvider.tabs.position('bottom');
 
@@ -68,7 +98,7 @@ angular.module('fimex', [
           prefix: 'i18n/',
           suffix: '.json'
       })
-      .registerAvailableLanguageKeys(['ar', 'de', 'en', 'es', 'fr', 'pt', 'ru', 'zh'], {
+      .registerAvailableLanguageKeys(['ar', 'de', 'en', 'es', 'fr', 'pt', 'ru'], {
           'ar': 'ar', 'ar_*': 'ar',
           'de': 'de', 'de_*': 'de',
           'en': 'en', 'en_*': 'en',
@@ -78,20 +108,28 @@ angular.module('fimex', [
           'ru': 'ru', 'ru_*': 'ru',
           'zh': 'zh', 'zh_*': 'zh'
       })
-      .preferredLanguage('de')
-      .fallbackLanguage(['en', 'zh', 'es', 'fr'])
+      .preferredLanguage('en')
+      .fallbackLanguage(['en', 'de', 'es', 'ru'])
       .determinePreferredLanguage()
       .useSanitizeValueStrategy('escapeParameters')
       .useLocalStorage();
 
+    // Setup defaults for LocalForage
+    $localForageProvider.config({
+        name: 'FIMEXProductCategory', // name of the database and prefix for your data, it is "lf" by default
+        storeName: 'prefProducts', // name of the table
+        description: 'Let user to keep their preference on FIMEX product(s) on mobile.'
+    });
+
     // Ionic uses AngularUI Router which uses the concept of states
     $stateProvider
-    // setup an abstract state for the tabs directive
+        // setup an abstract state for the tabs directive
         .state('tab', {
             url: "/tab",
             abstract: true,
             templateUrl: "templates/tabs.html"
         })
+        // put tabs in following
         .state('tab.dash', {
             url: '/dash',
             cache: true,
@@ -128,16 +166,25 @@ angular.module('fimex', [
                 }
             }
         })
-        .state('tab.setting', {
-            url: '/setting',
+        .state('tab.bookmarks', {
+            url: '/bookmarks',
+            cache: false,
             views: {
-                'tab-setting': {
-                    templateUrl: 'templates/tab-setting.html',
-                    controller: 'SettingCtrl'
+                'tab-bookmarks': {
+                    templateUrl: 'templates/tab-bookmarks.html',
+                    controller: 'BookmarksCtrl'
+                }
+            }
+        })
+        .state('tab.settings', {
+            url: '/settings',
+            views: {
+                'tab-settings': {
+                    templateUrl: 'templates/tab-settings.html',
+                    controller: 'SettingsCtrl'
                 }
             }
         });
-
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
 }]);

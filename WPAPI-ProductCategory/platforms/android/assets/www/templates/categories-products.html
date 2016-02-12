@@ -6,7 +6,7 @@
 
     <ion-content ng-class="{'has-subheader' : titleSub}">
         <ion-list ng-show="products">
-            <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
+            <ion-item class="item-thumbnail-left item-icon-right" collection-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
                 <img ng-src="{{product.featured_src}}" />
                 <p ng-bind-html="product.title"></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -17,7 +17,7 @@
         
         <ion-infinite-scroll ng-if="able2Loadmore"
                              on-infinite="loadMore()"
-                             distance="1%"
+                             distance="5%"
                              immediate-check="false">
         </ion-infinite-scroll>
     </ion-content>

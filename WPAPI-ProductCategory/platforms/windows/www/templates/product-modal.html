@@ -1,8 +1,9 @@
 ﻿<div class="modal">
     <ion-content class="padding">
         <div class="card">
-            <div class="item item-divider">
+            <div class="item item-divider item-icon-right">
                 <p ng-bind-html="detail.title"></p>
+                <i ng-class="{'icon positive ion-plus-round': ! detail.bookmarked, 'icon assertive ion-heart': detail.bookmarked}" ng-click="triggerBookmark(detail)"></i>
             </div>
             <div class="item item-image">
                 <img class="full-image" ng-if="detailImg.length == 1" ng-src="{{detailImg[0].src}}">

@@ -27,9 +27,9 @@
     "angular-messages": "^1.4.8",
     "normalize-scss": "^3.0.3",
     "angular-filter": "^0.5.8",
-    "satellizer": "^0.13.4",
     "angularjs-toaster": "^0.4.181",
-    "angular-localForage": "^1.2.5"
+    "angular-localForage": "^1.2.5",
+    "ionic-ion-imageCacheFactory": "^1.0.2"
   },
   "overrides": {
     "ionic": {
@@ -40,6 +40,9 @@
     },
     "angular-filter": {
       "main": "**/dist/*.*"
+    },
+    "ionic-ion-imageCacheFactory": {
+      "main":  "*.*"
     }
   },
   "resolutions": {

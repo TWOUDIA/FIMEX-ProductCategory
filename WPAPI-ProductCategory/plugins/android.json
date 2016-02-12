@@ -10,9 +10,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
@@ -23,6 +20,9 @@
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
         "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         }
     },
