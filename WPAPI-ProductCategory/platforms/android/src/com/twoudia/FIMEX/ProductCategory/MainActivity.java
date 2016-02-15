@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.twoudia.FIMEX2016WPAPIproduct;
+package com.twoudia.FIMEX.ProductCategory;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="1" defaultlocale="en-US" id="com.twoudia.FIMEX2016WPAPIproduct" version="1.2.1" windows-packageVersion="1.2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+<widget android-versionCode="1" defaultlocale="en-US" id="com.twoudia.FIMEX.ProductCategory" version="1.2.1" windows-packageVersion="1.2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -56,7 +56,7 @@
     <preference name="HideKeyboardFormAccessoryBar" value="true" />
     <preference name="target-device" value="universal" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="KeyboardShrinksView" value="true" />
     <icon src="res/icons/android/drawable-xhdpi-icon.png" />
     <preference name="KeepRunning" value="True" />

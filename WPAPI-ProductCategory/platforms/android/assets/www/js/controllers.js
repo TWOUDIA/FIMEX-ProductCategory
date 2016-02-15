@@ -44,7 +44,7 @@ angular.module('fimex.controllers', [])
                             $scope.able2Loadmore = 1;
                         };
                         //Caching Images
-                        ImagesCaching.Store($scope.products, 'featured_src');
+                        ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
                     };
                     $ionicLoading.hide();
                 }, function (response) {
@@ -95,7 +95,7 @@ angular.module('fimex.controllers', [])
                     $scope.able2Loadmore = 1;
                 };
                 //Caching Images
-                ImagesCaching.Store($scope.products, 'featured_src');
+                ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -151,7 +151,7 @@ angular.module('fimex.controllers', [])
                     $scope.able2Loadmore = 1;
                 };
                 //Caching Images
-                ImagesCaching.Store($scope.products, 'featured_src');
+                ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
             $ionicLoading.hide();
         }, function (response) {
@@ -175,7 +175,7 @@ angular.module('fimex.controllers', [])
                     $scope.able2Loadmore = 1;
                 };
                 //Caching Images
-                ImagesCaching.Store($scope.products, 'featured_src');
+                ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');

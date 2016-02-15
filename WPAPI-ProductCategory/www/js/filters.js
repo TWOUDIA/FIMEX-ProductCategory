@@ -20,6 +20,15 @@ angular.module('fimex.filters', [])
     }
 }])
 
+.filter('WPthumbnailURI', ["$sce", function ($sce) {
+    return function (origin) {
+        if (!origin || !origin.length) { return; }
+        var index = origin.lastIndexOf('.');
+        var wpThumbnail_150 = '-150x150.'
+        return $sce.trustAsResourceUrl(origin.substring(0, index) + wpThumbnail_150 + origin.substring(index + 1));
+    }
+}])
+
 .filter('unescapeHTML', function () {
     var entityMap = {
         "&": "&amp;",

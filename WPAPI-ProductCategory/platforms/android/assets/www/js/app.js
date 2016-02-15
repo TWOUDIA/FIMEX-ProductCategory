@@ -99,15 +99,11 @@ angular.module('fimex', [
           prefix: 'i18n/',
           suffix: '.json'
       })
-      .registerAvailableLanguageKeys(['ar', 'de', 'en', 'es', 'fr', 'pt', 'ru'], {
-          'ar': 'ar', 'ar_*': 'ar',
+      .registerAvailableLanguageKeys(['de', 'en', 'es', 'ru'], {
           'de': 'de', 'de_*': 'de',
           'en': 'en', 'en_*': 'en',
           'es': 'es', 'es_*': 'es',
-          'fr': 'fr', 'fr_*': 'fr',
-          'pt': 'pt', 'pt_*': 'pt',
-          'ru': 'ru', 'ru_*': 'ru',
-          'zh': 'zh', 'zh_*': 'zh'
+          'ru': 'ru', 'ru_*': 'ru'
       })
       .preferredLanguage('en')
       .fallbackLanguage(['en', 'de', 'es', 'ru'])

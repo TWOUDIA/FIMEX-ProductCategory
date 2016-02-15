@@ -59,7 +59,8 @@ $bar-subheader-height: 80px !default; // 4 lines
 
 /* CARDS */
 .card {
-    margin: 0 0 15px 0;
+    margin: 15px 0;
+    padding: 10px inherit;
 
     .item, .item-body {
         padding: 10px;

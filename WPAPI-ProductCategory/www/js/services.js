@@ -1,11 +1,12 @@
 angular.module('fimex.services', [])
 
-.factory('ImagesCaching', ['$ImageCacheFactory', function ($ImageCacheFactory) {
+.factory('ImagesCaching', ['$ImageCacheFactory', '$filter', function ($ImageCacheFactory, $filter) {
     return {
-        Store: function (data, $attr) {
+        Store: function (data, $attr, $filter_type) {
             var images = [];
             for (var i = 0; i < data.length; i++) {
-                images.push(data[i][$attr]);
+                var url = ($filter_type == '') ? data[i][$attr] : $filter($filter_type)(data[i][$attr]);
+                images.push(url);
             }
             $ImageCacheFactory.Cache(images);
         }
@@ -200,7 +201,7 @@ angular.module('fimex.services', [])
                 $ionicScrollDelegate.scrollTop();
 
                 //Caching Images
-                ImagesCaching.Store($sce.detailImg, 'src');
+                ImagesCaching.Store($sce.detailImg, 'src', '');
             };
             $sce.closeModal = function () {
                 $sce.modal.hide();

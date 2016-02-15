@@ -7,7 +7,7 @@
     <ion-content ng-class="{'has-subheader' : titleSub}">
         <ion-list ng-show="products">
             <ion-item class="item-thumbnail-left item-icon-right" collection-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
-                <img ng-src="{{product.featured_src}}" />
+                <img ng-src="{{product.featured_src | WPthumbnailURI}}" />
                 <p ng-bind-html="product.title"></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </ion-item>

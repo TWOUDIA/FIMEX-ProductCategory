@@ -1,0 +1,41 @@
+﻿<div class="modal">
+    <ion-content class="padding">
+        <div class="card">
+            <div class="item item-divider">
+                {{'MODAL_ENQUIRY_TITLE' | translate }}
+                <button class="button button-small button-assertive right-float" ng-click="closeModal()" translate>{{'FORM_BUTTON_CLOSE'}}</button>
+            </div>
+            <h4 class="item" ng-bind-html="'MODAL_ENQUIRY_LABEL_RECORDS' | translate:({amount: RScount })"></h4>
+            <form class="item item-body" name="forms.enquiryForm" novalidate="" ng-submit="sendEnquiry()">
+                <div class="list">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label" translate>{{'FORM_LABEL_NAME'}}</span>
+                        <input type="text" name="enName" placeholder="{{'FORM_PLACEHODER_NAME' | translate }}" ng-model="enForm.enName" ng-minlength="3" ng-maxlength="50" required>
+                    </label>
+                    <div class="error-container" ng-show="forms.enquiryForm.enName.$dirty" ng-messages="forms.enquiryForm.enName.$error" role="alert">
+                        <div ng-message="required">{{'FORM_ALERT_NAME_REQUIRED' | translate }}</div>
+                        <div ng-message="minlength, maxlength">{{'FORM_ALERT_NAME_LENGTH' | translate }}</div>
+                    </div>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label" translate>{{'FORM_LABEL_EMAIL'}}</span>
+                        <input type="email" name="enEmail" placeholder="{{'FORM_PLACEHODER_EMAIL' | translate }}" ng-model="enForm.enEmail" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+                    </label>
+                    <div class="error-container" ng-show="forms.enquiryForm.enEmail.$dirty" ng-messages="forms.enquiryForm.enEmail.$error" role="alert">
+                        <div ng-message="required">{{'FORM_ALERT_EMAIL_REQUIRED' | translate }}</div>
+                        <div ng-message="email">{{'FORM_ALERT_EMAIL_INVALID' | translate }}</div>
+                        <div ng-message="pattern">{{'FORM_ALERT_EMAIL_INVALID' | translate }}</div>
+                    </div>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label" translate>{{'FORM_LABEL_MESSAGE'}}</span>
+                        <textarea type="text" name="enMessage" placeholder="{{'FORM_PLACEHODER_MESSAGE' | translate }}" ng-model="enForm.enMessage" ng-minlength="10" ng-maxlength="1000"></textarea>
+                    </label>
+                    <div class="error-container" ng-show="forms.enquiryForm.enMessage.$dirty" ng-messages="forms.enquiryForm.enMessage.$error" role="alert">
+                        <div ng-message="minlength, maxlength">{{'FORM_ALERT_MESSAGE_LENGTH' | translate }}</div>
+                    </div>
+                </div>
+                <button class="button button-full button-calm" ng-disabled="forms.enquiryForm.$pristine || forms.enquiryForm.$invalid" type="submit" translate>{{'FORM_BUTTON_ENQUIRY'}}</button>
+            </form>
+        </div>
+    </ion-content>
+</div>
