@@ -42,16 +42,33 @@ angular.module('fimex.directives', [])
 })
 
 // Handling Element to hide while Keyboard shows up
-.directive('keyboardHide', function () {
+.directive('keyboardHide', ["$window", function ($window) {
     return {
         restrict: 'A',
-        link: function (scope, element, attrs) {
-            scope.$watch('native.keyboardshow', function () {
+        link: function postLink(scope, element, attrs) {
+            console.debug(element);
+            angular.element($window).bind('native.keyboardshow', function () {
                 element.addClass('hide');
             });
-            scope.$watch('native.keyboardhide', function () {
+            angular.element($window).bind('native.keyboardhide', function () {
                 element.removeClass('hide');
             });
         }
     };
-});
+}])
+
+// Handling Element to hide while Keyboard shows up especially for TABS
+.directive('keyboardHide4tabs', ["$window", function ($window) {
+    return {
+        restrict: 'A',
+        link: function postLink(scope, element, attrs) {
+            console.debug(element);
+            angular.element($window).bind('native.keyboardshow', function () {
+                element.addClass('tabs-item-hide');
+            });
+            angular.element($window).bind('native.keyboardhide', function () {
+                element.removeClass('tabs-item-hide');
+            });
+        }
+    };
+}]);

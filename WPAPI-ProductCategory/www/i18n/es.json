@@ -5,12 +5,12 @@
   "LOADING_MORE_TEXT": "Cargando m\u00E1s ... ",
   "ALERT_MAIL_SENT": "Gracias {{name}}, se ha enviado tu mensaje.",
   "ALERT_RECORD_NULL": "Ning\u00fan registro recuperado.",
-  "ALERT_BOOKMARK_NULL": "Please mark your interested product.",
+  "ALERT_BOOKMARK_NULL": "Marca los productos que te interesan.",
 
   "MODAL_PRODUCTDETAIL_TITLE": "PRODUCTO : ",
   "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "CERCA",
-  "MODAL_ENQUIRY_TITLE": "ENQUIRY FORM",
-  "MODAL_ENQUIRY_LABEL_RECORDS": "You have total {{amount}} product(s) in interest.",
+  "MODAL_ENQUIRY_TITLE": "Formulario de solicitud",
+  "MODAL_ENQUIRY_LABEL_RECORDS": "Tienes un total de {{amount}} producto(s) en los marcadores.",
 
   "TAB_TITLE_DASH": "INICIO",
 
@@ -22,12 +22,12 @@
   "TAB_SEARCH_INPUT_SEARCH_PLACEHOLDER": "Palabras clave ... ",
   "TAB_SEARCH_INPUT_SEARCH_BUTTON": "Buscar",
   
-  "TAB_TITLE_BOOKMARKS": "BOOKMARKS",
+  "TAB_TITLE_BOOKMARKS": "MARCADORES",
   "TAB_BOOKMARKS_BUTTON_ENQUIRY": "ENQUIRY",
-  "TAB_BOOKMARKS_BUTTON_ADDMORE": "ADD",
-  "TAB_BOOKMARKS_SUBTITLE": "Bookmarks: {{amount}}",
-  "POPUP_DROPBOOKMARK_CONFIRM_TITLE": "CONFIRMATION OF UNMARK",
-  "POPUP_DROPBOOKMARK_CONFIRM_TEMPLATE": "Are you going to unmark this product as interested ?",
+  "TAB_BOOKMARKS_BUTTON_ADDMORE": "A\u00d1ADIR",
+  "TAB_BOOKMARKS_SUBTITLE": "Marcadores: {{amount}}",
+  "POPUP_DROPBOOKMARK_CONFIRM_TITLE": "CONFIRMACI\u00d3N DE DESMARCAR",
+  "POPUP_DROPBOOKMARK_CONFIRM_TEMPLATE": "\u00bfVas a desmarcar este producto de los marcadores?",
 
   "TAB_TITLE_SETTINGS": "CONFIGURACI\u00d3N",
   "TAB_SETTINGS_SECTION_TITLE_LANGUAGE": "IDIOMA",
@@ -45,8 +45,8 @@
   "FORM_ALERT_MESSAGE_REQUIRED": "No has redactado ning\u00fan mensaje.",
   "FORM_ALERT_MESSAGE_LENGTH": "Tu mensaje debe tener entre 10 y 1000 letras.",
   "FORM_BUTTON_SEND": "ENVIAR",
-  "FORM_BUTTON_ENQUIRY": "ENQUIRY",
-  "FORM_BUTTON_CLOSE": "CLOSE",
+  "FORM_BUTTON_ENQUIRY": "INDAGACI\u00d3N",
+  "FORM_BUTTON_CLOSE": "CERRAR",
 
   "NOTES_EMPTY_TITLE": "Lo sentimos！",
   "NOTES_EMPTY_CONTENT": "Actualmente no hay actualizaciones para el bolet\u00edn {{date|date:'short'}}",
@@ -56,6 +56,6 @@
   "NOTES_20160108_CONTENT": "Si quieres compartir tu experiencia al utilizar esta aplicaci\u00f3n o te interesan los productos FIMEX, env\u00edanos un mensaje a trav\u00e9s del formulario CONTACTA CON NOSOTROS en la pesta\u00f1a CONFIGURACI\u00d3N. Nos pondremos en contacto contigo lo antes posible.",
   "NOTES_20160109_TITLE": "M\u00e9todo para salir de la aplicaci\u00f3n",
   "NOTES_20160109_CONTENT": "Haz doble clic en ATR\u00c1S\/SALIR en 5 segundos para salir de esta aplicaci\u00f3n.",
-  "NOTES_20160211_TITLE": "Notice on Febrary 11, 2016",
-  "NOTES_20160211_CONTENT": "Fix some bugs and add new function of Bookmarking. Now you can bookmark products in interest, and then send enquiry email to us."
+  "NOTES_20160211_TITLE": "Aviso del 11 de febrero de 2016",
+  "NOTES_20160211_CONTENT": "Se han solucionado algunos errores y se ha a\u00f1adido la funci\u00f3n de Marcadores. Ahora ya puedes marcar los productos que te interesan. La lista de marcadores se adjuntar\u00e1 a los mensajes al enviar consultas."
 }

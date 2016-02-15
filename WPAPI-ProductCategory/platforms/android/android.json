@@ -17,10 +17,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
@@ -30,6 +26,10 @@
                         },
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -54,9 +54,6 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
-        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
         },
@@ -65,6 +62,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
         }
     },
     "dependent_plugins": {},
@@ -84,15 +84,6 @@
             "clobbers": [
                 "window.StatusBar"
             ]
-        },
-        {
-            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-            "id": "ionic-plugin-keyboard.keyboard",
-            "pluginId": "ionic-plugin-keyboard",
-            "clobbers": [
-                "cordova.plugins.Keyboard"
-            ],
-            "runs": true
         },
         {
             "file": "plugins/cordova-plugin-whitelist/whitelist.js",
@@ -124,14 +115,23 @@
             "clobbers": [
                 "navigator.splashscreen"
             ]
+        },
+        {
+            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+            "id": "ionic-plugin-keyboard.keyboard",
+            "pluginId": "ionic-plugin-keyboard",
+            "clobbers": [
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-device": "1.1.0",
         "cordova-plugin-statusbar": "2.1.0",
-        "ionic-plugin-keyboard": "1.0.8",
         "cordova-plugin-whitelist": "1.2.2-dev",
         "cordova-plugin-network-information": "1.2.0",
-        "cordova-plugin-splashscreen": "3.2.1-dev"
+        "cordova-plugin-splashscreen": "3.2.1-dev",
+        "ionic-plugin-keyboard": "1.0.8"
     }
 }

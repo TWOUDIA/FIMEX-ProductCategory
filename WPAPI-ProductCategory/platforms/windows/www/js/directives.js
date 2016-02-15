@@ -48,6 +48,7 @@
         link: function (scope, element, attrs) {
             scope.$watch('native.keyboardshow', function () {
                 element.addClass('hide');
+                alert('element is ' + element);
             });
             scope.$watch('native.keyboardhide', function () {
                 element.removeClass('hide');

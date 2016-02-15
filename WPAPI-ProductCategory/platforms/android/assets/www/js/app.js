@@ -52,11 +52,6 @@ angular.module('fimex', [
         }
     }, 5000);
 
-    //// Make elements disappear immediately
-    //window.addEventListener('native.keyboardshow', function () {
-    //    document.body.classList.add('keyboard-open');
-    //});
-
     // Exit App; only for Android System
     if (ionic.Platform.isAndroid()) {
         var countTimerForCloseApp = false;
@@ -106,8 +101,8 @@ angular.module('fimex', [
           'ru': 'ru', 'ru_*': 'ru'
       })
       .preferredLanguage('en')
-      .fallbackLanguage(['en', 'de', 'es', 'ru'])
       .determinePreferredLanguage()
+      .fallbackLanguage(['en', 'de', 'es', 'ru'])
       .useSanitizeValueStrategy('escapeParameters')
       .useLocalStorage();
 

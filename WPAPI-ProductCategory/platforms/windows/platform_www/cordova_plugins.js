@@ -54,15 +54,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/ionic-plugin-keyboard/src/windows/KeyboardProxy.js",
-        "id": "ionic-plugin-keyboard.KeyboardProxy",
-        "pluginId": "ionic-plugin-keyboard",
-        "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
-    },
-    {
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "pluginId": "cordova-plugin-splashscreen",
@@ -77,6 +68,15 @@ module.exports = [
         "merges": [
             ""
         ]
+    },
+    {
+        "file": "plugins/ionic-plugin-keyboard/src/windows/KeyboardProxy.js",
+        "id": "ionic-plugin-keyboard.KeyboardProxy",
+        "pluginId": "ionic-plugin-keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -86,8 +86,8 @@ module.exports.metadata =
     "cordova-plugin-network-information": "1.2.0",
     "cordova-plugin-statusbar": "2.1.0",
     "cordova-plugin-whitelist": "1.2.2-dev",
-    "ionic-plugin-keyboard": "1.0.8",
-    "cordova-plugin-splashscreen": "3.2.1-dev"
+    "cordova-plugin-splashscreen": "3.2.1-dev",
+    "ionic-plugin-keyboard": "1.0.8"
 }
 // BOTTOM OF METADATA
 });

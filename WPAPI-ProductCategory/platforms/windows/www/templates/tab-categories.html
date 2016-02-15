@@ -6,7 +6,7 @@
 
     <ion-content ng-class="{'has-subheader' : titleSub}">
         <ion-list ng-show="categories">
-            <ion-item class="item-icon-right" ng-repeat="category in categories" type="item-text-wrap" ng-href="{{(showCount - category.count == 1) ? '':(RSitemURI + '/' + category.id + '/' + category.slug + '/' + category.name)}}" ng-disabled="showCount && (category.count == 0)">
+            <ion-item class="item-icon-right" collection-repeat="category in categories" type="item-text-wrap" ng-href="{{(showCount - category.count == 1) ? '':(RSitemURI + '/' + category.id + '/' + category.slug + '/' + category.name)}}" ng-disabled="showCount && (category.count == 0)">
                 <p ng-bind-html="category.name"></p>
                 <span ng-if="showCount" ng-class="category.count ? 'badge badge-calm' : 'hide'">{{category.count}}</span>
                 <i ng-if="!showCount" class="icon ion-chevron-right icon-accessory"></i>

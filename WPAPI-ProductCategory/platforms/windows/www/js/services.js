@@ -1,5 +1,18 @@
 ﻿angular.module('fimex.services', [])
 
+.factory('ImagesCaching', ['$ImageCacheFactory', '$filter', function ($ImageCacheFactory, $filter) {
+    return {
+        Store: function (data, $attr, $filter_type) {
+            var images = [];
+            for (var i = 0; i < data.length; i++) {
+                var url = ($filter_type == '') ? data[i][$attr] : $filter($filter_type)(data[i][$attr]);
+                images.push(url);
+            }
+            $ImageCacheFactory.Cache(images);
+        }
+    }
+}])
+
 .factory('DataLoader', ["AppSettings", "$http", function (AppSettings, $http) {
     return {
         get: function ($term, $limit) {
@@ -74,9 +87,6 @@
         switch (value) {
             case 'en':
                 savedData.languageURI = '';
-                break;
-            case 'zh':
-                savedData.languageURI = 'zh-hant/';
                 break;
             default:
                 savedData.languageURI = value + '/';
@@ -165,7 +175,7 @@
     }
 }])
 
-.service('ModalHandler_product', ["BookMarks", "$ionicModal", "$filter", "$ionicSlideBoxDelegate", "$ionicScrollDelegate", function (BookMarks, $ionicModal, $filter, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+.service('ModalHandler_product', ["BookMarks", "ImagesCaching", "$ionicModal", "$filter", "$ionicSlideBoxDelegate", "$ionicScrollDelegate", function (BookMarks, ImagesCaching, $ionicModal, $filter, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
     return {
         init: function ($sce) {
             $ionicModal.fromTemplateUrl('templates/product-modal.html', {
@@ -186,6 +196,9 @@
                 $ionicSlideBoxDelegate.update();
                 $sce.modal.show();
                 $ionicScrollDelegate.scrollTop();
+
+                //Caching Images
+                ImagesCaching.Store($sce.detailImg, 'src', '');
             };
             $sce.closeModal = function () {
                 $sce.modal.hide();

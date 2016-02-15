@@ -5,12 +5,12 @@
   "LOADING_MORE_TEXT": "Loading more ... ",
   "ALERT_MAIL_SENT": "Thanks {{name}}, your message has been sent.",
   "ALERT_RECORD_NULL": "No records retrieved.",
-  "ALERT_BOOKMARK_NULL": "Please mark your interested product.",
+  "ALERT_BOOKMARK_NULL": "Please bookmark the products you are interested in.",
 
   "MODAL_PRODUCTDETAIL_TITLE": "PRODUCT : ",
   "MODAL_PRODUCTDETAIL_BUTTON_CLOSE": "CLOSE",
   "MODAL_ENQUIRY_TITLE": "ENQUIRY FORM",
-  "MODAL_ENQUIRY_LABEL_RECORDS": "You have total {{amount}} product(s) in interest.",
+  "MODAL_ENQUIRY_LABEL_RECORDS": "You have a total of {{amount}} product(s) in bookmarks.",
 
   "TAB_TITLE_DASH": "HOME",
 
@@ -27,7 +27,7 @@
   "TAB_BOOKMARKS_BUTTON_ADDMORE": "ADD",
   "TAB_BOOKMARKS_SUBTITLE": "Bookmarks: {{amount}}",
   "POPUP_DROPBOOKMARK_CONFIRM_TITLE": "CONFIRMATION OF UNMARK",
-  "POPUP_DROPBOOKMARK_CONFIRM_TEMPLATE": "Are you going to unmark this product as interested ?",
+  "POPUP_DROPBOOKMARK_CONFIRM_TEMPLATE": "Are you going to unmark this product from bookmarks ?",
 
   "TAB_TITLE_SETTINGS": "SETTING",
   "TAB_SETTINGS_SECTION_TITLE_LANGUAGE": "LANGUAGE",
@@ -57,5 +57,5 @@
   "NOTES_20160109_TITLE": "Method to Exit APP",
   "NOTES_20160109_CONTENT": "Please double click on BACK/EXIT within 5 seconds to exit this app.",
   "NOTES_20160211_TITLE": "Notice on Febrary 11, 2016",
-  "NOTES_20160211_CONTENT": "Fix some bugs and add new function of Bookmarking. Now you can bookmark products in interest, and then send enquiry email to us."
+  "NOTES_20160211_CONTENT": "Fixed some bugs and added Bookmarking function. Now you can bookmark products of interest. The bookmarks list will be attached to messages by sending enquiries."
 }

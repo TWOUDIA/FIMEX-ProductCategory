@@ -88,9 +88,6 @@ angular.module('fimex.services', [])
             case 'en':
                 savedData.languageURI = '';
                 break;
-            case 'zh':
-                savedData.languageURI = 'zh-hant/';
-                break;
             default:
                 savedData.languageURI = value + '/';
         };

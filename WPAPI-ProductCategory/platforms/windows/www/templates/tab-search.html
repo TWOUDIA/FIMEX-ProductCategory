@@ -14,8 +14,8 @@
         </div>
 
         <ion-list ng-show="products" keyboard-hide>
-            <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
-                <img ng-src="{{product.featured_src}}" />
+            <ion-item class="item-thumbnail-left item-icon-right" collection-repeat="product in products" type="item-text-wrap" ng-click="openModal(product)">
+                <img ng-src="{{product.featured_src | WPthumbnailURI}}" />
                 <p ng-bind-html="product.title"></p>
                 <p ng-if="product.categories" ng-bind-html="product.categories[0]"></p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
@@ -26,7 +26,7 @@
 
         <ion-infinite-scroll ng-if="able2Loadmore"
                              on-infinite="loadMore()"
-                             distance="1%"
+                             distance="5%"
                              immediate-check="false">
         </ion-infinite-scroll>
     </ion-content>

@@ -9,7 +9,7 @@
 }])
 
 
-.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function(AppSettings, DataLoader, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
+.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ImagesCaching", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function (AppSettings, DataLoader, ImagesCaching, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
     $ionicLoading.show({
         template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
     });
@@ -43,6 +43,8 @@
                             nextPage++;
                             $scope.able2Loadmore = 1;
                         };
+                        //Caching Images
+                        ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
                     };
                     $ionicLoading.hide();
                 }, function (response) {
@@ -92,6 +94,8 @@
                     nextPage++;
                     $scope.able2Loadmore = 1;
                 };
+                //Caching Images
+                ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -107,7 +111,7 @@
 }])
 
 
-.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, $scope, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "ImagesCaching", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, ImagesCaching, $scope, $log, $filter, $ionicLoading) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
@@ -146,6 +150,8 @@
                     nextPage++;
                     $scope.able2Loadmore = 1;
                 };
+                //Caching Images
+                ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
             $ionicLoading.hide();
         }, function (response) {
@@ -168,6 +174,8 @@
                     nextPage++;
                     $scope.able2Loadmore = 1;
                 };
+                //Caching Images
+                ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
             $ionicLoading.hide();
             $scope.$broadcast('scroll.infiniteScrollComplete');
