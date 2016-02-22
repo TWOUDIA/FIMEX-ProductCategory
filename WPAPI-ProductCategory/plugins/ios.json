@@ -8,19 +8,22 @@
     },
     "installed_plugins": {
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.twoudia.FIMEX2016WPAPIproduct"
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
         }
     },
     "dependent_plugins": {}

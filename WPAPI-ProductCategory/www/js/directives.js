@@ -46,7 +46,6 @@ angular.module('fimex.directives', [])
     return {
         restrict: 'A',
         link: function postLink(scope, element, attrs) {
-            console.debug(element);
             angular.element($window).bind('native.keyboardshow', function () {
                 element.addClass('hide');
             });
@@ -62,7 +61,6 @@ angular.module('fimex.directives', [])
     return {
         restrict: 'A',
         link: function postLink(scope, element, attrs) {
-            console.debug(element);
             angular.element($window).bind('native.keyboardshow', function () {
                 element.addClass('tabs-item-hide');
             });
