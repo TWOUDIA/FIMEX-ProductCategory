@@ -12,25 +12,36 @@ angular.module('fimex', [
     'fimex.config', 'fimex.controllers', 'fimex.directives', 'fimex.filters', 'fimex.services', 'fimex.notes' //customs
 ])
 
-.run(["AppSettings", "DataLoader", "$ionicPlatform", "$filter", "$timeout", "$interval", "$log", "toaster", "$ionicLoading", function (AppSettings, DataLoader, $ionicPlatform, $filter, $timeout, $interval, $log, toaster, $ionicLoading) {
+.run(["AppSettings", "DataLoader", "$ionicPlatform", "$filter", "$timeout", "$interval", "$log", "toaster", "$ionicLoading", "$rootScope", function (AppSettings, DataLoader, $ionicPlatform, $filter, $timeout, $interval, $log, toaster, $ionicLoading, $rootScope) {
     $ionicPlatform.ready(function () {
         cordova.plugins.Keyboard.disableScroll(true);
         if (window.StatusBar && !ionic.Platform.isAndroid()) {
             StatusBar.styleLightContent();
         };
 
-        /* TODO: Response with Network Unaccessable ? */
-        function alert4Offline() {
-            $timeout(function () {
-                toaster.pop({
-                    type: 'error',
-                    body: $filter('translate')('INTERNET_CONNECTION_NONE'),
-                    toasterId: 1
-                });
-            }, 0);
-        };
-        document.addEventListener("offline", alert4Offline, false);
+        if (typeof analytics !== undefined) {
+            analytics.startTrackerWithId("UA-46856632-4");
+            analytics.setUserId(device.uuid);
+        } else {
+            console.log("Google Analytics Unavailable");
+            $rootscope.connectionFails++;
+        }
     });
+
+    // Calculate Error Times for Network Disability
+    $rootScope.connectionFails = 0;
+    $interval(function () {
+        if ($rootScope.connectionFails > 1) {
+            $ionicLoading.show({
+                template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('INTERNET_CONNECTION_NONE')
+            });
+
+            $timeout(function () {
+                $ionicLoading.hide();
+                $rootScope.connectionFails = 0;
+            }, 5000);
+        }
+    }, 10000);
 
     // Check wcCategories every five seconds
     function updatewcCategories() {
@@ -44,6 +55,7 @@ angular.module('fimex', [
         }, function (response) {
             $log.error('error', response);
             $ionicLoading.hide();
+            $rootScope.connectionFails++;
         });
     };
     $interval(function () {
@@ -102,7 +114,6 @@ angular.module('fimex', [
       })
       .preferredLanguage('en')
       .determinePreferredLanguage()
-      .fallbackLanguage(['en', 'de', 'es', 'ru'])
       .useSanitizeValueStrategy('escapeParameters')
       .useLocalStorage();
 

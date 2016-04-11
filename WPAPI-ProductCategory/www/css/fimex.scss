@@ -54,28 +54,53 @@ $bar-subheader-height: 80px !default; // 4 lines
 
 /* FOR NULL RECORD */
 .null {
-    color: white;
+    display: none;
+}
+
+/* INPUT (VIEW: SEARCH) */
+.item-input {
+    .icon {
+        font-size: 2em;
+    }
 }
 
 /* CARDS */
-.card {
-    margin: 15px 0;
+ion-content {
+    .card {
+        margin: 15px 0;
 
-    .item, .item-body {
-        padding: 10px;
+        .item, .item-body {
+            padding: 10px;
+            font-size: 1em;
 
+            h4 {
+                font-size: 1.15em;
+            }
+
+            table {
+                font-size: 0.75em;
+
+                th, td {
+                    border: solid 1px black;
+                }
+            }
+        }
+
+        .item-icon-right {
+            padding-right: 34px;
+        }
+
+        form label.item {
+            padding: 0 10px 5px 10px;
+        }
     }
 
-    .item-icon-right {
-        padding-right: 34px;
-    }
-
-    form label.item {
-        padding: 0 10px 5px 10px;
+    .card:first-child {
+        margin-top: 5px;
     }
 }
 
-/* LIST ITEM & ITEM-THUMBNAIL */
+/* ITEM & ITEM-THUMBNAIL */
 .item, .item-content {
     white-space: normal;
 
@@ -93,7 +118,6 @@ $bar-subheader-height: 80px !default; // 4 lines
         border-radius: $item-thumbnail-border-radius;
     }
 }
-
 
 /* BUTTON-BAR (SEC: LANGUAGE) */
 .button-bar.complex-sec {
@@ -122,7 +146,7 @@ form {
         color: $assertive;
     }
 
-    textarea{
+    textarea {
         background-color: transparent;
     }
 }
@@ -139,6 +163,23 @@ form {
     margin-right: auto;
 }
 
+/* UTIL : RIGHT */
 .right-float {
     float: right;
+}
+
+/* LOADING SPINNER */
+.loading-container .loading {
+    padding: 10px;
+
+    .spinner {
+        vertical-align: middle;
+        vertical-align: -webkit-baseline-middle;
+    }
+}
+
+/* TOASTER ANIMATION SPEED */
+:not(.no-enter)#toast-container > div.ng-enter,
+:not(.no-leave)#toast-container > div.ng-leave {
+    transition-duration: .3s;
 }

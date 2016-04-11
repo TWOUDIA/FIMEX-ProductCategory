@@ -13,7 +13,9 @@
             </ion-item>
         </ion-list>
 
-        <h3 ng-hide="bookmarks" ng-class="{null: !RSempty}" translate>{{'ALERT_BOOKMARK_NULL'}}</h3>
+        <div ng-hide="bookmarks" class="padding" ng-class="{null: !RSempty}">
+            <h3 translate>{{'ALERT_BOOKMARK_NULL'}}</h3>
+        </div>
     </ion-content>
     <ion-footer-bar class="bar-light">
         <button class="button icon-left ion-plus-circled button-royal" ng-click="gotoSearch()" translate>{{'TAB_BOOKMARKS_BUTTON_ADDMORE'}}</button>

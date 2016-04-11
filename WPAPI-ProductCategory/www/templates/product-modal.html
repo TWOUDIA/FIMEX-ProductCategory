@@ -14,8 +14,8 @@
                 </ion-slide-box>
             </div>
             <!-- TODO: Temporary remove tables inside the content //2016JAN20 -->
-            <div class="item item-body" ng-if="detail.description" ng-bind-html="detail.description | partRemove:'table' "></div>
-            <div class="item item-body" ng-if="detail.short_description" ng-bind-html="detail.short_description | partRemove:'table' "> </div>
+            <div class="item item-body" ng-if="detail.description" ng-bind-html="detail.description | partRemove:'a' "></div>
+            <div class="item item-body" ng-if="detail.short_description" ng-bind-html="detail.short_description | partRemove:'a' "> </div>
             <button class="button button-full button-calm no-margin" ng-click="closeModal()" translate>{{'MODAL_PRODUCTDETAIL_BUTTON_CLOSE'}}</button>
         </div>
     </ion-content>

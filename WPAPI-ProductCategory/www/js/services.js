@@ -44,7 +44,7 @@ angular.module('fimex.services', [])
     }
 })
 
-.factory('EmailSender', ["AppSettings", "$http", "$log", "toaster", "$filter", function (AppSettings, $http, $log, toaster, $filter) {
+.factory('EmailSender', ["AppSettings", "$http", "$log", "toaster", "$filter", "$timeout", function (AppSettings, $http, $log, toaster, $filter, $timeout) {
     return {
         send: function ($mail, $sendername) {
             $http({
@@ -65,11 +65,13 @@ angular.module('fimex.services', [])
                 timeout: AppSettings.get('mgConnectTimeout')
             }).then(
             function success() {
-                toaster.pop({
-                    type: 'info',
-                    body: $filter('translate')('ALERT_MAIL_SENT', { name: $sendername }),
-                    toasterId: 2
-                });
+                $timeout(function () {
+                    toaster.pop({
+                        type: 'info',
+                        body: $filter('translate')('ALERT_MAIL_SENT', { name: $sendername }),
+                        toasterId: 2
+                    });
+                }, 0);
             }, function error() {
                 $log.debug('error sending email.');
             });
@@ -129,16 +131,10 @@ angular.module('fimex.services', [])
 }])
 
 
-.service('BookMarks', ["$localForage", "$log", function ($localForage, $log) {
+.service('BookMarks', ["$localForage", function ($localForage) {
     var lf = $localForage.instance();
 
     return {
-        countos: function () {
-            return lf.length().then(function (value) {
-                $log.debug(value);
-                return value;
-            });
-        },
         count: function () {
             return lf.length();
         },
@@ -153,12 +149,16 @@ angular.module('fimex.services', [])
                 category: $product.categories[0],
                 path: $product.permalink
             }).then(function () {
-                $log.debug('LocalForage Add #:' + $id);
+                //console.log('LocalForage Add #:' + $id);
+
+                if (typeof analytics !== undefined) { analytics.trackEvent('BookMarks', 'add'); }
             });
         },
         drop: function ($id) {
             lf.removeItem($id).then(function () {
-                $log.debug('LocalForage Remove #:' + $id);
+                //console.log('LocalForage Remove #:' + $id);
+
+                if (typeof analytics !== undefined) { analytics.trackEvent('BookMarks', 'drop'); }
             });
         },
         getall: function () {
@@ -289,6 +289,8 @@ angular.module('fimex.services', [])
                     $sce.RScount = 0;
                     $sce.closeModal();
                 });
+
+                if (typeof analytics !== undefined) { analytics.trackEvent('Email', 'EnquiryfromBookMarks'); }
             };
         }
     }

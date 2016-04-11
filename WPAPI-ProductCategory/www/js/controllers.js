@@ -6,16 +6,20 @@ angular.module('fimex.controllers', [])
     $scope.notesTop = $filter('filter')(NotesRS, { top: 1 });
     $scope.notesCount = NotesRS.length;
     $scope.today = new Date();
+
+    if (typeof analytics !== undefined) { analytics.trackView("Dashboard"); }
 }])
 
 
-.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ImagesCaching", "ModalHandler_product", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", function (AppSettings, DataLoader, ImagesCaching, ModalHandler_product, $scope, $stateParams, $log, $filter, $ionicLoading) {
+.controller('CategoriesCtrl', ["AppSettings", "DataLoader", "ImagesCaching", "ModalHandler_product", "$rootScope", "$scope", "$stateParams", "$log", "$filter", "$ionicLoading", "$timeout", function (AppSettings, DataLoader, ImagesCaching, ModalHandler_product, $rootScope, $scope, $stateParams, $log, $filter, $ionicLoading, $timeout) {
     $ionicLoading.show({
         template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner>' + $filter('translate')('LOADING_TEXT')
     });
     $scope.RSempty = false;
     var nextPage = 1;
     $scope.able2Loadmore = 0;
+
+    if (typeof analytics !== undefined) { analytics.trackView("Categories"); }
 
     var CategoriesSplitTerm = ' >> ';
     $scope.RSitemURI = '#/tab/categories/' + (parseInt($stateParams.categoryLevel) + 1);
@@ -46,11 +50,15 @@ angular.module('fimex.controllers', [])
                         //Caching Images
                         ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
                     };
-                    $ionicLoading.hide();
+
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 500);
                 }, function (response) {
                     $log.error('error', response);
                     $ionicLoading.hide();
                     $scope.RSempty = true;
+                    $rootScope.connectionFails++;
                 });
             }
             PretitleSub = arrPrevtitleSub[0] + CategoriesSplitTerm + arrPrevtitleSub[1];
@@ -97,12 +105,15 @@ angular.module('fimex.controllers', [])
                 //Caching Images
                 ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
-            $ionicLoading.hide();
+            
+            $timeout(function () {
+                $ionicLoading.hide();
+            }, 500);
             $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function (response) {
             $log.error('error', response);
             $ionicLoading.hide();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
+            $rootScope.connectionFails++;
         });
     };
 
@@ -111,10 +122,12 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "ImagesCaching", "$scope", "$log", "$filter", "$ionicLoading", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, ImagesCaching, $scope, $log, $filter, $ionicLoading) {
+.controller('SearchCtrl', ["AppSettings", "ModalHandler_product", "PHPJSfunc", "DataLoader", "ImagesCaching", "$rootScope", "$scope", "$log", "$filter", "$ionicLoading", "$timeout", function (AppSettings, ModalHandler_product, PHPJSfunc, DataLoader, ImagesCaching, $rootScope, $scope, $log, $filter, $ionicLoading, $timeout) {
     $scope.search = {};
     var nextPage = 1;
     $scope.able2Loadmore = 0;
+
+    if (typeof analytics !== undefined) { analytics.trackView("Search"); }
 
     $scope.cleanResult = function () {
         $scope.products = null;
@@ -125,6 +138,8 @@ angular.module('fimex.controllers', [])
     $scope.cleanSearch = function () {
         $scope.search.term = '';
         $scope.cleanResult();
+
+        if (typeof analytics !== undefined) { analytics.trackEvent('Search', 'resetSearch'); }
     };
 
     // Start Search
@@ -132,6 +147,8 @@ angular.module('fimex.controllers', [])
         if (!$scope.search.term) return;
         cordova.plugins.Keyboard.close();
         $scope.loadResult();
+
+        if (typeof analytics !== undefined) { analytics.trackEvent('Search', 'doSearch', $scope.search.term); }
     };
 
     $scope.loadResult = function () {
@@ -153,11 +170,15 @@ angular.module('fimex.controllers', [])
                 //Caching Images
                 ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
-            $ionicLoading.hide();
+            
+            $timeout(function () {
+                $ionicLoading.hide();
+            }, 500);
         }, function (response) {
             $log.error('error', response);
             $ionicLoading.hide();
             $scope.RSempty = true;
+            $rootScope.connectionFails++;
         });
     }
 
@@ -177,12 +198,15 @@ angular.module('fimex.controllers', [])
                 //Caching Images
                 ImagesCaching.Store($scope.products, 'featured_src', 'WPthumbnailURI');
             };
-            $ionicLoading.hide();
+            
+            $timeout(function () {
+                $ionicLoading.hide();
+            }, 500);
             $scope.$broadcast('scroll.infiniteScrollComplete');
         }, function (response) {
             $log.error('error', response);
             $ionicLoading.hide();
-            $scope.$broadcast('scroll.infiniteScrollComplete');
+            $rootScope.connectionFails++;
         });
     };
 
@@ -195,6 +219,8 @@ angular.module('fimex.controllers', [])
     $scope.RSempty = false;
     $scope.bookmarks = null;
     $scope.RScount = 0;
+
+    if (typeof analytics !== undefined) { analytics.trackView("BookMarks"); }
 
     BookMarks.count().then(function (value) {
         if (value > 0) {
@@ -232,12 +258,32 @@ angular.module('fimex.controllers', [])
 }])
 
 
-.controller('SettingsCtrl', ["AppSettings", "EmailSender", "$scope", "$ionicHistory", "$translate", "$filter", function (AppSettings, EmailSender, $scope, $ionicHistory, $translate, $filter) {
+.controller('SettingsCtrl', ["AppSettings", "EmailSender", "$scope", "$ionicHistory", "$translate", "$filter", "$window", function (AppSettings, EmailSender, $scope, $ionicHistory, $translate, $filter, $window) {
     $scope.forms = {};
     $scope.ctForm = {};
     $scope.settings = {
         language: $translate.use()
     }
+
+    if (typeof analytics !== undefined) { analytics.trackView("Settings"); }
+
+    //Decide device current width
+    $scope.narrowformat = 1;
+    $scope.recalDimensions = function () {
+        if ($window.innerWidth < $window.innerHeight || $window.innerWidth < 479) {
+            $scope.narrowformat = 1;
+        } else {
+            $scope.narrowformat = 0;
+        }
+
+        if (typeof analytics !== undefined) { analytics.trackEvent('Device', 'Orientation', 'toPortrait', $scope.narrowformat); }
+    }
+    $scope.recalDimensions();
+    angular.element($window).bind('resize', function () {
+        $scope.$apply(function () {
+            $scope.recalDimensions();
+        })
+    });
 
     // Change Lanuage and auto redirect to dash tab
     $scope.$watch('settings.language', function () {
@@ -246,6 +292,8 @@ angular.module('fimex.controllers', [])
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
             AppSettings.change('wcCategories', []);
+
+            if (typeof analytics !== undefined) { analytics.trackEvent('Interface', 'Language', $scope.settings.language); }
         };
     });
 
@@ -270,5 +318,7 @@ angular.module('fimex.controllers', [])
         //reset Form
         $scope.ctForm = {};
         $scope.forms.contactForm.$setPristine();
+
+        if (typeof analytics !== undefined) { analytics.trackEvent('Email', 'ContactUs'); }
     };
 }]);

@@ -13,6 +13,8 @@
             </ion-item>
         </ion-list>
 
-        <h3 ng-hide="categories" ng-class="{null: !RSempty}" translate>{{'ALERT_RECORD_NULL'}}</h3>
+        <div ng-hide="categories" class="padding" ng-class="{null: !RSempty}">
+            <h3 translate>{{'ALERT_RECORD_NULL'}}</h3>
+        </div>
     </ion-content>
 </ion-view>

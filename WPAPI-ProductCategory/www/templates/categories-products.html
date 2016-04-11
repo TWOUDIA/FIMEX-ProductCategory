@@ -13,7 +13,9 @@
             </ion-item>
         </ion-list>
 
-        <h3 ng-hide="products" ng-class="{null: !RSempty}" translate>{{'ALERT_RECORD_NULL'}}</h3>
+        <div ng-hide="products" class="padding" ng-class="{null: !RSempty}">
+            <h3 translate>{{'ALERT_RECORD_NULL'}}</h3>
+        </div>
         
         <ion-infinite-scroll ng-if="able2Loadmore"
                              on-infinite="loadMore()"

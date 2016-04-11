@@ -10,6 +10,9 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
         },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
+        },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.twoudia.FIMEX.ProductCategory"
         },
